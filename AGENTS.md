@@ -9,7 +9,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 ## Commits
 
 - Use conventional commits (e.g. `feat:`, `fix:`, `chore:`, `test:`, `docs:`).
-- Use imperative: "add X"
+- Use imperative verbs: "add X"
 - Be short: 70 chars max
 - Before committing, run `npx prettier --write .` and `npm run lint` to ensure formatting and lint consistency.
 - Stage only the intended files; never commit secrets or env files.
@@ -29,12 +29,27 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - Prefer pure CSS (modules) — no CSS frameworks.
 - use helper functions whenever possible, and save it in a './src/service' folder. Update or create a '/agents/services.md' file as a list of every available services. Keep it updated, and search there before creating other overlapping services.
 - Create short functions
+- 
 
 ## Testing
 
 - Unit tests use Jest + `@testing-library/react`.
-- Place test files in a separate folder (./test) that mirrors ./src tree.
-- Every page or component should have a test covering:
-  - Renders without crashing.
-  - Key content / interactions.
 - Run tests with `npm test` before committing.
+
+### Where to place tests
+
+- **Page tests**: `test/pages/[name].test.tsx` (e.g. `test/pages/page1.test.tsx`)
+- **Component tests**: `test/app/components/[name].test.tsx` mirroring `src/app/components/`
+- **Layout/utility tests**: `test/app/` mirroring `src/app/`
+
+### What to test for pages
+
+- Renders without crashing.
+- Heading or main title is present.
+- All navigation Links are rendered with correct `href`.
+
+### What to test for components
+
+- Renders without crashing.
+- Key content / props are displayed.
+- User interactions (click, input) trigger expected behavior.

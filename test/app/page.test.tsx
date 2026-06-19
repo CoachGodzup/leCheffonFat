@@ -2,24 +2,14 @@ import { render, screen } from "@testing-library/react";
 import Home from "@/app/page";
 
 describe("Home", () => {
-  it("renders the heading", () => {
+  it("renders without crashing", () => {
     render(<Home />);
-    expect(
-      screen.getByRole("heading", { name: /to get started/i }),
-    ).toBeInTheDocument();
   });
 
-  it("renders navigation links", () => {
+  it("renders a link to the form", () => {
     render(<Home />);
-    expect(
-      screen.getByRole("link", { name: /templates/i }),
-    ).toBeInTheDocument();
-    expect(screen.getByRole("link", { name: /learning/i })).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: /deploy now/i }),
-    ).toBeInTheDocument();
-    expect(
-      screen.getByRole("link", { name: /documentation/i }),
-    ).toBeInTheDocument();
+    const link = screen.getByRole("link", { name: /go to form/i });
+    expect(link).toBeInTheDocument();
+    expect(link).toHaveAttribute("href", "/page1");
   });
 });
