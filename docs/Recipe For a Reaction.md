@@ -1,6 +1,6 @@
 # Recipe for a Reaction
 
-This is a simple guide on how I developed the project.
+This will be a simple guide on how I will develop the project.
 
 ## Navigation
 
@@ -17,29 +17,38 @@ Project will have those pages:
 I'll use [The Meal DB API](https://www.themealdb.com/). Super simple and useful.
 I'll also cache calls via the store (see below) in order to decrement API calls, since recipes won't change indefinitively. If the recipes will change, I'll switch to a cached store with a reasonable time to expire.
 
-
 ## Technical choices
 
-Since I have to create a simple frontend, with strict time constraint, I've to choose the most efficient way to create it. The most efficient way is to use an opinionated and well documented standard, such as [Next JS](https://nextjs.org/). In this way, I've already out of the box some efficient structures, like navigation and server side rendering, out of the box, in pure React syntax.
+Since I will have to create a simple frontend, with strict time constraint, I will have to choose the most efficient way to create it. The most efficient way will be to use an opinionated and well documented standard, such as [Next JS](https://nextjs.org/). In this way, I will already have out of the box some efficient structures, like navigation and server side rendering, out of the box, in pure React syntax.
+I will use [App Router](), server-first and more lightweight for the client.
 
-This will be made using [Typescript](https://www.typescriptlang.org/) to give Javascript some superset of types and keep code more robust and clean with stuff like typization. 
+This will be made using [Typescript](https://www.typescriptlang.org/) to give Javascript some superset of types and keep code more robust and clean with stuff like typization.
 
-The style of the page is created in [pure CSS](https://developer.mozilla.org/en-US/docs/Web/CSS). It's more simple to handle with respect to some frameworks that often charges with tooling and overhead without important benefits, expecially in simple tasks like this one.
+The style of the page will be created in [pure CSS](https://developer.mozilla.org/en-US/docs/Web/CSS). It will be more simple to handle with respect to some frameworks that will often charge with tooling and overhead without important benefits, expecially in simple tasks like this one.
 
 Unit test framework's choice will be straightforward: [Jest](https://jestjs.io/), the de facto standard for testing React
 
-End to End tests: I'll go with [Playwright](https://playwright.dev/). I'll choose some happy path to test, and then I'll cause me problems, in order to see how application behave in non-ideal scenarios.
+End to End tests: I'll go with [Playwright](https://playwright.dev/). I'll choose some happy path to test, and then I'll cause me problems, in order to see how application will behave in non-ideal scenarios.
 
-This project need a store to handle states between pages. It should be something simple to use, and well integrated with LocalStorage, in order to persist information. I'll go for [Zustand](https://zustand.site/en/). His middleware [persist](https://zustand.docs.pmnd.rs/reference/middlewares/persist) can handle the local storage efficiently
+This project will need a store to handle states between pages. It will be something simple to use, and well integrated with LocalStorage, in order to persist information. I'll go for [Zustand](https://zustand.site/en/). His middleware [persist](https://zustand.docs.pmnd.rs/reference/middlewares/persist) will handle the local storage efficiently
+
+As a package manager, I'll stick to npm. I will know alternatives like bun or npnm, just to keep it simple and focused.
+
+## Testing
+
+### Unit tests
+
+I will decide to create tests for every page and components. I will create a separate folder `'/tests'`, will split into pages, components and layout. In the beginning, I will just stick to the happy path (will render correctly everything).
 
 ## With a little help from my friends - AI section.
 
-Since it's 2026, help from AI is quite expected. In this project, I use [Opencode](https://opencode.ai/it), that let me have some agentic programming, for some thrivial tasks. With this tool, I've several US-hosted open model, like [Deepseek V4 Flash](https://benchlm.ai/models/deepseek-v4-flash) that:
-- helps me decide *architectural choices* that can be impactful, speeding up research online
-- helps me *debugging* code
-- helps me *creating and handling tests* I need
-- keeps me *reviewing code*, keeping me on track with some specification like [WCAG](https://wcag.it/)
+Since it will be 2026, help from AI will be quite expected. In this project, I will use [Opencode](https://opencode.ai/it), that will let me have some agentic programming, for some thrivial tasks. With this tool, I will have several US-hosted open model, like [Deepseek V4 Flash](https://benchlm.ai/models/deepseek-v4-flash) that:
 
-I've used also a local model to help me with autocomplete. In my case, I've used [Qwen 2.5 Coder-7B](https://www.ollama.com/library/qwen2.5-coder:7b) that runs on [Ollama](https://www.ollama.com/).
+- will help me decide _architectural choices_ that will be impactful, will speed up research online
+- will help me _debug_ code
+- will help me _create and handle_ tests I will need
+- will keep me _reviewing code_, will keep me on track with some specification like [WCAG](https://wcag.it/)
 
-I'd rather go for this self hosted model, because *I like to have control over the model I choose*. Even if they're not the frontier ones, I can handle which model to use, for what purpouse (based on benchmarks and maybe without overshoot a too-powerful model for simple tasks like code completion) and I'm free to change it anytime, instead of binding me to a powerful provider that can change policies anytime ([Fable 5, for instance](https://www.anthropic.com/news/fable-mythos-access)).
+I will also use a local model to help me with autocomplete. In my case, I will use [Qwen 2.5 Coder-7B](https://www.ollama.com/library/qwen2.5-coder:7b) that will run on [Ollama](https://www.ollama.com/).
+
+I will prefer to go for this self hosted model, because _I will like to have control over the model I will choose_. Even if they will not be the frontier ones, I will be able to handle which model to use, for what purpouse (based on benchmarks and maybe without overshoot a too-powerful model for simple tasks like code completion) and I will be free to change it anytime, instead of binding me to a powerful provider that will change policies anytime ([Fable 5, for instance](https://www.anthropic.com/news/fable-mythos-access)).
