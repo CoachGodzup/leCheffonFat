@@ -5,21 +5,23 @@
   --color-bg-salvia: #e2ece9;
 
   /* Reading support colors */
-  --color-text-main: #2b2d42; /* Un grigio antracite scuro (evita il nero puro) */
-  --color-white: #ffffff; /* Per staccare i contenuti (es. lo sfondo delle card) */
+  --color-text-main: #2b2d42;
+  --color-white: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
     /* The Dark Triad */
-    --color-bg-dark: #1a1625; /* Deep midnight plum background */
-    --color-bg-card-dark: #252033; /* A slightly lighter purple-gray for cards/sections */
-    --color-lilac-dark: #c3b1e1; /* Luminous lilac for secondary elements */
-    --color-accent-gold: #ffd25a; /* Glowing honey accent */
+    --color-bg-dark: #1a1625;
+    --color-bg-card-dark: #252033;
+    --color-lilac-dark: #c3b1e1;
+    --color-accent-gold: #ffd25a;
 
     /* Text & Contrast Colors */
-    --color-text-primary: #f4f3f7; /* Off-white (easy to read, not blinding) */
-    --color-text-muted: #a5a1b8; /* Muted lavender-gray for dates, meta text, or units */
+    --color-text-primary: #f4f3f7;
+    --color-text-muted: #a5a1b8;
+
+    --spacing: 1em;
 
     /* Practical application example */
     body {
@@ -29,7 +31,7 @@
 
     h1,
     h2 {
-      color: var(--color-lilla-dark);
+      color: var(--color-lilac-dark);
     }
 
     .recipe-card {
@@ -53,11 +55,10 @@
   body {
     background-color: var(--color-bg-salvia);
     color: var(--color-text-main);
-    font-family: "Segoe UI", Roboto, sans-serif;
   }
 
   header {
-    background-color: var(--color-lilla);
+    background-color: var(--color-lilac);
     color: var(--color-white);
   }
 
@@ -68,8 +69,16 @@
   }
 }
 
+* {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 .btn-cta {
-  background-color: var(--color-accent-giallo);
+  background-color: var(--color-accent-yellow);
   color: var(--color-text-main);
   font-weight: bold;
   padding: 10px 20px;
@@ -83,23 +92,11 @@
   transform: scale(1.05);
 }
 
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
 h1,
 h2,
 h3 {
   font-family: "Plus Jakarta Sans", sans-serif;
   font-weight: 800;
-}
-body,
-p,
-li {
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
 }
 
 html {
@@ -114,13 +111,56 @@ body {
 
 body {
   min-height: 100%;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "menu content"
+    "footer footer";
+  grid-auto-rows: max-content;
+  grid-template-rows: 3em 1fr 3em;
+  grid-template-columns: 1fr 3fr;
+  gap: 3px;
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+}
+
+/* hide side from printing */
+@media print {
+  /* hide side menu */
+  body {
+    grid-template-areas:
+      "header header"
+      "content content";
+    gap: 1em;
+  }
+
+  aside {
+    display: none !important;
+  }
+
+  footer {
+    display: none !important;
+  }
+}
+
+header {
+  grid-area: header;
+  height: 3em;
+  background: var(--color-lilac);
+}
+
+main {
+  grid-area: content;
+  padding: var(--spacing);
+}
+
+footer {
+  grid-area: footer;
+  background: var(--color-lilac);
+}
+
+aside {
+  grid-area: menu;
 }
 
 a {
