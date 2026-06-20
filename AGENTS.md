@@ -29,7 +29,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - Prefer pure CSS (modules) — no CSS frameworks.
 - use helper functions whenever possible, and save it in a './src/service' folder. Update or create a '/agents/services.md' file as a list of every available services. Keep it updated, and search there before creating other overlapping services.
 - Create short functions
-- 
+-
 
 ## Testing
 
