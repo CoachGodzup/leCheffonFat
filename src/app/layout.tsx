@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -24,7 +25,23 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <header>
+          <Link href="/" title="Le Cheffon Fat">
+            🧑‍🍳
+          </Link>
+        </header>
+        <main>{children}</main>
+        <aside>
+          <p>Here the aside</p>
+        </aside>
+        <footer>
+          <p>
+            Made with 🥄 by{" "}
+            <Link href="https://github.com/CoachGodzup">Matteo Garza</Link>
+          </p>
+        </footer>
+      </body>
     </html>
   );
 }
