@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const page2 = () => (
+const Page2 = () => (
   <section>
     <h1>page 2</h1>
     <Link href="/page1">back</Link>
@@ -8,4 +8,4 @@ const page2 = () => (
   </section>
 );
 
-export default page2;
+export default Page2;

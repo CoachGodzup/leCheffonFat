@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const recommendation = () => (
+const Recommendation = () => (
   <section>
     <h1>Recommendation</h1>
     <Link href="/page2">back</Link>
@@ -8,4 +8,4 @@ const recommendation = () => (
   </section>
 );
 
-export default recommendation;
+export default Recommendation;
