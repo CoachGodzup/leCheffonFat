@@ -9,7 +9,7 @@ import { getCategories, listAreas } from "@/service/meal-db-service";
 import type { Category, Area } from "@/types/meal-db";
 
 const Page1 = () => {
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit } = useForm<page1Request>();
   const router = useRouter();
   const [categories, setCategories] = useState<Category[]>([]);
   const [areas, setAreas] = useState<Area[]>([]);
