@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import styles from "./page1.module.css";
 import type { page1Request } from "@/types/form";
 import { useRouter } from "next/navigation";
 import { getCategories, listAreas } from "@/service/meal-db-service";
