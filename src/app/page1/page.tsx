@@ -7,31 +7,48 @@ import { useRouter } from "next/navigation";
 import { getCategories, listAreas } from "@/service/meal-db-service";
 import type { Category, Area } from "@/types/meal-db";
 import FormSelect from "@/components/form/formSelect/FormSelect";
+import { useStore } from "@/store";
+import { useShallow } from "zustand/shallow";
 
 const Page1 = () => {
   const {
     register,
     formState: { errors },
     handleSubmit,
+    reset,
   } = useForm<page1Request>();
   const router = useRouter();
-  const [categories, setCategories] = useState<Category[]>([]);
-  const [areas, setAreas] = useState<Area[]>([]);
+  const [categoriesList, setListCategories] = useState<Category[]>([]);
+  const [areasList, setListAreas] = useState<Area[]>([]);
+
+  const { category, area, setPage1 } = useStore(
+    useShallow((s) => ({
+      category: s.category,
+      area: s.area,
+      setPage1: s.setPage1,
+    })),
+  );
+
   const [loading, setLoading] = useState(true);
   const [fetchError, setFetchError] = useState<string | null>(null);
 
   useEffect(() => {
     Promise.all([getCategories(), listAreas()])
       .then(([catRes, areaRes]) => {
-        setCategories(catRes.categories);
-        setAreas(areaRes.meals ?? []);
+        setListCategories(catRes.categories);
+        setListAreas(areaRes.meals ?? []);
       })
       .catch((err) => setFetchError(err.message))
       .finally(() => setLoading(false));
   }, []);
 
+  useEffect(() => {
+    reset({ category, area });
+  }, [category, area, reset]);
+
   const onSubmit = (data: FieldValues) => {
     console.log("submitted", data);
+    setPage1({ category: data.category, area: data.area });
     router.push("/page2");
   };
 
@@ -44,7 +61,7 @@ const Page1 = () => {
         <FormSelect
           label="Category"
           name="category"
-          options={categories.map((c) => ({
+          options={categoriesList.map((c) => ({
             value: c.idCategory,
             label: c.strCategory,
           }))}
@@ -58,7 +75,7 @@ const Page1 = () => {
         <FormSelect
           label="Area"
           name="area"
-          options={areas.map((a) => ({
+          options={areasList.map((a) => ({
             value: a.strArea,
             label: a.strArea,
           }))}
