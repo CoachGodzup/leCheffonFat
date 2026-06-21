@@ -17,10 +17,9 @@ export default function Home() {
       <section>
         <p>content</p>
       </section>
-      <section>
-        <p>CTAs</p>
+      <nav className="cta-container">
         <Link href="/page1">Go to form</Link>
-      </section>
+      </nav>
     </>
   );
 }

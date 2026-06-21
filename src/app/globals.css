@@ -135,19 +135,36 @@ aside {
    Components
    ============================================= */
 
-.btn-cta {
-  background-color: var(--color-accent-yellow);
+.cta-container {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+  padding: 1em 0;
+}
+
+.cta-container > a,
+.cta-container button {
+  padding: 1em;
+  border: 1px solid white;
+}
+
+.btn-cta,
+a,
+button {
+  background-color: var(--color-bg-card-dark);
   color: var(--color-text-main);
   font-weight: bold;
   padding: 10px 20px;
-  border: none;
+  border: 1px solid var(--color-bg-salvia);
   border-radius: 20px;
   cursor: pointer;
   transition: transform 0.2s;
 }
 
-.btn-cta:hover {
-  transform: scale(1.05);
+.btn-cta:hover,
+a:hover,
+button:hover {
+  transform: scale(1.05) opacity(0.8);
 }
 
 .recipe-card {
@@ -166,6 +183,18 @@ aside {
 
 .ingredients-list span {
   color: var(--color-text-muted);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7em;
 }
 
 /* =============================================
@@ -197,6 +226,11 @@ main .card {
 
   aside,
   footer {
+    display: none !important;
+  }
+
+  /* no links for printed page */
+  a {
     display: none !important;
   }
 }
