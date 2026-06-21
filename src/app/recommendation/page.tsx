@@ -32,7 +32,6 @@ const Recommendation = async () => {
   return (
     <section>
       <h1>Recommendation</h1>
-
       <div className="recipeContainer">
         <div className="recipe">
           <Image
@@ -49,7 +48,13 @@ const Recommendation = async () => {
             <p>Area: {meal.strArea}</p>
             <p>Tags: {meal.strTags}</p>
             <div>
-              <Link href={meal.strSource}>go to source</Link>
+              <Link
+                href={meal.strSource}
+                target="_blank"
+                rel="noreferrer noopener"
+              >
+                go to source
+              </Link>
             </div>
           </div>
         </div>

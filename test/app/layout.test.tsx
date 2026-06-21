@@ -1,13 +1,13 @@
-import { render, screen } from "@testing-library/react";
+import { renderToString } from "react-dom/server";
 import RootLayout from "@/app/layout";
 
 describe("RootLayout", () => {
   it("renders children", () => {
-    render(
+    const html = renderToString(
       <RootLayout>
         <div>Test child</div>
       </RootLayout>,
     );
-    expect(screen.getByText("Test child")).toBeInTheDocument();
+    expect(html).toContain("Test child");
   });
 });

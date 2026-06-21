@@ -9,12 +9,16 @@ import { getCategories, listAreas } from "@/service/meal-db-service";
 import type { Category, Area } from "@/types/meal-db";
 
 const Page1 = () => {
-  const { register, handleSubmit } = useForm<page1Request>();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm<page1Request>();
   const router = useRouter();
   const [categories, setCategories] = useState<Category[]>([]);
   const [areas, setAreas] = useState<Area[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
+  const [fetchError, setFetchError] = useState<string | null>(null);
 
   useEffect(() => {
     Promise.all([getCategories(), listAreas()])
@@ -22,7 +26,7 @@ const Page1 = () => {
         setCategories(catRes.categories);
         setAreas(areaRes.meals ?? []);
       })
-      .catch((err) => setError(err.message))
+      .catch((err) => setFetchError(err.message))
       .finally(() => setLoading(false));
   }, []);
 
@@ -32,15 +36,18 @@ const Page1 = () => {
   };
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error}</p>;
 
   return (
-    <section className={styles.card}>
+    <section className="card">
       <h1>What&apos;s on your mind&apos;s menu?</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="inputGroup">
           <label htmlFor="category">Category</label>
-          <select {...register("category")} id="category">
+          <select
+            {...register("category", { required: true })}
+            id="category"
+            aria-invalid={errors.category ? "true" : "false"}
+          >
             <option value="">Select a category</option>
             {categories.map((c) => (
               <option key={c.idCategory} value={c.idCategory}>
@@ -48,10 +55,17 @@ const Page1 = () => {
               </option>
             ))}
           </select>
+          {errors.category?.type === "required" && (
+            <p role="alert">Category is required</p>
+          )}
         </div>
         <div className="inputGroup">
           <label htmlFor="area">Area</label>
-          <select {...register("area")} id="area">
+          <select
+            {...register("area", { required: true })}
+            id="area"
+            aria-invalid={errors.area ? "true" : "false"}
+          >
             <option value="">Select an area</option>
             {areas.map((a) => (
               <option key={a.strArea} value={a.strArea}>
@@ -59,10 +73,18 @@ const Page1 = () => {
               </option>
             ))}
           </select>
+          {errors.area?.type === "required" && (
+            <p role="alert">Area is required</p>
+          )}
         </div>
         <div className="submitContainer">
           <button type="submit">Next</button>
         </div>
+        {fetchError && (
+          <div className="alert alert-error">
+            <p>Error: {fetchError}</p>
+          </div>
+        )}
       </form>
     </section>
   );

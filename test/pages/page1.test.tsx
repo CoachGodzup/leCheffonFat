@@ -147,6 +147,7 @@ jest.mock("react-hook-form", () => ({
         e.preventDefault();
         fn({ category: "1", area: "Italian" });
       },
+    formState: { errors: {} },
   }),
 }));
 

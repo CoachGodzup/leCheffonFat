@@ -184,3 +184,29 @@ a {
     color-scheme: light;
   }
 }
+
+.card {
+  background: var(--color-white);
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  padding: 1.5rem;
+}
+
+main:has(.card) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+main .card {
+  width: 66%;
+  min-height: 33vh;
+}
+
+@media (prefers-color-scheme: dark) {
+  .card {
+    background: var(--color-bg-card-dark);
+    color: var(--color-text-primary);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+}
