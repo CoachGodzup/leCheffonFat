@@ -146,7 +146,6 @@ body {
 header {
   grid-area: header;
   height: 3em;
-  background: var(--color-lilac);
 }
 
 main {
@@ -154,13 +153,19 @@ main {
   padding: var(--spacing);
 }
 
+header,
+footer {
+  background: var(--color-lilac);
+  color: var(--color-text-main);
+}
+
 footer {
   grid-area: footer;
-  background: var(--color-lilac);
 }
 
 aside {
   grid-area: menu;
+  border-right: 1px solid var(--color-lilac);
 }
 
 a {
