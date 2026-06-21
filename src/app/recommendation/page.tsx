@@ -1,3 +1,4 @@
+import styles from "./recommendation.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { getRandomMeal } from "@/service/meal-db-service";
@@ -32,6 +33,7 @@ const Recommendation = async () => {
   return (
     <section>
       <h1>Recommendation</h1>
+
       <div className="recipeContainer">
         <div className="recipe">
           <Image
@@ -47,18 +49,13 @@ const Recommendation = async () => {
             <p>Category: {meal.strCategory}</p>
             <p>Area: {meal.strArea}</p>
             <p>Tags: {meal.strTags}</p>
-            <div>
-              <Link
-                href={meal.strSource}
-                target="_blank"
-                rel="noreferrer noopener"
-              >
-                go to source
-              </Link>
-            </div>
+            <div className={styles.recipe}>{meal.strInstructions}</div>
           </div>
         </div>
-        <div className="ctaContainer">
+        <div className="cta-container">
+          <Link href={meal.strSource} target="_blank" rel="noreferrer noopener">
+            go to source
+          </Link>
           <Link href="/page2">back</Link>
           <Link href="/">go to home</Link>
         </div>

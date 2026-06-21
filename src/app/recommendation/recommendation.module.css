@@ -1,0 +1,12 @@
+.recipe {
+  display: none;
+}
+
+@media print {
+  .recipe {
+    display: block;
+  }
+  .ctaContainer {
+    display: none;
+  }
+}
