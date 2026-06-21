@@ -1,22 +1,7 @@
-import { readFileSync } from "fs";
-import { resolve } from "path";
 import { NextRequest } from "next/server";
 
-const MEALDB_BASE = "https://www.themealdb.com/api/json/v1/1";
-
-function loadApiKey(): string {
-  try {
-    const secretPath = resolve(process.cwd(), ".secret");
-    const content = readFileSync(secretPath, "utf-8");
-    const match = content.match(/^MEALDB_API_KEY=(.+)$/m);
-    if (!match) throw new Error("MEALDB_API_KEY not found in .secret");
-    return match[1].trim();
-  } catch {
-    return "1";
-  }
-}
-
-const API_KEY = loadApiKey();
+const MEALDB_BASE = "https://www.themealdb.com/api/json/v1";
+const API_KEY = process.env.MEALDB_API_KEY ?? "1";
 
 export async function GET(
   request: NextRequest,

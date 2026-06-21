@@ -23,10 +23,9 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 ## Security
 
-- API keys and secrets go in `.secret` at the project root (`KEY=VALUE` format).
-- The `.secret` file is in `.gitignore` — never commit it.
-- Client-side code must never call external APIs directly with the key. Use a Next.js Route Handler (`src/app/api/`) as a proxy, which reads the key server-side from `.secret`.
-- Example: `src/app/api/meals/[...path]/route.ts` proxies TheMealDB, keeping the API key on the server.
+- API keys and secrets go in `.env.local` at the project root (`KEY=VALUE` format).
+- `.env*` files are in `.gitignore` — never commit them.
+- Access via `process.env.KEY` (Next.js loads `.env.local` automatically).
 
 ## Code quality
 
@@ -36,7 +35,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - Prefer pure CSS (modules) — no CSS frameworks.
 - use helper functions whenever possible, and save it in a './src/service' folder. Update or create a '/agents/services.md' file as a list of every available services. Keep it updated, and search there before creating other overlapping services.
 - Create short functions
-- Wrap every async operation in a try-catch that rejects on failure. See `src/service/meal-db-service.ts:10-22` for the pattern.
+- Wrap every async operation in a try-catch that rejects on failure. See `src/service/meal-db-service.ts:17-22` for the pattern.
 
 ## Testing
 

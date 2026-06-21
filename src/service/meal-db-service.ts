@@ -5,22 +5,17 @@ import type {
   MealSearchResponse,
 } from "@/types/meal-db";
 
-const BASE_URL = "/api/meals";
+const API_BASE = "https://www.themealdb.com/api/json/v1";
+const FULL_BASE = `${API_BASE}/${process.env.MEALDB_API_KEY ?? "1"}`;
 
 async function request<T>(endpoint: string): Promise<T> {
-  return new Promise<T>(async (resolve, reject) => {
-    try {
-      const res = await fetch(`${BASE_URL}/${endpoint}`);
-      if (!res.ok) {
-        throw new Error(
-          `TheMealDB request failed: ${res.status} ${res.statusText}`,
-        );
-      }
-      resolve(res.json());
-    } catch (e) {
-      reject(e);
-    }
-  });
+  const res = await fetch(`${FULL_BASE}/${endpoint}`);
+  if (!res.ok) {
+    throw new Error(
+      `TheMealDB request failed: ${res.status} ${res.statusText}`,
+    );
+  }
+  return res.json();
 }
 
 export function searchMealsByName(query: string) {

@@ -12,6 +12,8 @@ import {
 const mockFetch = jest.fn();
 global.fetch = mockFetch;
 
+const BASE = "https://www.themealdb.com/api/json/v1/1";
+
 function mockResponse(data: unknown) {
   return Promise.resolve({
     ok: true,
@@ -38,7 +40,7 @@ describe("searchMealsByName", () => {
 
     const result = await searchMealsByName("soup");
 
-    expect(mockFetch).toHaveBeenCalledWith("/api/meals/search.php?s=soup");
+    expect(mockFetch).toHaveBeenCalledWith(`${BASE}/search.php?s=soup`);
     expect(result).toEqual(data);
   });
 
@@ -67,7 +69,7 @@ describe("getMealById", () => {
 
     await getMealById("52795");
 
-    expect(mockFetch).toHaveBeenCalledWith("/api/meals/lookup.php?i=52795");
+    expect(mockFetch).toHaveBeenCalledWith(`${BASE}/lookup.php?i=52795`);
   });
 });
 
@@ -77,7 +79,7 @@ describe("getRandomMeal", () => {
 
     await getRandomMeal();
 
-    expect(mockFetch).toHaveBeenCalledWith("/api/meals/random.php");
+    expect(mockFetch).toHaveBeenCalledWith(`${BASE}/random.php`);
   });
 });
 
@@ -87,7 +89,7 @@ describe("getCategories", () => {
 
     await getCategories();
 
-    expect(mockFetch).toHaveBeenCalledWith("/api/meals/categories.php");
+    expect(mockFetch).toHaveBeenCalledWith(`${BASE}/categories.php`);
   });
 });
 
@@ -97,7 +99,7 @@ describe("filterByCategory", () => {
 
     await filterByCategory("Dessert");
 
-    expect(mockFetch).toHaveBeenCalledWith("/api/meals/filter.php?c=Dessert");
+    expect(mockFetch).toHaveBeenCalledWith(`${BASE}/filter.php?c=Dessert`);
   });
 
   it("URL-encodes multi-word categories", async () => {
@@ -117,7 +119,7 @@ describe("filterByArea", () => {
 
     await filterByArea("Canadian");
 
-    expect(mockFetch).toHaveBeenCalledWith("/api/meals/filter.php?a=Canadian");
+    expect(mockFetch).toHaveBeenCalledWith(`${BASE}/filter.php?a=Canadian`);
   });
 });
 
@@ -127,7 +129,7 @@ describe("filterByIngredient", () => {
 
     await filterByIngredient("chicken");
 
-    expect(mockFetch).toHaveBeenCalledWith("/api/meals/filter.php?i=chicken");
+    expect(mockFetch).toHaveBeenCalledWith(`${BASE}/filter.php?i=chicken`);
   });
 
   it("returns the correct response type", async () => {
@@ -149,6 +151,6 @@ describe("listAreas", () => {
 
     await listAreas();
 
-    expect(mockFetch).toHaveBeenCalledWith("/api/meals/list.php?a=list");
+    expect(mockFetch).toHaveBeenCalledWith(`${BASE}/list.php?a=list`);
   });
 });
