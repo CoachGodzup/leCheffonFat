@@ -6,16 +6,20 @@ This will be a simple guide on how I will develop the project.
 
 Project will have those pages:
 
-1. Homepage
+1. Homepage, with two links for "get started" or "see history"
 2. Form step 1
 3. Form step 2
 4. Results + feedback
-5. History
+5. History - this can also be in the side panel
 
 ## API
 
 I'll use [The Meal DB API](https://www.themealdb.com/). Super simple and useful.
 I'll also cache calls via the store (see below) in order to decrement API calls, since recipes won't change indefinitively. If the recipes will change, I'll switch to a cached store with a reasonable time to expire.
+
+I'll go for the super-simple [Fetch API](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch), native, with no dependency. [Axios](https://axios.rest/pages/advanced/api-reference) can be a good alternative, but I don't find any real use case to use that instead.
+
+Form handling and validation: I'll go with [react-hook-form](https://react-hook-form.com/), it doesn't give a lot of overhead and handles validation quite good.
 
 ## Technical choices
 
@@ -44,6 +48,7 @@ I will decide to create tests for every page and components. I will create a sep
 
 Since it will be 2026, help from AI will be quite expected. In this project, I will use [Opencode](https://opencode.ai/it), that will let me have some agentic programming, for some thrivial tasks. With this tool, I will have several US-hosted open model, like [Deepseek V4 Flash](https://benchlm.ai/models/deepseek-v4-flash) that:
 
+- speeding up _creating boilerplates_ and _types_
 - will help me decide _architectural choices_ that will be impactful, will speed up research online
 - will help me _debug_ code
 - will help me _create and handle_ tests I will need

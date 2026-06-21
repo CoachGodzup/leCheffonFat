@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { getRandomMeal } from "@/service/meal-db-service";
 import type { Meal } from "@/types/meal-db";
 
@@ -34,15 +35,23 @@ const Recommendation = async () => {
 
       <div className="recipeContainer">
         <div className="recipe">
-          <img
+          <Image
             src={meal.strMealThumb}
             alt={meal.strMeal}
-            width={600}
-            height={400}
+            loading="eager"
+            width={400}
+            height={200}
           />
-          <h3>{meal.strMeal}</h3>
-          <p>{meal.idMeal}</p>
-          <p>{meal.strTags}</p>
+          <div>
+            <h3>{meal.strMeal}</h3>
+            <p>{meal.idMeal}</p>
+            <p>Category: {meal.strCategory}</p>
+            <p>Area: {meal.strArea}</p>
+            <p>Tags: {meal.strTags}</p>
+            <div>
+              <Link href={meal.strSource}>go to source</Link>
+            </div>
+          </div>
         </div>
         <div className="ctaContainer">
           <Link href="/page2">back</Link>
