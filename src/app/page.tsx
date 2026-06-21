@@ -3,7 +3,7 @@ import styles from "./page.module.css";
 
 export default function Home() {
   return (
-    <>
+    <div className="card">
       <section>
         <div className={styles.hero}>
           <h1>Welcome to LeCheffonFat</h1>
@@ -20,6 +20,6 @@ export default function Home() {
       <nav className="cta-container">
         <Link href="/page1">Go to form</Link>
       </nav>
-    </>
+    </div>
   );
 }

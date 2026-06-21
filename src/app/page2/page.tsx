@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const Page2 = () => (
-  <section>
+  <section className="card">
     <h1>page 2</h1>
     <div className="cta-container">
       <Link href="/page1">back</Link>

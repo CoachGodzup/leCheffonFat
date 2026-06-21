@@ -19,7 +19,7 @@ const Recommendation = async () => {
 
   if (error || !meal) {
     return (
-      <section>
+      <section className="card">
         <h1>Recommendation</h1>
         <p>{error || "No meal found"}</p>
         <div className="ctaContainer">
@@ -31,7 +31,7 @@ const Recommendation = async () => {
   }
 
   return (
-    <section>
+    <section className="card">
       <h1>Recommendation</h1>
 
       <div className="recipeContainer">

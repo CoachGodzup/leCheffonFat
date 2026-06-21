@@ -74,7 +74,7 @@ body {
   display: grid;
   grid-template-areas:
     "header header"
-    "menu content"
+    "content content" /* TODO menu content when there will be a working Sidebar */
     "footer footer";
   grid-auto-rows: max-content;
   grid-template-rows: 3em 1fr 3em;
