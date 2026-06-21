@@ -1,6 +1,6 @@
 "use client";
 
-import type { FieldValues, UseFormRegister } from "react-hook-form";
+import type { FieldValues, Path, UseFormRegister } from "react-hook-form";
 import styles from "./FormSelect.module.css";
 
 type Option = {
@@ -8,21 +8,23 @@ type Option = {
   label: string;
 };
 
-type FormSelectProps = {
+type FormSelectProps<T extends FieldValues> = {
   label: string;
-  name: string;
+  name: Path<T>;
   options: Option[];
   error?: string;
-  register: UseFormRegister<FieldValues>;
+  register: UseFormRegister<T>;
 };
 
-const FormSelect = ({
+const FormSelect = <
+  T extends FieldValues /* fixes types error on hooks in page */,
+>({
   label,
   name,
   options,
   error,
   register,
-}: FormSelectProps) => {
+}: FormSelectProps<T>) => {
   const id = `form-select-${name}`;
 
   return (
