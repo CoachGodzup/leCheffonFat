@@ -3,9 +3,19 @@ import userEvent from "@testing-library/user-event";
 import Page1 from "@/app/page1/page";
 
 const mockPush = jest.fn();
+const mockReset = jest.fn();
+const mockSetPage1 = jest.fn();
 
 jest.mock("next/navigation", () => ({
   useRouter: () => ({ push: mockPush }),
+}));
+
+jest.mock("@/store", () => ({
+  useStore: jest.fn(),
+}));
+
+jest.mock("zustand/shallow", () => ({
+  useShallow: (fn: unknown) => fn,
 }));
 
 const mockCategories = [
@@ -148,12 +158,21 @@ jest.mock("react-hook-form", () => ({
         fn({ category: "1", area: "Italian" });
       },
     formState: { errors: {} },
+    reset: mockReset,
   }),
 }));
+
+import { useStore } from "@/store";
 
 describe("Page1", () => {
   beforeEach(() => {
     mockPush.mockClear();
+    mockSetPage1.mockClear();
+    mockReset.mockClear();
+    (useStore as jest.Mock).mockImplementation((selector) => {
+      const state = { category: "", area: "", setPage1: mockSetPage1 };
+      return selector(state);
+    });
   });
 
   it("renders without crashing", async () => {
@@ -193,7 +212,7 @@ describe("Page1", () => {
         name: /category/i,
       });
       expect(categorySelect).toBeInTheDocument();
-      expect(categorySelect.children.length).toBe(mockCategories.length + 1); // +1 per placeholder
+      expect(categorySelect.children.length).toBe(mockCategories.length + 1);
     });
   });
 
@@ -202,7 +221,7 @@ describe("Page1", () => {
     await waitFor(() => {
       const areaSelect = screen.getByRole("combobox", { name: /area/i });
       expect(areaSelect).toBeInTheDocument();
-      expect(areaSelect.children.length).toBe(mockAreas.length + 1); // +1 per placeholder
+      expect(areaSelect.children.length).toBe(mockAreas.length + 1);
     });
   });
 
@@ -224,5 +243,53 @@ describe("Page1", () => {
     await user.click(screen.getByRole("button", { name: /next/i }));
 
     expect(mockPush).toHaveBeenCalledWith("/page2");
+  });
+
+  describe("store integration", () => {
+    it("uses empty form when store has no cached values", async () => {
+      render(<Page1 />);
+
+      await waitFor(() => {
+        expect(mockReset).toHaveBeenCalledWith({ category: "", area: "" });
+      });
+    });
+
+    it("hydrates form fields from cached store values on mount", async () => {
+      (useStore as jest.Mock).mockImplementation((selector) => {
+        const state = {
+          category: "5",
+          area: "Italian",
+          setPage1: mockSetPage1,
+        };
+        return selector(state);
+      });
+
+      render(<Page1 />);
+
+      await waitFor(() => {
+        expect(mockReset).toHaveBeenCalledWith({
+          category: "5",
+          area: "Italian",
+        });
+      });
+    });
+
+    it("saves form values to store on submit", async () => {
+      const user = userEvent.setup();
+      render(<Page1 />);
+
+      await waitFor(() =>
+        expect(
+          screen.getByRole("button", { name: /next/i }),
+        ).toBeInTheDocument(),
+      );
+
+      await user.click(screen.getByRole("button", { name: /next/i }));
+
+      expect(mockSetPage1).toHaveBeenCalledWith({
+        category: "1",
+        area: "Italian",
+      });
+    });
   });
 });
