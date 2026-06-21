@@ -1,0 +1,10 @@
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+.inputGroup select {
+  max-width: 300px;
+  padding: 1em;
+}

@@ -6,6 +6,7 @@ import type { page1Request } from "@/types/form";
 import { useRouter } from "next/navigation";
 import { getCategories, listAreas } from "@/service/meal-db-service";
 import type { Category, Area } from "@/types/meal-db";
+import FormSelect from "@/components/form/formSelect/FormSelect";
 
 const Page1 = () => {
   const {
@@ -40,43 +41,33 @@ const Page1 = () => {
     <section className="card">
       <h1>What&apos;s on your mind&apos;s menu?</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="inputGroup">
-          <label htmlFor="category">Category</label>
-          <select
-            {...register("category", { required: true })}
-            id="category"
-            aria-invalid={errors.category ? "true" : "false"}
-          >
-            <option value="">Select a category</option>
-            {categories.map((c) => (
-              <option key={c.idCategory} value={c.idCategory}>
-                {c.strCategory}
-              </option>
-            ))}
-          </select>
-          {errors.category?.type === "required" && (
-            <p role="alert">Category is required</p>
-          )}
-        </div>
-        <div className="inputGroup">
-          <label htmlFor="area">Area</label>
-          <select
-            {...register("area", { required: true })}
-            id="area"
-            aria-invalid={errors.area ? "true" : "false"}
-          >
-            <option value="">Select an area</option>
-            {areas.map((a) => (
-              <option key={a.strArea} value={a.strArea}>
-                {a.strArea}
-              </option>
-            ))}
-          </select>
-          {errors.area?.type === "required" && (
-            <p role="alert">Area is required</p>
-          )}
-        </div>
-        <div className="submitContainer">
+        <FormSelect
+          label="Category"
+          name="category"
+          options={categories.map((c) => ({
+            value: c.idCategory,
+            label: c.strCategory,
+          }))}
+          error={
+            errors.category?.type === "required"
+              ? "Category is required"
+              : undefined
+          }
+          register={register}
+        />
+        <FormSelect
+          label="Area"
+          name="area"
+          options={areas.map((a) => ({
+            value: a.strArea,
+            label: a.strArea,
+          }))}
+          error={
+            errors.area?.type === "required" ? "Area is required" : undefined
+          }
+          register={register}
+        />
+        <div className="cta-container submit-container">
           <button type="submit">Next</button>
         </div>
         {fetchError && (
