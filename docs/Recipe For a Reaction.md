@@ -21,6 +21,14 @@ I'll go for the super-simple [Fetch API](https://developer.mozilla.org/en-US/doc
 
 Form handling and validation: I'll go with [react-hook-form](https://react-hook-form.com/), it doesn't give a lot of overhead and handles validation quite good.
 
+API has a great problem:
+
+> In free version can use only one filter at a time, and surely not multiple ingredients!"
+
+So... how can I call it with all filters? Luckily, searching for category gives also strArea and strCountry, so this part is quite easy: I'll filter client side the answer.
+
+What about ingredients? [TODO]
+
 ## Technical choices
 
 Since I will have to create a simple frontend, with strict time constraint, I will have to choose the most efficient way to create it. The most efficient way will be to use an opinionated and well documented standard, such as [Next JS](https://nextjs.org/). In this way, I will already have out of the box some efficient structures, like navigation and server side rendering, out of the box, in pure React syntax.
