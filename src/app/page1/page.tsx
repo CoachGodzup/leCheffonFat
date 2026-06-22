@@ -1,14 +1,14 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
 import type { page1Request } from "@/types/form";
 import { useRouter } from "next/navigation";
-import { getCategories, listAreas } from "@/service/meal-db-service";
-import type { Category, Area } from "@/types/meal-db";
 import FormSelect from "@/components/form/formSelect/FormSelect";
 import { useStore } from "@/store";
 import { useShallow } from "zustand/shallow";
+import { useCategories } from "@/hooks/use-categories";
+import { useAreas } from "@/hooks/use-areas";
 
 const Page1 = () => {
   const {
@@ -18,8 +18,20 @@ const Page1 = () => {
     reset,
   } = useForm<page1Request>();
   const router = useRouter();
-  const [categoriesList, setListCategories] = useState<Category[]>([]);
-  const [areasList, setListAreas] = useState<Area[]>([]);
+
+  const {
+    data: categories,
+    isLoading: catLoading,
+    error: catError,
+  } = useCategories();
+  const {
+    data: areas,
+    isLoading: areasLoading,
+    error: areasError,
+  } = useAreas();
+
+  const loading = catLoading || areasLoading;
+  const fetchError = catError || areasError;
 
   const { category, area, setPage1 } = useStore(
     useShallow((s) => ({
@@ -28,19 +40,6 @@ const Page1 = () => {
       setPage1: s.setPage1,
     })),
   );
-
-  const [loading, setLoading] = useState(true);
-  const [fetchError, setFetchError] = useState<string | null>(null);
-
-  useEffect(() => {
-    Promise.all([getCategories(), listAreas()])
-      .then(([catRes, areaRes]) => {
-        setListCategories(catRes.categories);
-        setListAreas(areaRes.meals ?? []);
-      })
-      .catch((err) => setFetchError(err.message))
-      .finally(() => setLoading(false));
-  }, []);
 
   useEffect(() => {
     reset({ category, area });
@@ -61,7 +60,7 @@ const Page1 = () => {
         <FormSelect
           label="Category"
           name="category"
-          options={categoriesList.map((c) => ({
+          options={(categories ?? []).map((c) => ({
             value: c.strCategory,
             label: c.strCategory,
           }))}
@@ -75,7 +74,7 @@ const Page1 = () => {
         <FormSelect
           label="Area"
           name="area"
-          options={areasList.map((a) => ({
+          options={(areas ?? []).map((a) => ({
             value: a.strArea,
             label: a.strArea,
           }))}

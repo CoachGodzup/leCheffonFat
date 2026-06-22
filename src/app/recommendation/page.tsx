@@ -5,15 +5,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { useStore } from "@/store";
 import { useShallow } from "zustand/shallow";
-import { getRandomMealByFilter } from "@/service/meal-db-service";
 import RecipeCtas from "@/components/recipeCtas/RecipeCtas";
-import type { Meal } from "@/types/meal-db";
-import { useEffect, useState } from "react";
+import { useRandomMeal } from "@/hooks/use-random-meal";
 
 const Recommendation = () => {
-  const [meal, setMeal] = useState<Meal>();
-
-  const [error, setError] = useState<string | null>(null);
   const { category, area } = useStore(
     useShallow((s) => ({
       category: s.category,
@@ -21,31 +16,25 @@ const Recommendation = () => {
     })),
   );
 
-  const fetchMeal = async (category:string, area:string) => {
-    try {
-      const meal = await getRandomMealByFilter(category, area);
-      if (meal) {
-        return [meal, null];
-      } else {
-        throw new Error("No meal found");
-      }
-    } catch (e) {
-      return [null, e instanceof Error ? e.message : "An unknown error occurred"];
-    }
-  };
+  const {
+    data: meal,
+    isLoading,
+    error,
+    refetch,
+  } = useRandomMeal(category, area);
 
-  useEffect(() => {
-    getRandomMealByFilter(category, area)
-      .then((meal) => {
-        if (meal) setMeal(meal);
-        else setError("No meal found");
-      })
-      .catch((e) =>
-        setError(
-          e instanceof Error ? e.message : "An unknown error occurred",
-        ),
-      );
-  }, [category, area]);
+  if (isLoading) {
+    return (
+      <section className="card">
+        <h1>Recommendation</h1>
+        <p>loading...</p>
+        <div className="ctaContainer">
+          <Link href="/page2">back</Link>
+          <Link href="/">go to home</Link>
+        </div>
+      </section>
+    );
+  }
 
   if (error || !meal) {
     return (
@@ -82,7 +71,7 @@ const Recommendation = () => {
             <div className={styles.recipe}>{meal.strInstructions}</div>
           </div>
         </div>
-        <RecipeCtas retryFn={() => fetchMeal(category, area)} meal={meal}></RecipeCtas>
+        <RecipeCtas retryFn={() => refetch()} meal={meal} />
       </div>
     </section>
   );

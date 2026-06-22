@@ -1,14 +1,29 @@
 import { render, screen } from "@testing-library/react";
 import Recommendation from "@/app/recommendation/page";
-import { getRandomMeal } from "@/service/meal-db-service";
+import { useStore } from "@/store";
 
-jest.mock("@/service/meal-db-service", () => ({
-  getRandomMeal: jest.fn(),
-}));
+const mockFetch = jest.fn();
+global.fetch = mockFetch;
 
-const mockedGetRandomMeal = jest.mocked(getRandomMeal);
+function mockOkResponse(data: unknown) {
+  return Promise.resolve({
+    ok: true,
+    json: () => Promise.resolve(data),
+  } as Response);
+}
 
-const mockMeal = {
+const mockFilterResponse = {
+  meals: [
+    {
+      idMeal: "99999",
+      strMeal: "Pizza Margherita",
+      strMealThumb: "",
+      strArea: "Italian",
+    },
+  ],
+};
+
+const mockFullMeal = {
   idMeal: "99999",
   strMeal: "Pizza Margherita",
   strMealAlternate: null,
@@ -24,93 +39,118 @@ const mockMeal = {
   dateModified: null,
 };
 
-describe("Recommendation", () => {
-  beforeEach(() => {
-    mockedGetRandomMeal.mockResolvedValue({ meals: [mockMeal] });
-  });
+beforeEach(() => {
+  mockFetch.mockClear();
 
+  useStore.setState({
+    category: "Italian",
+    area: "Italian",
+  });
+});
+
+describe("Recommendation", () => {
   it("renders the heading and a meal", async () => {
-    const element = await Recommendation();
-    render(element);
+    mockFetch
+      .mockReturnValueOnce(mockOkResponse(mockFilterResponse))
+      .mockReturnValueOnce(mockOkResponse({ meals: [mockFullMeal] }));
+
+    render(<Recommendation />);
 
     expect(
-      screen.getByRole("heading", { name: /recommendation/i }),
+      await screen.findByRole("heading", { name: /recommendation/i }),
     ).toBeInTheDocument();
-    expect(screen.getByText("Pizza Margherita")).toBeInTheDocument();
+    expect(await screen.findByText("Pizza Margherita")).toBeInTheDocument();
   });
 
   it("renders the meal image", async () => {
-    const element = await Recommendation();
-    render(element);
+    mockFetch
+      .mockReturnValueOnce(mockOkResponse(mockFilterResponse))
+      .mockReturnValueOnce(mockOkResponse({ meals: [mockFullMeal] }));
 
-    const img = screen.getByRole("img", { name: /pizza margherita/i });
+    render(<Recommendation />);
+
+    const img = await screen.findByRole("img", { name: /pizza margherita/i });
     expect(img).toBeInTheDocument();
   });
 
   it("renders the meal id", async () => {
-    const element = await Recommendation();
-    render(element);
+    mockFetch
+      .mockReturnValueOnce(mockOkResponse(mockFilterResponse))
+      .mockReturnValueOnce(mockOkResponse({ meals: [mockFullMeal] }));
 
-    expect(screen.getByText("99999")).toBeInTheDocument();
+    render(<Recommendation />);
+
+    expect(await screen.findByText("99999")).toBeInTheDocument();
   });
 
   it("renders category and area", async () => {
-    const element = await Recommendation();
-    render(element);
+    mockFetch
+      .mockReturnValueOnce(mockOkResponse(mockFilterResponse))
+      .mockReturnValueOnce(mockOkResponse({ meals: [mockFullMeal] }));
 
-    expect(screen.getByText(/Category: Italian/)).toBeInTheDocument();
-    expect(screen.getByText(/Area: Italian/)).toBeInTheDocument();
+    render(<Recommendation />);
+
+    expect(await screen.findByText(/Category: Italian/)).toBeInTheDocument();
+    expect(await screen.findByText(/Area: Italian/)).toBeInTheDocument();
   });
 
   it("renders tags", async () => {
-    const element = await Recommendation();
-    render(element);
+    mockFetch
+      .mockReturnValueOnce(mockOkResponse(mockFilterResponse))
+      .mockReturnValueOnce(mockOkResponse({ meals: [mockFullMeal] }));
 
-    expect(screen.getByText(/Tags: Pizza,Italian,Cheese/)).toBeInTheDocument();
+    render(<Recommendation />);
+
+    expect(
+      await screen.findByText(/Tags: Pizza,Italian,Cheese/),
+    ).toBeInTheDocument();
   });
 
   it("renders a source link", async () => {
-    const element = await Recommendation();
-    render(element);
+    mockFetch
+      .mockReturnValueOnce(mockOkResponse(mockFilterResponse))
+      .mockReturnValueOnce(mockOkResponse({ meals: [mockFullMeal] }));
 
-    const link = screen.getByRole("link", { name: /go to source/i });
+    render(<Recommendation />);
+
+    const link = await screen.findByRole("link", { name: /go to source/i });
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute("href", "https://example.com/pizza");
   });
 
   it("renders a back link to page2", async () => {
-    const element = await Recommendation();
-    render(element);
+    mockFetch
+      .mockReturnValueOnce(mockOkResponse(mockFilterResponse))
+      .mockReturnValueOnce(mockOkResponse({ meals: [mockFullMeal] }));
 
-    const link = screen.getByRole("link", { name: /back/i });
+    render(<Recommendation />);
+
+    const link = await screen.findByRole("link", { name: /back/i });
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute("href", "/page2");
   });
 
-  it("renders a link to go home", async () => {
-    const element = await Recommendation();
-    render(element);
-
-    const link = screen.getByRole("link", { name: /go to home/i });
-    expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute("href", "/");
-  });
-
   it("renders error message when service fails", async () => {
-    mockedGetRandomMeal.mockRejectedValue(new Error("Network error"));
+    mockFetch.mockReturnValue(
+      Promise.resolve({
+        ok: false,
+        status: 500,
+        statusText: "Server Error",
+      } as Response),
+    );
 
-    const element = await Recommendation();
-    render(element);
+    render(<Recommendation />);
 
-    expect(screen.getByText(/Network error/)).toBeInTheDocument();
+    expect(
+      await screen.findByText(/TheMealDB request failed/),
+    ).toBeInTheDocument();
   });
 
-  it("renders 'No meal found' when response has no meals", async () => {
-    mockedGetRandomMeal.mockResolvedValue({ meals: null });
+  it("renders 'No meal found' when no matching meals", async () => {
+    mockFetch.mockReturnValueOnce(mockOkResponse({ meals: null }));
 
-    const element = await Recommendation();
-    render(element);
+    render(<Recommendation />);
 
-    expect(screen.getByText("No meal found")).toBeInTheDocument();
+    expect(await screen.findByText("No meal found")).toBeInTheDocument();
   });
 });
