@@ -18,42 +18,64 @@ async function request<T>(endpoint: string): Promise<T> {
   return res.json();
 }
 
-export function searchMealsByName(query: string) {
+export const searchMealsByName = (query: string) => {
   return request<MealSearchResponse>(
     `search.php?s=${encodeURIComponent(query)}`,
   );
-}
+};
 
-export function getMealById(id: string) {
+export const getMealById = (id: string) => {
   return request<MealSearchResponse>(`lookup.php?i=${id}`);
-}
+};
 
-export function getRandomMeal() {
+export const getRandomMeal = () => {
   return request<MealSearchResponse>("random.php");
-}
+};
 
-export function getCategories() {
+export const getCategories = () => {
   return request<CategoryResponse>("categories.php");
-}
+};
 
-export function filterByCategory(category: string) {
+export const filterByCategory = (category: string) => {
   return request<MealSearchResponse>(
     `filter.php?c=${encodeURIComponent(category)}`,
   );
-}
+};
 
-export function filterByArea(area: string) {
+export const filterByArea = (area: string) => {
   return request<MealSearchResponse>(
     `filter.php?a=${encodeURIComponent(area)}`,
   );
-}
+};
 
-export function filterByIngredient(ingredient: string) {
+// ---- Pure predicates (composable) ----
+
+const byArea = (area: string) => (meal: { strArea?: string | null }) =>
+  meal.strArea === area;
+
+const extractMeals = (res: MealSearchResponse) => res.meals ?? [];
+
+const pickRandom = <T>(items: T[]): T | null =>
+  items.length === 0 ? null : items[Math.floor(Math.random() * items.length)];
+
+const fetchFullMeal = (meal: { idMeal: string }) =>
+  getMealById(meal.idMeal).then((r) => r.meals?.[0] ?? null);
+
+// ---- Composed functions ----
+
+export const getRandomMealByFilter = (category: string, area: string) =>
+  filterByCategory(category)
+    .then(extractMeals)
+    .then((meals) => meals.filter(byArea(area)))
+    .then(pickRandom)
+    .then((meal) => (meal ? fetchFullMeal(meal) : null));
+
+export const filterByIngredient = (ingredient: string) => {
   return request<IngredientFilterResponse>(
     `filter.php?i=${encodeURIComponent(ingredient)}`,
   );
-}
+};
 
-export function listAreas() {
+export const listAreas = () => {
   return request<AreaResponse>("list.php?a=list");
-}
+};
