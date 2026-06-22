@@ -55,7 +55,8 @@ const byArea = (area: string) => (meal: { strArea?: string | null }) =>
 
 const extractMeals = (res: MealSearchResponse) => res.meals ?? [];
 
-const pickRandom = <T>(items: T[]): T | null => items.length === 0 ? null : items[Math.floor(Math.random() * items.length)];
+const pickRandom = <T>(items: T[]): T | null =>
+  items.length === 0 ? null : items[Math.floor(Math.random() * items.length)];
 
 const fetchFullMeal = (meal: { idMeal: string }) =>
   getMealById(meal.idMeal).then((r) => r.meals?.[0] ?? null);

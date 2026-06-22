@@ -181,10 +181,6 @@ button:hover {
   padding: 1.5rem;
 }
 
-.ingredients-list span {
-  color: var(--color-text-muted);
-}
-
 form {
   display: flex;
   flex-direction: column;

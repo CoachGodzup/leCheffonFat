@@ -8,7 +8,6 @@ import FormSelect from "@/components/form/formSelect/FormSelect";
 import { useStore } from "@/store";
 import { useShallow } from "zustand/shallow";
 import { useCategories } from "@/hooks/use-categories";
-import { useAreas } from "@/hooks/use-areas";
 
 const Page1 = () => {
   const {
@@ -24,34 +23,25 @@ const Page1 = () => {
     isLoading: catLoading,
     error: catError,
   } = useCategories();
-  const {
-    data: areas,
-    isLoading: areasLoading,
-    error: areasError,
-  } = useAreas();
 
-  const loading = catLoading || areasLoading;
-  const fetchError = catError || areasError;
-
-  const { category, area, setPage1 } = useStore(
+  const { category, setPage1 } = useStore(
     useShallow((s) => ({
       category: s.category,
-      area: s.area,
       setPage1: s.setPage1,
     })),
   );
 
   useEffect(() => {
-    reset({ category, area });
-  }, [category, area, reset]);
+    reset({ category });
+  }, [category, reset]);
 
   const onSubmit = (data: FieldValues) => {
     console.log("submitted", data);
-    setPage1({ category: data.category, area: data.area });
+    setPage1({ category: data.category });
     router.push("/page2");
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (catLoading) return <p>Loading...</p>;
 
   return (
     <section className="card">
@@ -71,24 +61,12 @@ const Page1 = () => {
           }
           register={register}
         />
-        <FormSelect
-          label="Area"
-          name="area"
-          options={(areas ?? []).map((a) => ({
-            value: a.strArea,
-            label: a.strArea,
-          }))}
-          error={
-            errors.area?.type === "required" ? "Area is required" : undefined
-          }
-          register={register}
-        />
         <div className="cta-container submit-container">
           <button type="submit">Next</button>
         </div>
-        {fetchError && (
+        {catError && (
           <div className="alert alert-error">
-            <p>Error: {fetchError}</p>
+            <p>Error: {catError}</p>
           </div>
         )}
       </form>
