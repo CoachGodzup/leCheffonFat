@@ -2,6 +2,7 @@ import styles from "./recommendation.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { getRandomMeal } from "@/service/meal-db-service";
+import ShareButton from "@/components/shareButton/ShareButton";
 import type { Meal } from "@/types/meal-db";
 
 const Recommendation = async () => {
@@ -58,6 +59,7 @@ const Recommendation = async () => {
           </Link>
           <Link href="/page2">back</Link>
           <Link href="/">go to home</Link>
+          <ShareButton />
         </div>
       </div>
     </section>
