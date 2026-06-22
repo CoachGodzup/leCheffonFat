@@ -169,8 +169,15 @@ describe("Page1", () => {
     mockPush.mockClear();
     mockSetPage1.mockClear();
     mockReset.mockClear();
-    (useStore as jest.Mock).mockImplementation((selector) => {
-      const state = { category: "", area: "", setPage1: mockSetPage1 };
+    jest.mocked(useStore).mockImplementation((selector) => {
+      const state = {
+        category: "",
+        area: "",
+        ingredients: [],
+        setPage1: mockSetPage1,
+        setPage2: jest.fn(),
+        resetForm: jest.fn(),
+      };
       return selector(state);
     });
   });
@@ -255,11 +262,14 @@ describe("Page1", () => {
     });
 
     it("hydrates form fields from cached store values on mount", async () => {
-      (useStore as jest.Mock).mockImplementation((selector) => {
+      jest.mocked(useStore).mockImplementation((selector) => {
         const state = {
           category: "5",
           area: "Italian",
+          ingredients: [],
           setPage1: mockSetPage1,
+          setPage2: jest.fn(),
+          resetForm: jest.fn(),
         };
         return selector(state);
       });

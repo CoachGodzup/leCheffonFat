@@ -1,22 +1,41 @@
+"use client";
+
 import styles from "./recommendation.module.css";
 import Link from "next/link";
 import Image from "next/image";
-import { getRandomMeal } from "@/service/meal-db-service";
+import { useStore } from "@/store";
+import { useShallow } from "zustand/shallow";
+import { getRandomMealByFilter } from "@/service/meal-db-service";
 import RecipeCtas from "@/components/recipeCtas/RecipeCtas";
 import type { Meal } from "@/types/meal-db";
+import { useEffect, useState } from "react";
 
-const Recommendation = async () => {
-  let meal: Meal | null = null;
-  let error: string | null = null;
+const Recommendation = () => {
+  const [meal, setMeal] = useState<Meal>();
 
-  try {
-    const response = await getRandomMeal();
-    if (response.meals) {
-      meal = response.meals[0];
-    }
-  } catch (e) {
-    error = e instanceof Error ? e.message : "An unknown error occurred";
-  }
+  const [error, setError] = useState<string | null>(null);
+  const { category, area } = useStore(
+    useShallow((s) => ({
+      category: s.category,
+      area: s.area,
+    })),
+  );
+
+  useEffect(() => {
+    const fetchMeal = async () => {
+      try {
+        const meal = await getRandomMealByFilter(category, area);
+        if (meal) {
+          setMeal(meal);
+        } else {
+          throw new Error("No meal found");
+        }
+      } catch (e) {
+        setError(e instanceof Error ? e.message : "An unknown error occurred");
+      }
+    };
+    fetchMeal();
+  }, [category, area]);
 
   if (error || !meal) {
     return (
@@ -32,9 +51,7 @@ const Recommendation = async () => {
   }
 
   const fetchRecipe = () => {
-    // get data from zustand
-    // call backend
-    // if all right, update meal
+    setError(null);
   };
 
   return (
