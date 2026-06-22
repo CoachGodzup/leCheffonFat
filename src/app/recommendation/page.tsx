@@ -21,20 +21,30 @@ const Recommendation = () => {
     })),
   );
 
-  useEffect(() => {
-    const fetchMeal = async () => {
-      try {
-        const meal = await getRandomMealByFilter(category, area);
-        if (meal) {
-          setMeal(meal);
-        } else {
-          throw new Error("No meal found");
-        }
-      } catch (e) {
-        setError(e instanceof Error ? e.message : "An unknown error occurred");
+  const fetchMeal = async (category:string, area:string) => {
+    try {
+      const meal = await getRandomMealByFilter(category, area);
+      if (meal) {
+        return [meal, null];
+      } else {
+        throw new Error("No meal found");
       }
-    };
-    fetchMeal();
+    } catch (e) {
+      return [null, e instanceof Error ? e.message : "An unknown error occurred"];
+    }
+  };
+
+  useEffect(() => {
+    getRandomMealByFilter(category, area)
+      .then((meal) => {
+        if (meal) setMeal(meal);
+        else setError("No meal found");
+      })
+      .catch((e) =>
+        setError(
+          e instanceof Error ? e.message : "An unknown error occurred",
+        ),
+      );
   }, [category, area]);
 
   if (error || !meal) {
@@ -49,10 +59,6 @@ const Recommendation = () => {
       </section>
     );
   }
-
-  const fetchRecipe = () => {
-    setError(null);
-  };
 
   return (
     <section className="card">
@@ -76,7 +82,7 @@ const Recommendation = () => {
             <div className={styles.recipe}>{meal.strInstructions}</div>
           </div>
         </div>
-        <RecipeCtas retryFn={fetchRecipe} meal={meal}></RecipeCtas>
+        <RecipeCtas retryFn={() => fetchMeal(category, area)} meal={meal}></RecipeCtas>
       </div>
     </section>
   );

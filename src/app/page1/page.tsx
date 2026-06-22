@@ -62,7 +62,7 @@ const Page1 = () => {
           label="Category"
           name="category"
           options={categoriesList.map((c) => ({
-            value: c.idCategory,
+            value: c.strCategory,
             label: c.strCategory,
           }))}
           error={
