@@ -2,7 +2,7 @@ import styles from "./recommendation.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import { getRandomMeal } from "@/service/meal-db-service";
-import ShareButton from "@/components/shareButton/ShareButton";
+import RecipeCtas from "@/components/recipeCtas/RecipeCtas";
 import type { Meal } from "@/types/meal-db";
 
 const Recommendation = async () => {
@@ -31,6 +31,12 @@ const Recommendation = async () => {
     );
   }
 
+  const fetchRecipe = () => {
+    // get data from zustand
+    // call backend
+    // if all right, update meal
+  };
+
   return (
     <section className="card">
       <h1>Recommendation</h1>
@@ -53,14 +59,7 @@ const Recommendation = async () => {
             <div className={styles.recipe}>{meal.strInstructions}</div>
           </div>
         </div>
-        <div className="cta-container">
-          <Link href={meal.strSource} target="_blank" rel="noreferrer noopener">
-            go to source
-          </Link>
-          <Link href="/page2">back</Link>
-          <Link href="/">go to home</Link>
-          <ShareButton />
-        </div>
+        <RecipeCtas retryFn={fetchRecipe} meal={meal}></RecipeCtas>
       </div>
     </section>
   );
