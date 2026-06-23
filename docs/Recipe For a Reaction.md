@@ -27,7 +27,9 @@ API has a great problem:
 
 So... how can I call it with all filters? Luckily, searching for category gives also strArea and strCountry, so this part is quite easy: I'll filter client side the answer.
 
-What about ingredients? [TODO]
+TODO NO INGREDIENTS
+
+TODO CUSTOM HOOKS FOR API, STASHING
 
 ## Technical choices
 

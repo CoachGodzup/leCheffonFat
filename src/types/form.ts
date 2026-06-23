@@ -3,5 +3,5 @@ export type UserRequest = {
   area: string;
 };
 
-export type page1Request = Pick<UserRequest, "category">;
-export type page2Request = Pick<UserRequest, "area">;
+export type Page1Request = Pick<UserRequest, "category">;
+export type Page2Request = Pick<UserRequest, "area">;

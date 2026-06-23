@@ -2,7 +2,7 @@
 
 import { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import type { page2Request } from "@/types/form";
+import type { Page2Request } from "@/types/form";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import FormSelect from "@/components/form/formSelect/FormSelect";
@@ -16,7 +16,7 @@ const Page2 = () => {
     formState: { errors },
     handleSubmit,
     reset,
-  } = useForm<page2Request>();
+  } = useForm<Page2Request>();
   const router = useRouter();
 
   const {

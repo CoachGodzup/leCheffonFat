@@ -30,7 +30,6 @@ const Recommendation = () => {
         <p>loading...</p>
         <div className="ctaContainer">
           <Link href="/page2">back</Link>
-          <Link href="/">go to home</Link>
         </div>
       </section>
     );
@@ -43,7 +42,6 @@ const Recommendation = () => {
         <p>{error || "No meal found"}</p>
         <div className="ctaContainer">
           <Link href="/page2">back</Link>
-          <Link href="/">go to home</Link>
         </div>
       </section>
     );
