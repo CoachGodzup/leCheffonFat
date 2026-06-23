@@ -8,3 +8,4 @@
 | `src/hooks/use-categories.ts`          | Wraps `getCategories()` — returns `UseApiReturn<Category[]>`                                                                          |
 | `src/hooks/use-areas.ts`               | Wraps `listAreas()` — returns `UseApiReturn<Area[]>`                                                                                  |
 | `src/hooks/use-random-meal.ts`         | Wraps `getRandomMealByFilter(category, area)` — returns `UseApiReturn<Meal>`, refetches when category/area change                     |
+| `src/store/slices/history-slice.ts`    | Storico raccomandazioni (calls) persistito su localStorage                                                                            |

@@ -6,7 +6,9 @@ import Image from "next/image";
 import { useStore } from "@/store";
 import { useShallow } from "zustand/shallow";
 import RecipeCtas from "@/components/recipeCtas/RecipeCtas";
+import LikeDislikeCtas from "@/components/recipeCtas/likeDislikeCtas";
 import { useRandomMeal } from "@/hooks/use-random-meal";
+import { useEffect } from "react";
 
 const Recommendation = () => {
   const { category, area } = useStore(
@@ -16,12 +18,26 @@ const Recommendation = () => {
     })),
   );
 
+  const logRequest = useStore((s) => s.logRequest);
+  const setLike = useStore((s) => s.setLike);
+
   const {
     data: meal,
     isLoading,
     error,
     refetch,
   } = useRandomMeal(category, area);
+
+  useEffect(() => {
+    if (meal) {
+      logRequest({
+        recipeId: meal.idMeal,
+        title: meal.strMeal,
+        imageUrl: meal.strMealThumb,
+        inputs: { category: meal.strCategory, area: meal.strArea },
+      });
+    }
+  }, [meal, logRequest]);
 
   if (isLoading) {
     return (
@@ -70,6 +86,7 @@ const Recommendation = () => {
           </div>
         </div>
         <RecipeCtas retryFn={() => refetch()} meal={meal} />
+        <LikeDislikeCtas likeFn={(like) => setLike(meal.idMeal, like)} />
       </div>
     </section>
   );

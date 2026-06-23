@@ -8,7 +8,7 @@ export type AppStore = FormSlice & HistorySlice;
 export const useStore = create<AppStore>()(
   persist(
     (...a) => ({
-      ...createFormSlice(a[0]),
+      ...createFormSlice(...a),
       ...createHistorySlice(...a),
     }),
     { name: "global-store" },

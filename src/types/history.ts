@@ -4,7 +4,7 @@ export type Call = {
   recipeId: string;
   title: string;
   imageUrl: string /* todo btop? */;
-  timestamp: Date;
+  timestamp: number;
   like: boolean | null;
   inputs: UserRequest;
 };
