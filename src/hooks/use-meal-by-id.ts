@@ -1,0 +1,12 @@
+import type { Meal } from "@/types/meal-db";
+import { getMealById } from "@/service/meal-db-service";
+import { useApi } from "./use-api";
+
+export const useMealById = (id: string) => {
+  return useApi<Meal>(async () => {
+    const res = await getMealById(id);
+    const meal = res.meals?.[0] ?? null;
+    if (!meal) throw new Error("No meal found");
+    return meal;
+  }, [id]);
+};

@@ -16,20 +16,22 @@ const History = () => {
         <ul>
           {calls.map((call) => (
             <li key={call.recipeId}>
-              <Image
-                src={call.imageUrl}
-                alt={call.title}
-                width={80}
-                height={80}
-              />
-              <div>
-                <strong>{call.title}</strong>
-                <p>
-                  {call.inputs.category} — {call.inputs.area}
-                </p>
-                <p>{new Date(call.timestamp).toLocaleString()}</p>
-                {call.like !== null && <p>{call.like ? "👍" : "👎"}</p>}
-              </div>
+              <Link href={`/recommendation/${call.recipeId}`}>
+                <Image
+                  src={call.imageUrl}
+                  alt={call.title}
+                  width={80}
+                  height={80}
+                />
+                <div>
+                  <strong>{call.title}</strong>
+                  <p>
+                    {call.inputs.category} — {call.inputs.area}
+                  </p>
+                  <p>{new Date(call.timestamp).toLocaleString()}</p>
+                  {call.like !== null && <p>{call.like ? "👍" : "👎"}</p>}
+                </div>
+              </Link>
             </li>
           ))}
         </ul>

@@ -21,7 +21,7 @@ const Sidebar = () => {
             <p>
               ({new Date(entry.timestamp).toLocaleDateString()}){" "}
               {entry.like ? "👍" : entry.like === false ? "👎" : ""}
-              <Link href={`/recommendation&id=${entry.recipeId}`}>
+              <Link href={`/recommendation/${entry.recipeId}`}>
                 {entry.title}
               </Link>
               ({entry.inputs.category} - {entry.inputs.area})
