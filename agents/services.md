@@ -11,3 +11,4 @@
 | `src/hooks/use-meal-by-id.ts`                              | Wraps `getMealById(id)` — returns `UseApiReturn<Meal>`, refetches when id changes                                                                     |
 | `src/components/RecommendationView/RecommendationView.tsx` | Shared component that renders meal data, loading/error state, RecipeCtas, and LikeDislikeCtas. Used by both random and ID-based recommendation pages. |
 | `src/store/slices/history-slice.ts`                        | Storico raccomandazioni (calls) persistito su localStorage                                                                                            |
+| `src/app/components/atoms/CheckboxFilter.tsx`              | Generic checkbox filter atom — takes `legend`, `options`, `value`, `onChange`. Toggles items in an array. Used by Sidebar for rating filter.          |

@@ -1,0 +1,11 @@
+.checkboxFilter {
+  @apply border-none p-0 mb-4;
+}
+
+.checkboxFilter legend {
+  @apply text-sm font-semibold mb-2;
+}
+
+.checkboxFilter label {
+  @apply flex items-center gap-2 text-sm cursor-pointer mb-1;
+}
