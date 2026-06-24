@@ -1,0 +1,91 @@
+.page {
+  padding: 1.5em;
+}
+
+.page h1 {
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
+
+.controls {
+  display: flex;
+  align-items: flex-end;
+  gap: 1em;
+  margin-bottom: 1.5em;
+}
+
+.empty {
+  color: var(--color-text-main);
+  opacity: 0.6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1em;
+  list-style: none;
+}
+
+.card {
+  background: var(--color-white);
+  border-radius: 8px;
+  overflow: hidden;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.card a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+}
+
+.cardBody {
+  padding: 0.5em 0.75em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25em;
+  flex: 1;
+}
+
+.cardBody strong {
+  font-size: 0.9375em;
+  font-weight: 600;
+}
+
+.cardBody p {
+  font-size: 0.8125em;
+  line-height: 1.4;
+  color: var(--color-text-main);
+}
+
+.date {
+  opacity: 0.7;
+  margin-top: auto;
+}
+
+.back {
+  display: inline-block;
+  margin-top: 1.5em;
+  color: var(--color-lilac);
+  text-decoration: underline;
+}

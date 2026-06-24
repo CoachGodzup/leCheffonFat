@@ -54,13 +54,14 @@ const Sidebar = () => {
       </nav>
       <ul className={styles.entryList}>
         {list
-          .sort((a, b) => (a.timestamp > b.timestamp && sort == "asc" ? 1 : -1))
+          .sort((a, b) =>
+            sort === "asc"
+              ? a.timestamp - b.timestamp
+              : b.timestamp - a.timestamp,
+          )
           .map((entry) => (
-            <Link
-              key={entry.timestamp}
-              href={`/recommendation/${entry.recipeId}`}
-            >
-              <li className={styles.entry}>
+            <li key={entry.timestamp} className={styles.entry}>
+              <Link href={`/recommendation/${entry.recipeId}`}>
                 <h4>
                   {entry.like ? "👍 " : entry.like === false ? "👎 " : "  "}
                   {entry.title}
@@ -68,8 +69,8 @@ const Sidebar = () => {
                 <p>
                   {`${new Date(entry.timestamp).toLocaleDateString()} - ${entry.inputs.category} ${entry.inputs.area}`}
                 </p>
-              </li>
-            </Link>
+              </Link>
+            </li>
           ))}
       </ul>
     </aside>

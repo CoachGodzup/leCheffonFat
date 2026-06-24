@@ -12,6 +12,7 @@ export default function Home() {
       </section>
       <nav className="cta-container" aria-label="Main navigation">
         <Link href="/page1">Inspire me!</Link>
+        <Link href="/history">Last recipes</Link>
       </nav>
     </div>
   );
