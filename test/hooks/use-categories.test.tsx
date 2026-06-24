@@ -1,6 +1,5 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { useCategories } from "@/hooks/use-categories";
-import { useAreas } from "@/hooks/use-areas";
 
 const mockFetch = jest.fn();
 global.fetch = mockFetch;
@@ -31,10 +30,6 @@ const mockCategoriesData = {
   ],
 };
 
-const mockAreasData = {
-  meals: [{ strArea: "Italian" }, { strArea: "Canadian" }],
-};
-
 beforeEach(() => {
   mockFetch.mockClear();
 });
@@ -57,43 +52,6 @@ describe("useCategories", () => {
     mockFetch.mockReturnValue(mockErrorResponse());
 
     const { result } = renderHook(() => useCategories());
-
-    await waitFor(() => expect(result.current.isLoading).toBe(false));
-
-    expect(result.current.data).toBeNull();
-    expect(result.current.error).toBe(
-      "TheMealDB request failed: 500 Server Error",
-    );
-  });
-});
-
-describe("useAreas", () => {
-  it("returns areas on success", async () => {
-    mockFetch.mockReturnValue(mockOkResponse(mockAreasData));
-
-    const { result } = renderHook(() => useAreas());
-
-    await waitFor(() => expect(result.current.isLoading).toBe(false));
-
-    expect(result.current.data).toEqual(mockAreasData.meals);
-    expect(result.current.error).toBeNull();
-  });
-
-  it("returns empty array when meals is null", async () => {
-    mockFetch.mockReturnValue(mockOkResponse({ meals: null }));
-
-    const { result } = renderHook(() => useAreas());
-
-    await waitFor(() => expect(result.current.isLoading).toBe(false));
-
-    expect(result.current.data).toEqual([]);
-    expect(result.current.error).toBeNull();
-  });
-
-  it("returns error on failure", async () => {
-    mockFetch.mockReturnValue(mockErrorResponse());
-
-    const { result } = renderHook(() => useAreas());
 
     await waitFor(() => expect(result.current.isLoading).toBe(false));
 

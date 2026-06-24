@@ -1,5 +1,4 @@
 import type {
-  AreaResponse,
   CategoryResponse,
   IngredientFilterResponse,
   Meal,
@@ -81,10 +80,6 @@ export const filterByIngredient = (ingredient: string) => {
   return request<IngredientFilterResponse>(
     `filter.php?i=${encodeURIComponent(ingredient)}`,
   );
-};
-
-export const listAreas = () => {
-  return request<AreaResponse>("list.php?a=list");
 };
 
 export const getMealPageUrl = (meal: Meal): string => {

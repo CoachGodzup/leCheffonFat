@@ -25,7 +25,7 @@ const mockAreas = [
 ];
 
 jest.mock("@/service/meal-db-service", () => ({
-  listAreas: () => Promise.resolve({ meals: mockAreas }),
+  filterByCategory: () => Promise.resolve({ meals: mockAreas }),
 }));
 
 jest.mock("react-hook-form", () => ({
@@ -68,7 +68,7 @@ describe("Page2", () => {
     render(<Page2 />);
     await waitFor(() =>
       expect(
-        screen.getByRole("heading", { name: /where are you craving from/i }),
+        screen.getByRole("heading", { name: /where are you cooking from/i }),
       ).toBeInTheDocument(),
     );
   });
@@ -77,7 +77,7 @@ describe("Page2", () => {
     render(<Page2 />);
     await waitFor(() =>
       expect(
-        screen.getByRole("heading", { name: /where are you craving from/i }),
+        screen.getByRole("heading", { name: /where are you cooking from/i }),
       ).toBeInTheDocument(),
     );
   });

@@ -6,7 +6,6 @@ import {
   filterByCategory,
   filterByArea,
   filterByIngredient,
-  listAreas,
 } from "@/service/meal-db-service";
 
 const mockFetch = jest.fn();
@@ -142,15 +141,5 @@ describe("filterByIngredient", () => {
 
     expect(result.meals).toHaveLength(1);
     expect(result.meals![0].idMeal).toBe("1");
-  });
-});
-
-describe("listAreas", () => {
-  it("calls the list areas endpoint", async () => {
-    mockFetch.mockReturnValue(mockResponse({ meals: [] }));
-
-    await listAreas();
-
-    expect(mockFetch).toHaveBeenCalledWith(`${BASE}/list.php?a=list`);
   });
 });

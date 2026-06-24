@@ -7,8 +7,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import FormSelect from "@/components/form/formSelect/FormSelect";
 import { useStore } from "@/store";
+import { useAreasByCategory } from "@/hooks/use-areas-by-category";
 import { useShallow } from "zustand/shallow";
-import { useAreas } from "@/hooks/use-areas";
 
 const Page2 = () => {
   const {
@@ -19,18 +19,19 @@ const Page2 = () => {
   } = useForm<Page2Request>();
   const router = useRouter();
 
-  const {
-    data: areas,
-    isLoading: areasLoading,
-    error: areasError,
-  } = useAreas();
-
-  const { area, setPage2 } = useStore(
+  const { category, area, setPage2 } = useStore(
     useShallow((s) => ({
+      category: s.category,
       area: s.area,
       setPage2: s.setPage2,
     })),
   );
+
+  const {
+    data: areas,
+    isLoading: areasLoading,
+    error: areasError,
+  } = useAreasByCategory(category);
 
   useEffect(() => {
     reset({ area });
@@ -46,7 +47,10 @@ const Page2 = () => {
 
   return (
     <section className="card">
-      <h1>Where are you craving from?</h1>
+      <h1>Where are you cooking from?</h1>
+      <p>
+        {} results found for {category}
+      </p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormSelect
           label="Area"
@@ -61,7 +65,7 @@ const Page2 = () => {
           register={register}
         />
         <div className="cta-container submit-container">
-          <Link href="/page1">back</Link>
+          <Link href="/page1">Back</Link>
           <button type="submit">Complete</button>
         </div>
         {areasError && (
