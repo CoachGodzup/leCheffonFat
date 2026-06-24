@@ -1,11 +1,28 @@
+"use client";
+
 import styles from "./sidebar.module.css";
+import { useStore } from "@/store";
+import { useShallow } from "zustand/shallow";
 
 const Sidebar = () => {
+  const { calls } = useStore(
+    useShallow((s) => ({
+      calls: s.calls,
+    })),
+  );
+
   return (
     <aside role="navigation" className={styles.menu}>
-      <p>Here&rsquo;s the aside menu</p>
-      <p>Here&rsquo;s the aside menu</p>
-      <p>Here&rsquo;s the aside menu</p>
+      <h2>History</h2>
+      <ul>
+        {calls.map((entry) => (
+          <li key={entry.timestamp}>
+            <p>
+              ({new Date(entry.timestamp).toLocaleDateString()}) {entry.title}
+            </p>
+          </li>
+        ))}
+      </ul>
     </aside>
   );
 };

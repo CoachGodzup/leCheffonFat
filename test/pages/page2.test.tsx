@@ -52,9 +52,13 @@ describe("Page2", () => {
       const state = {
         category: "",
         area: "",
+        calls: [],
         setPage1: jest.fn(),
         setPage2: mockSetPage2,
         resetForm: jest.fn(),
+        logRequest: jest.fn(),
+        resetHistory: jest.fn(),
+        setLike: jest.fn(),
       };
       return selector(state);
     });
@@ -143,9 +147,13 @@ describe("Page2", () => {
         const state = {
           category: "Beef",
           area: "Italian",
+          calls: [],
           setPage1: jest.fn(),
           setPage2: mockSetPage2,
           resetForm: jest.fn(),
+          logRequest: jest.fn(),
+          resetHistory: jest.fn(),
+          setLike: jest.fn(),
         };
         return selector(state);
       });

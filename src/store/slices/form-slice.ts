@@ -8,8 +8,10 @@ export type FormSlice = UserRequest & {
 
 export const createFormSlice = (
   set: (partial: Partial<FormSlice>) => void,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _get: () => Partial<FormSlice>,
-  _,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _api: unknown,
 ): FormSlice => ({
   category: "",
   area: "",

@@ -4,14 +4,17 @@ import ShareButton from "../shareButton/ShareButton";
 
 type RecipeCtasProps = {
   retryFn: () => void;
-  meal: Meal;
+  meal: Meal | null;
 };
 
 const RecipeCtas = ({ retryFn, meal }: RecipeCtasProps) => (
   <div className="cta-container">
-    <Link href={meal.strSource} target="_blank" rel="noreferrer noopener">
-      go to source
-    </Link>
+    {meal && (
+      <Link href={meal.strSource} target="_blank" rel="noreferrer noopener">
+        go to source
+      </Link>
+    )}
+
     <Link href="/page2">back</Link>
     <button onClick={retryFn}>Retry</button>
     <ShareButton />

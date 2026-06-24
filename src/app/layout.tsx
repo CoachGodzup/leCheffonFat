@@ -19,7 +19,7 @@ export default function RootLayout({
       <body>
         <Header />
         <main>{children}</main>
-        {/* <Sidebar /> TODO replace with a working sidebar */}
+        <Sidebar />
         <Footer />
       </body>
     </html>

@@ -7,7 +7,7 @@ describe("createFormSlice", () => {
 
   beforeEach(() => {
     set = jest.fn();
-    slice = createFormSlice(set);
+    slice = createFormSlice(set, jest.fn(), jest.fn());
   });
 
   it("returns initial state", () => {

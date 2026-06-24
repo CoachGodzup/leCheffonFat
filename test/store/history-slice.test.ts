@@ -10,7 +10,7 @@ describe("createHistorySlice", () => {
       Object.assign(slice, partial);
     });
     get = jest.fn(() => slice);
-    slice = createHistorySlice(set, get);
+    slice = createHistorySlice(set, get, jest.fn());
   });
 
   it("starts empty", () => {
