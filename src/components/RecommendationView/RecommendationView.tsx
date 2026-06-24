@@ -41,7 +41,7 @@ const RecommendationView = ({
     return (
       <section className="card">
         <h1>Recommendation</h1>
-        <p>loading...</p>
+        <p role="status">loading...</p>
         <div className="ctaContainer">
           <Link href={backHref}>back</Link>
         </div>
@@ -53,7 +53,7 @@ const RecommendationView = ({
     return (
       <section className="card">
         <h1>Recommendation</h1>
-        <p>{error || "No meal found"}</p>
+        <p role="alert">{error || "No meal found"}</p>
         <div className="ctaContainer">
           <Link href={backHref}>back</Link>
         </div>

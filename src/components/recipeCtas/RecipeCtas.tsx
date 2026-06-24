@@ -25,8 +25,12 @@ const RecipeCtas = ({ retryFn, meal, backHref }: RecipeCtasProps) => {
         </Link>
       )}
 
-      <Link href={backHref ?? "/page2"}>Back</Link>
-      <button onClick={retryFn}>New idea</button>
+      <Link href={backHref ?? "/page2"} aria-label="Back to previous page">
+        Back
+      </Link>
+      <button onClick={retryFn} aria-label="Get a new recipe idea">
+        New idea
+      </button>
       <ShareButton />
     </div>
   );

@@ -13,8 +13,11 @@ const FILTER_OPTIONS = [
   { value: null, label: "Unrated" },
 ] as const;
 
+export type Sort = "asc" | "desc";
+
 const Sidebar = () => {
   const [filter, setFilter] = useState<(boolean | null)[]>([]);
+  const [sort, setSort] = useState<Sort>("asc");
 
   const { calls } = useStore(
     useShallow((s) => ({
@@ -31,31 +34,35 @@ const Sidebar = () => {
   );
 
   return (
-    <aside role="navigation" className={styles.menu}>
-      <h2>History</h2>
-      <CheckboxFilter
-        legend="Filter by rating"
-        options={[...FILTER_OPTIONS]}
-        value={filter}
-        onChange={setFilter}
-      />
+    <aside aria-labelledby="sidebar-heading" className={styles.menu}>
+      <nav>
+        <h2 id="sidebar-heading">History</h2>
+        <CheckboxFilter
+          legend="Filter by rating"
+          options={[...FILTER_OPTIONS]}
+          value={filter}
+          onChange={setFilter}
+        />
+      </nav>
       <ul className={styles.entryList}>
-        {list.map((entry) => (
-          <Link
-            key={entry.timestamp}
-            href={`/recommendation/${entry.recipeId}`}
-          >
-            <li className={styles.entry}>
-              <h4>
-                {entry.like ? "👍 " : entry.like === false ? "👎 " : "  "}
-                {entry.title}
-              </h4>
-              <p>
-                {`${new Date(entry.timestamp).toLocaleDateString()} - ${entry.inputs.category} ${entry.inputs.area}`}
-              </p>
-            </li>
-          </Link>
-        ))}
+        {list
+          .sort((a, b) => (a.timestamp > b.timestamp && sort == "asc" ? 1 : -1))
+          .map((entry) => (
+            <Link
+              key={entry.timestamp}
+              href={`/recommendation/${entry.recipeId}`}
+            >
+              <li className={styles.entry}>
+                <h4>
+                  {entry.like ? "👍 " : entry.like === false ? "👎 " : "  "}
+                  {entry.title}
+                </h4>
+                <p>
+                  {`${new Date(entry.timestamp).toLocaleDateString()} - ${entry.inputs.category} ${entry.inputs.area}`}
+                </p>
+              </li>
+            </Link>
+          ))}
       </ul>
     </aside>
   );

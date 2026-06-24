@@ -70,7 +70,7 @@ it("filters by liked", () => {
   });
 
   render(<History />);
-  fireEvent.click(screen.getByLabelText("👍"));
+  fireEvent.click(screen.getByLabelText("👍 Liked"));
   expect(screen.getByText("Sushi")).toBeInTheDocument();
   expect(screen.queryByText("Bistecca")).not.toBeInTheDocument();
 });
@@ -98,7 +98,7 @@ it("filters by unknown", () => {
   });
 
   render(<History />);
-  fireEvent.click(screen.getByLabelText("?"));
+  fireEvent.click(screen.getByLabelText("? Unknown"));
   expect(screen.getByText("Bistecca")).toBeInTheDocument();
   expect(screen.queryByText("Sushi")).not.toBeInTheDocument();
 });

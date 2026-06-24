@@ -43,7 +43,7 @@ const Page2 = () => {
     router.push("/recommendation");
   };
 
-  if (areasLoading) return <p>Loading...</p>;
+  if (areasLoading) return <p role="status">Loading...</p>;
 
   return (
     <section className="card">
@@ -70,7 +70,7 @@ const Page2 = () => {
         </div>
         {areasError && (
           <div className="alert alert-error">
-            <p>Error: {areasError}</p>
+            <p role="alert">Error: {areasError}</p>
           </div>
         )}
       </form>

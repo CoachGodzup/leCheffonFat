@@ -5,17 +5,19 @@ import Link from "next/link";
 import Image from "next/image";
 import { useStore } from "@/store";
 
+type SortKey = "asc" | "desc";
 type FilterKey = "liked" | "disliked" | "unknown";
 
 const FILTERS: { key: FilterKey; label: string }[] = [
-  { key: "liked", label: "👍" },
-  { key: "disliked", label: "👎" },
-  { key: "unknown", label: "?" },
+  { key: "liked", label: "👍 Liked" },
+  { key: "disliked", label: "👎 Disliked" },
+  { key: "unknown", label: "? Unknown" },
 ];
 
 const History = () => {
   const calls = useStore((s) => s.calls);
   const [filters, setFilters] = useState<Set<FilterKey>>(new Set());
+  const [sort, setSort] = useState<SortKey>("asc");
 
   const toggle = (key: FilterKey) => {
     setFilters((prev) => {
@@ -24,6 +26,10 @@ const History = () => {
       else next.add(key);
       return next;
     });
+  };
+
+  const toggleSort = () => {
+    setSort(sort === "asc" ? "desc" : "asc");
   };
 
   const matches = (like: boolean | null): boolean => {
@@ -53,31 +59,47 @@ const History = () => {
           </label>
         ))}
       </fieldset>
+      <fieldset>
+        <legend>Sort</legend>
+        <label key="sort">
+          <input
+            type="checkbox"
+            checked={sort === "asc"}
+            onChange={() => toggleSort()}
+          />
+          <button onChange={toggleSort}>{sort === "asc" ? "🔼" : "🔽"}</button>
+          <span></span>
+        </label>
+      </fieldset>
 
       {filtered.length === 0 ? (
         <p>No history yet.</p>
       ) : (
         <ul>
-          {filtered.map((call) => (
-            <li key={call.recipeId}>
-              <Link href={`/recommendation/${call.recipeId}`}>
-                <Image
-                  src={call.imageUrl}
-                  alt={call.title}
-                  width={80}
-                  height={80}
-                />
-                <div>
-                  <strong>{call.title}</strong>
-                  <p>
-                    {call.inputs.category} — {call.inputs.area}
-                  </p>
-                  <p>{new Date(call.timestamp).toLocaleString()}</p>
-                  {call.like !== null && <p>{call.like ? "👍" : "👎"}</p>}
-                </div>
-              </Link>
-            </li>
-          ))}
+          {filtered
+            .sort((a, b) =>
+              a.timestamp > b.timestamp && sort === "asc" ? 1 : -1,
+            )
+            .map((call) => (
+              <li key={call.recipeId}>
+                <Link href={`/recommendation/${call.recipeId}`}>
+                  <Image
+                    src={call.imageUrl}
+                    alt={call.title}
+                    width={80}
+                    height={80}
+                  />
+                  <div>
+                    <strong>{call.title}</strong>
+                    <p>
+                      {call.inputs.category} — {call.inputs.area}
+                    </p>
+                    <p>{new Date(call.timestamp).toLocaleString()}</p>
+                    {call.like !== null && <p>{call.like ? "👍" : "👎"}</p>}
+                  </div>
+                </Link>
+              </li>
+            ))}
         </ul>
       )}
       <Link href="/">back to home</Link>

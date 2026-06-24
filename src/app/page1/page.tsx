@@ -41,7 +41,7 @@ const Page1 = () => {
     router.push("/page2");
   };
 
-  if (catLoading) return <p>Loading...</p>;
+  if (catLoading) return <p role="status">Loading...</p>;
 
   return (
     <section className="card">
@@ -66,7 +66,7 @@ const Page1 = () => {
         </div>
         {catError && (
           <div className="alert alert-error">
-            <p>Error: {catError}</p>
+            <p role="alert">Error: {catError}</p>
           </div>
         )}
       </form>
