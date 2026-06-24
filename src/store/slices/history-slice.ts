@@ -10,7 +10,6 @@ export type HistorySlice = History & {
 export const createHistorySlice = (
   set: (partial: Partial<HistorySlice>) => void,
   get: () => HistorySlice,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   _api: unknown,
 ): HistorySlice => ({
   calls: [],

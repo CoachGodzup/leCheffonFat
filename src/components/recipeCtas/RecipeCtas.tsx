@@ -9,7 +9,7 @@ type RecipeCtasProps = {
 
 const RecipeCtas = ({ retryFn, meal }: RecipeCtasProps) => (
   <div className="cta-container">
-    {meal && (
+    {meal && meal.strSource && (
       <Link href={meal.strSource} target="_blank" rel="noreferrer noopener">
         go to source
       </Link>

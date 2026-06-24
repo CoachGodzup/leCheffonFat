@@ -2,6 +2,7 @@
 
 import styles from "./sidebar.module.css";
 import { useStore } from "@/store";
+import Link from "next/link";
 import { useShallow } from "zustand/shallow";
 
 const Sidebar = () => {
@@ -18,7 +19,12 @@ const Sidebar = () => {
         {calls.map((entry) => (
           <li key={entry.timestamp}>
             <p>
-              ({new Date(entry.timestamp).toLocaleDateString()}) {entry.title}
+              ({new Date(entry.timestamp).toLocaleDateString()}){" "}
+              {entry.like ? "👍" : entry.like === false ? "👎" : ""}
+              <Link href={`/recommendation&id=${entry.recipeId}`}>
+                {entry.title}
+              </Link>
+              ({entry.inputs.category} - {entry.inputs.area})
             </p>
           </li>
         ))}
