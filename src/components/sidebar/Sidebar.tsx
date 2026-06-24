@@ -15,9 +15,9 @@ const Sidebar = () => {
   return (
     <aside role="navigation" className={styles.menu}>
       <h2>History</h2>
-      <ul>
+      <ul className={styles.entryList}>
         {calls.map((entry) => (
-          <li key={entry.timestamp}>
+          <li key={entry.timestamp} className={styles.entry}>
             <p>
               ({new Date(entry.timestamp).toLocaleDateString()}){" "}
               {entry.like ? "👍" : entry.like === false ? "👎" : ""}

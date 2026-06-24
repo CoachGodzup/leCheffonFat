@@ -6,3 +6,13 @@
   padding: 1em 0.4em;
   overflow-y: auto;
 }
+
+.entryList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4em;
+}
+
+.entry a {
+  padding: 0;
+}
