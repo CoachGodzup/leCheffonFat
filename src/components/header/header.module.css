@@ -1,6 +1,14 @@
+.header {
+  display: flex;
+  align-items: center;
+  padding: 0 1.5em;
+}
+
 .homeLink {
-  height: 1.8em;
-  line-height: 1.8em;
-  font-size: 1.8em;
-  padding: 0.2em 0.5em;
+  font-weight: 600;
+  font-size: 1.2em;
+  letter-spacing: 0.02em;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
 }

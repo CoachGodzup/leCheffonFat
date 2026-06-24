@@ -15,21 +15,21 @@ describe("ShareButton", () => {
     jest.clearAllMocks();
   });
 
-  it("renders the button with 'Condividi' text", () => {
+  it("renders the button with 'Share' text", () => {
     render(<ShareButton />);
 
     expect(
       screen.getByRole("button", { name: /share link/i }),
     ).toBeInTheDocument();
-    expect(screen.getByText("Condividi")).toBeInTheDocument();
+    expect(screen.getByText("Share")).toBeInTheDocument();
   });
 
-  it("shows 'Copiato!' on click", async () => {
+  it("shows 'Copied!' on click", async () => {
     const user = userEvent.setup();
     render(<ShareButton />);
 
     await user.click(screen.getByRole("button"));
 
-    expect(screen.getByText("Copiato!")).toBeInTheDocument();
+    expect(screen.getByText("Copied!")).toBeInTheDocument();
   });
 });

@@ -38,6 +38,13 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - Prefer arrow functions over `function` declarations
 - Wrap every async operation in a try-catch that rejects on failure. See `src/service/meal-db-service.ts:17-22` for the pattern.
 
+## Colors
+
+- **Always** use colors from `src/app/globals.css` CSS custom properties (`var(--color-*)`).
+- If a needed color doesn't exist, find the closest one in `globals.css`; if none is close enough, add a new `--color-*` variable (both light and dark variants).
+- **Dark mode takes priority** — test and polish the dark theme first, then ensure light mode degrades well.
+- All component CSS module files should reference `var(--color-*)`, never hardcoded hex values.
+
 ## Testing
 
 - Unit tests use Jest + `@testing-library/react`.

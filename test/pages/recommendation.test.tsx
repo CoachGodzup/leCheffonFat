@@ -73,16 +73,6 @@ describe("Recommendation", () => {
     expect(img).toBeInTheDocument();
   });
 
-  it("renders the meal id", async () => {
-    mockFetch
-      .mockReturnValueOnce(mockOkResponse(mockFilterResponse))
-      .mockReturnValueOnce(mockOkResponse({ meals: [mockFullMeal] }));
-
-    render(<Recommendation />);
-
-    expect(await screen.findByText("99999")).toBeInTheDocument();
-  });
-
   it("renders category and area", async () => {
     mockFetch
       .mockReturnValueOnce(mockOkResponse(mockFilterResponse))
@@ -90,20 +80,7 @@ describe("Recommendation", () => {
 
     render(<Recommendation />);
 
-    expect(await screen.findByText(/Category: Italian/)).toBeInTheDocument();
-    expect(await screen.findByText(/Area: Italian/)).toBeInTheDocument();
-  });
-
-  it("renders tags", async () => {
-    mockFetch
-      .mockReturnValueOnce(mockOkResponse(mockFilterResponse))
-      .mockReturnValueOnce(mockOkResponse({ meals: [mockFullMeal] }));
-
-    render(<Recommendation />);
-
-    expect(
-      await screen.findByText(/Tags: Pizza,Italian,Cheese/),
-    ).toBeInTheDocument();
+    expect(await screen.findByText("Italian — Italian")).toBeInTheDocument();
   });
 
   it("renders a source link", async () => {
@@ -113,7 +90,7 @@ describe("Recommendation", () => {
 
     render(<Recommendation />);
 
-    const link = await screen.findByRole("link", { name: /go to source/i });
+    const link = await screen.findByRole("link", { name: /view full recipe/i });
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute("href", "https://example.com/pizza");
   });

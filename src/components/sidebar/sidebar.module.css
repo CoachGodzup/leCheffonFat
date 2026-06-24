@@ -1,18 +1,46 @@
 .menu {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
-  padding: 1em 0.4em;
+  padding: 1em;
   overflow-y: auto;
+}
+
+.menu h2 {
+  font-size: 1.125em;
+  padding-bottom: 0.75em;
+  margin-bottom: 0.75em;
+  border-bottom: 1px solid var(--color-lilac);
 }
 
 .entryList {
   display: flex;
   flex-direction: column;
-  gap: 0.4em;
+  gap: 0.5em;
+  list-style: none;
+  margin-top: 0.75em;
+}
+
+.entry {
+  background: var(--color-white);
+  border-radius: 8px;
+  padding: 0.5em 0.75em;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.entry:hover {
+  transform: translateX(3px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.entry p {
+  font-size: 0.8125em;
+  line-height: 1.4;
+  color: var(--color-text-main);
 }
 
 .entry a {
+  font-weight: 500;
   padding: 0;
 }

@@ -8,7 +8,7 @@ describe("Home", () => {
 
   it("renders a link to the form", () => {
     render(<Home />);
-    const link = screen.getByRole("link", { name: /go to form/i });
+    const link = screen.getByRole("link", { name: /inspire me/i });
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute("href", "/page1");
   });

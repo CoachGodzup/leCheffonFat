@@ -7,7 +7,6 @@ import { useStore } from "@/store";
 import RecipeCtas from "@/components/recipeCtas/RecipeCtas";
 import LikeDislikeCtas from "@/components/recipeCtas/likeDislikeCtas";
 import type { Meal } from "@/types/meal-db";
-import styles from "./RecommendationView.module.css";
 
 type Props = {
   data: Meal | null;
@@ -64,8 +63,6 @@ const RecommendationView = ({
 
   return (
     <section className="card">
-      <h1>Recommendation</h1>
-
       <div className="recipeContainer">
         <div className="recipe">
           <Image
@@ -75,14 +72,13 @@ const RecommendationView = ({
             width={400}
             height={200}
           />
-          <div>
-            <h3>{meal.strMeal}</h3>
-            <p>{meal.idMeal}</p>
-            <p>Category: {meal.strCategory}</p>
-            <p>Area: {meal.strArea}</p>
-            <p>Tags: {meal.strTags}</p>
-            <div className={styles.recipe}>{meal.strInstructions}</div>
-          </div>
+          <article>
+            <h1>{meal.strMeal}</h1>
+            <p>
+              {meal.strCategory} — {meal.strArea}
+            </p>
+            <div className="print-only">{meal.strInstructions}</div>
+          </article>
         </div>
         <RecipeCtas retryFn={() => refetch()} meal={meal} backHref={backHref} />
         <LikeDislikeCtas likeFn={(like) => setLike(meal.idMeal, like)} />

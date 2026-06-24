@@ -23,7 +23,7 @@ const ShareButton = () => {
       onClick={handleShare}
       aria-label="Share link"
     >
-      {copied ? "Copiato!" : "Condividi"}
+      {copied ? "Copied!" : "Share"}
     </button>
   );
 };

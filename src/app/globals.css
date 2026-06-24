@@ -4,19 +4,19 @@
 
 :root {
   /* Light theme (default) */
-  --color-lilac: #a89fdf;
-  --color-accent-yellow: #f4c430;
-  --color-bg-salvia: #e2ece9;
-  --color-text-main: #2b2d42;
-  --color-white: #ffffff;
+  --color-lilac: #8a7fad;
+  --color-accent-yellow: #c4a97d;
+  --color-bg-salvia: #f5f3f0;
+  --color-text-main: #2e2a36;
+  --color-white: #faf8f6;
 
   /* Dark theme values */
-  --color-bg-dark: #1a1625;
-  --color-bg-card-dark: #252033;
-  --color-lilac-dark: #c3b1e1;
-  --color-accent-gold: #ffd25a;
-  --color-text-primary: #f4f3f7;
-  --color-text-muted: #a5a1b8;
+  --color-bg-dark: #18161f;
+  --color-bg-card-dark: #231f2e;
+  --color-lilac-dark: #a99bc8;
+  --color-accent-gold: #c9ad81;
+  --color-text-primary: #f0eef2;
+  --color-text-muted: #9b96ac;
 
   --spacing: 1em;
 }
@@ -74,10 +74,9 @@ body {
   display: grid;
   grid-template-areas:
     "header header"
-    "menu content" /* TODO menu content when there will be a working Sidebar */
+    "menu content"
     "footer footer";
-  grid-auto-rows: max-content;
-  grid-template-rows: 3em 1fr 3em;
+  grid-template-rows: auto 1fr auto;
   grid-template-columns: 1fr 3fr;
   gap: 3px;
   background-color: var(--color-bg-salvia);
@@ -106,9 +105,9 @@ a {
 
 header {
   grid-area: header;
-  height: 3em;
   background-color: var(--color-lilac);
   color: var(--color-white);
+  border-bottom: 1px solid rgb(255 255 255 / 0.15);
 }
 
 main {
@@ -116,14 +115,11 @@ main {
   padding: var(--spacing);
 }
 
-header,
-footer {
-  background: var(--color-lilac);
-  color: var(--color-text-main);
-}
-
 footer {
   grid-area: footer;
+  background: var(--color-lilac);
+  color: var(--color-white);
+  border-top: 1px solid rgb(255 255 255 / 0.15);
 }
 
 aside {
@@ -135,17 +131,23 @@ aside {
    Components
    ============================================= */
 
-.cta-container {
+.cta-container,
+.ctaContainer {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 0.5em;
   padding: 1em 0;
+  align-items: baseline;
 }
 
 .cta-container > a,
-.cta-container button {
+.cta-container button,
+.ctaContainer > a,
+.ctaContainer button {
   padding: 1em;
-  border: 1px solid white;
+  border: 1px solid currentColor;
+  height: 100%;
 }
 
 .btn-cta,
@@ -164,7 +166,24 @@ button {
 .btn-cta:hover,
 a:hover,
 button:hover {
-  transform: scale(1.05) opacity(0.8);
+  transform: scale(1.05);
+}
+
+.btn-primary {
+  background-color: var(--color-accent-yellow);
+  color: var(--color-bg-dark);
+  font-weight: 700;
+  padding: 0.75em 1.5em;
+  border: none;
+  border-radius: 10px;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.btn-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .recipe-card {
@@ -178,7 +197,9 @@ button:hover {
   background: var(--color-white);
   border-radius: 12px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  padding: 1.5rem;
+  padding: 2rem;
+  max-width: 600px;
+  margin: 2em auto;
 }
 
 form {
@@ -193,19 +214,58 @@ section {
   gap: 0.7em;
 }
 
+.recipeContainer {
+  display: grid;
+  gap: 1.5em;
+  margin-top: 1em;
+}
+
+.recipeContainer .recipe {
+  display: grid;
+  gap: 1.5em;
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 600px) {
+  .recipeContainer .recipe {
+    grid-template-columns: 300px 1fr;
+  }
+}
+
+.recipeContainer .recipe img {
+  border-radius: 12px;
+  object-fit: cover;
+  width: 100%;
+  height: auto;
+}
+
+.recipeContainer .recipe h3 {
+  margin-bottom: 0.5em;
+}
+
+.recipeContainer .recipe p {
+  font-size: 0.9375em;
+  margin-bottom: 0.25em;
+  color: var(--color-text-muted);
+}
+
+.recipeContainer .recipe p:has(strong) {
+  color: var(--color-text-main);
+}
+
+.recipeContainer .instructions {
+  line-height: 1.7;
+  font-size: 0.9375em;
+  max-width: 65ch;
+  color: var(--color-text-main);
+}
+
 /* =============================================
    Layout Utilities
    ============================================= */
 
-main:has(.card) {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-main .card {
-  width: 66%;
-  min-height: 33vh;
+.print-only {
+  display: none;
 }
 
 /* =============================================
@@ -220,13 +280,36 @@ main .card {
     gap: 1em;
   }
 
-  aside,
-  footer {
-    display: none !important;
+  .print-only {
+    display: block;
   }
 
-  /* no links for printed page */
-  a {
-    display: none !important;
+  @media print {
+    body {
+      grid-template-areas:
+        "header header"
+        "content content";
+      gap: 1em;
+    }
+
+    /* all elements hidden for printed page */
+
+    aside,
+    footer,
+    .cta-container,
+    .ctaContainer,
+    a {
+      display: none !important;
+    }
+
+    div.recipeContainer .recipe {
+      display: flex;
+      flex-flow: column;
+    }
+
+    /* padding */
+    main > section.card {
+      margin: 0;
+    }
   }
 }

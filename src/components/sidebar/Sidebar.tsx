@@ -41,16 +41,20 @@ const Sidebar = () => {
       />
       <ul className={styles.entryList}>
         {list.map((entry) => (
-          <li key={entry.timestamp} className={styles.entry}>
-            <p>
-              ({new Date(entry.timestamp).toLocaleDateString()}){" "}
-              {entry.like ? "👍" : entry.like === false ? "👎" : ""}
-              <Link href={`/recommendation/${entry.recipeId}`}>
+          <Link
+            key={entry.timestamp}
+            href={`/recommendation/${entry.recipeId}`}
+          >
+            <li className={styles.entry}>
+              <h4>
+                {entry.like ? "👍 " : entry.like === false ? "👎 " : "  "}
                 {entry.title}
-              </Link>
-              ({entry.inputs.category} - {entry.inputs.area})
-            </p>
-          </li>
+              </h4>
+              <p>
+                {`${new Date(entry.timestamp).toLocaleDateString()} - ${entry.inputs.category} ${entry.inputs.area}`}
+              </p>
+            </li>
+          </Link>
         ))}
       </ul>
     </aside>

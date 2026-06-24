@@ -1,11 +1,22 @@
 .checkboxFilter {
-  @apply border-none p-0 mb-4;
+  border: none;
+  padding: 0;
+  margin-bottom: 0.75em;
 }
 
 .checkboxFilter legend {
-  @apply text-sm font-semibold mb-2;
+  font-size: 0.8125em;
+  font-weight: 600;
+  margin-bottom: 0.5em;
+  color: var(--color-text-muted);
 }
 
 .checkboxFilter label {
-  @apply flex items-center gap-2 text-sm cursor-pointer mb-1;
+  display: flex;
+  align-items: center;
+  gap: 0.4em;
+  font-size: 0.8125em;
+  cursor: pointer;
+  margin-bottom: 0.25em;
+  color: var(--color-text-main);
 }

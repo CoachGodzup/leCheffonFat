@@ -74,10 +74,7 @@ describe("RecommendationView", () => {
     );
 
     expect(screen.getByText("Pizza Margherita")).toBeInTheDocument();
-    expect(screen.getByText("99999")).toBeInTheDocument();
-    expect(screen.getByText(/Category: Italian/)).toBeInTheDocument();
-    expect(screen.getByText(/Area: Italian/)).toBeInTheDocument();
-    expect(screen.getByText(/Tags: Pizza,Italian,Cheese/)).toBeInTheDocument();
+    expect(screen.getByText("Italian — Italian")).toBeInTheDocument();
   });
 
   it("renders custom backHref in loading state", () => {
@@ -133,7 +130,7 @@ describe("RecommendationView", () => {
       />,
     );
 
-    const link = screen.getByRole("link", { name: /go to source/i });
+    const link = screen.getByRole("link", { name: /view full recipe/i });
     expect(link).toBeInTheDocument();
     expect(link).toHaveAttribute("href", "https://example.com/pizza");
   });
