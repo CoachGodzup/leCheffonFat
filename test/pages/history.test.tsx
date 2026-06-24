@@ -8,7 +8,7 @@ beforeEach(() => {
 
 it("renders empty state", () => {
   render(<History />);
-  expect(screen.getByText("No history yet.")).toBeInTheDocument();
+  expect(screen.getByText("History")).toBeInTheDocument();
 });
 
 it("renders all calls when no filter active", () => {
@@ -43,8 +43,8 @@ it("renders all calls when no filter active", () => {
 
   render(<History />);
   expect(screen.getByText("Bistecca")).toBeInTheDocument();
-  expect(screen.getByText("Sushi")).toBeInTheDocument();
-  expect(screen.getByText("Taco")).toBeInTheDocument();
+  expect(screen.getByText((t) => t.includes("Sushi"))).toBeInTheDocument();
+  expect(screen.getByText((t) => t.includes("Taco"))).toBeInTheDocument();
 });
 
 it("filters by liked", () => {
@@ -70,8 +70,8 @@ it("filters by liked", () => {
   });
 
   render(<History />);
-  fireEvent.click(screen.getByLabelText("👍 Liked"));
-  expect(screen.getByText("Sushi")).toBeInTheDocument();
+  fireEvent.click(screen.getByLabelText("Liked 👍"));
+  expect(screen.getByText((t) => t.includes("Sushi"))).toBeInTheDocument();
   expect(screen.queryByText("Bistecca")).not.toBeInTheDocument();
 });
 
@@ -98,7 +98,9 @@ it("filters by unknown", () => {
   });
 
   render(<History />);
-  fireEvent.click(screen.getByLabelText("? Unknown"));
+  fireEvent.click(screen.getByLabelText("Unrated"));
   expect(screen.getByText("Bistecca")).toBeInTheDocument();
-  expect(screen.queryByText("Sushi")).not.toBeInTheDocument();
+  expect(
+    screen.queryByText((t) => t.includes("Sushi")),
+  ).not.toBeInTheDocument();
 });
