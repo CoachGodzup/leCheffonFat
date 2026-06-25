@@ -15,6 +15,6 @@ export const useAreasByCategory = (category: string) => {
               .map((a) => ({ strArea: a }))
           : [],
       ),
-    [],
+    [category],
   );
 };
