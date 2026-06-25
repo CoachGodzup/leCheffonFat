@@ -69,6 +69,7 @@ describe("Page1", () => {
         resetForm: jest.fn(),
         logRequest: jest.fn(),
         resetHistory: jest.fn(),
+        remove: jest.fn(),
         setLike: jest.fn(),
       };
       return selector(state);
@@ -162,6 +163,7 @@ describe("Page1", () => {
           resetForm: jest.fn(),
           logRequest: jest.fn(),
           resetHistory: jest.fn(),
+          remove: jest.fn(),
           setLike: jest.fn(),
         };
         return selector(state);

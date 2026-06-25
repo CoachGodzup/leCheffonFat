@@ -13,4 +13,4 @@ Open [http://localhost:3000](http://localhost:3000).
 
 ## Technical choices
 
-All design decisions are documented in [docs/Recipe For a Reaction.md](./docs/Recipe%20For%20a%20Reaction.md). Logs are in [docs/HIMYP.md](./docs/HIMYP.md).
+All design decisions are documented in [docs/technical_specs.md](./docs/technical_specs.md). Logs are in [docs/HIMYP.md](./docs/HIMYP.md).

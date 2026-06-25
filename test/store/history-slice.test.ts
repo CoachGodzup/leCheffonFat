@@ -79,6 +79,35 @@ describe("createHistorySlice", () => {
     });
   });
 
+  it("removes a voice from history", () => {
+    const timestamp = Date.now();
+
+    slice.calls = [
+      {
+        recipeId: "123",
+        title: "Bistecca",
+        imageUrl: "/img.jpg",
+        timestamp,
+        like: null,
+        inputs: { category: "Beef", area: "Italian" },
+      },
+      {
+        recipeId: "456",
+        title: "Bistecca",
+        imageUrl: "/img.jpg",
+        timestamp,
+        like: null,
+        inputs: { category: "Beef", area: "Italian" },
+      },
+    ];
+
+    slice.remove("123");
+
+    expect(slice.calls).toHaveLength(1);
+    expect(slice.calls.filter((e) => e.recipeId === "123")).toHaveLength(0);
+    expect(slice.calls.filter((e) => e.recipeId === "456")).toHaveLength(1);
+  });
+
   it("resetHistory clears calls", () => {
     slice.resetHistory();
     expect(set).toHaveBeenCalledWith({ calls: [] });

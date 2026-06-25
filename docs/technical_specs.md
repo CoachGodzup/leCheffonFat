@@ -1,4 +1,4 @@
-# Recipe for a Reaction
+# Recipe for a Reaction - Technical specifications
 
 This will be a simple guide on how I will develop the project.
 
@@ -6,12 +6,12 @@ This will be a simple guide on how I will develop the project.
 
 Project will have those pages:
 
-1. Homepage, with two links for "get started" or "see history"
+1. Homepage, with two links for "get inspured" , "search" and "see history"
 2. Form step 1
 3. Form step 2
 4. Results + feedback
-5. Search page
-6. History - this can also be in the side panel
+5. Search page > dynamic search by name
+6. History - this is also in the side panel
 
 ## API
 
@@ -60,6 +60,31 @@ As a package manager, I'll stick to npm. I will know alternatives like bun or np
 Used a custom style, dark mode, lilac based.
 Used pure css solution, for a small project will not cause integration overhead
 Used at first emojis as icons, then switched to [lucide](https://lucide.dev/), that are already integrated in React. Emojis are not consistent between devices and normally too colorful.
+
+### Image Placeholder - `RecipeImage` component
+
+To handle broken or missing recipe images gracefully, a reusable `RecipeImage` wrapper component replaces direct usage of `next/image` in three components: `RecommendationView`, `HistoryList`, and `SearchResults`.
+
+**How it works:**
+
+- If `src` is empty or falsy, the component renders a placeholder div immediately.
+- If the image fails to load (`onError`), a `hasError` state flag triggers the same placeholder.
+- The placeholder is a `div` with a CSS gradient background (`linear-gradient(135deg, var(--color-lilac), var(--color-accent-yellow))`), using existing theme colors.
+- The wrapper has `position: relative` and `overflow: hidden` to support `next/image`'s `fill` layout.
+- When explicit `width` and `height` props are provided (non-fill mode), the wrapper receives them as inline styles so the placeholder occupies the same area as the intended image.
+- Sizing for `fill` mode is delegated to the parent element (e.g., the `.imageWrapper` divs with `aspect-ratio: 16/9` in `HistoryList` and `SearchResults`).
+
+**Files:**
+
+- `src/app/components/atoms/RecipeImage.tsx` — component implementation
+- `src/app/components/atoms/RecipeImage.module.css` — styles
+- `test/app/components/atoms/RecipeImage.test.tsx` — unit tests
+
+## Mock Offline - Bonus point
+
+It's silly to use real calls to The Meal DB for unit tests. So we'll go to override fetch API with a jest.fn that returns data.
+
+In order to do so also for develop, we can use _fixtures_, carbon-copies of calls, and overriding global.fetch for that.
 
 ## Testing
 
