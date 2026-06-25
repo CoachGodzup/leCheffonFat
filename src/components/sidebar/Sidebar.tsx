@@ -78,20 +78,25 @@ const Sidebar = () => {
           .map((entry) => (
             <li key={entry.timestamp} className={styles.entry}>
               <Link href={`/recommendation/${entry.recipeId}`}>
-                <h4>
-                  {entry.like ? (
-                    <ThumbsUp size={16} style={{ marginInlineEnd: "0.35em" }} />
-                  ) : entry.like === false ? (
-                    <ThumbsDown
-                      size={16}
-                      style={{ marginInlineEnd: "0.35em" }}
-                    />
-                  ) : null}
-                  {entry.title}
-                </h4>
-                <p>
-                  {`${new Date(entry.timestamp).toLocaleDateString()} - ${entry.inputs.category} ${entry.inputs.area}`}
-                </p>
+                <div>
+                  <h4>
+                    {entry.like ? (
+                      <ThumbsUp
+                        size={16}
+                        style={{ marginInlineEnd: "0.35em" }}
+                      />
+                    ) : entry.like === false ? (
+                      <ThumbsDown
+                        size={16}
+                        style={{ marginInlineEnd: "0.35em" }}
+                      />
+                    ) : null}
+                    {entry.title}
+                  </h4>
+                  <p>
+                    {`${new Date(entry.timestamp).toLocaleDateString()} - ${entry.inputs.category} ${entry.inputs.area}`}
+                  </p>
+                </div>
                 <p>
                   <X onClick={() => remove(entry.recipeId)} />
                 </p>
