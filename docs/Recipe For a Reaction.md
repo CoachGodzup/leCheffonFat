@@ -21,15 +21,9 @@ I'll go for the super-simple [Fetch API](https://developer.mozilla.org/en-US/doc
 
 Form handling and validation: I'll go with [react-hook-form](https://react-hook-form.com/), it doesn't give a lot of overhead and handles validation quite good.
 
-API has a great problem:
+I've used Categories for first form, Area for the second. Area comes freely with categories, so I can act a filter on previous results to reduce the scope of the area.
 
-> In free version can use only one filter at a time, and surely not multiple ingredients!"
-
-So... how can I call it with all filters? Luckily, searching for category gives also strArea and strCountry, so this part is quite easy: I'll filter client side the answer.
-
-TODO NO INGREDIENTS
-
-TODO CUSTOM HOOKS FOR API, STASHING
+Backend calls for list and search are wrapped into custom hooks, in order to avoid problems with asyncrounicity and hooks, that need syncronous functions. Also, decoupling that let the code to be cleaner.
 
 ## Technical choices
 
