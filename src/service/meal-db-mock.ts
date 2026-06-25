@@ -42,7 +42,8 @@ const pizzaMargherita: Meal = {
   strArea: "Italian",
   strInstructions:
     "Preheat the oven to 250°C. Roll out the dough, spread tomato sauce, add mozzarella and basil. Bake for 10-12 minutes until crispy.",
-  strMealThumb: "https://placehold.co/600x400/2563eb/ffffff?text=Pizza",
+  strMealThumb:
+    "https://www.themealdb.com/images/media/meals/ysxwuq1487323065.jpg",
   strTags: "Pizza,Italian,Cheese",
   strYoutube: "",
   strSource: "https://example.com/pizza",
@@ -82,7 +83,8 @@ const mealsByCategory: Record<string, MealSearchResponse> = {
       {
         idMeal: "99999",
         strMeal: "Pizza Margherita",
-        strMealThumb: "https://placehold.co/600x400/2563eb/ffffff?text=Pizza",
+        strMealThumb:
+          "https://www.themealdb.com/images/media/meals/ysxwuq1487323065.jpg",
         strArea: "Italian",
       } as Meal,
       {
@@ -149,7 +151,14 @@ export async function getMockResponse<T>(endpoint: string): Promise<T> {
   }
 
   if (endpoint.startsWith("lookup.php")) {
-    return { meals: [fishPieFull] } as T;
+    const params = new URLSearchParams(endpoint.split("?")[1] ?? "");
+    const id = params.get("i");
+    const fullMeals: Record<string, Meal> = {
+      "52802": fishPieFull,
+      "99999": pizzaMargherita,
+    };
+    const meal = id ? (fullMeals[id] ?? null) : null;
+    return { meals: meal ? [meal] : null } as T;
   }
 
   if (endpoint.startsWith("search.php")) {

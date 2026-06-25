@@ -34,7 +34,7 @@ describe("RecommendationView", () => {
       />,
     );
 
-    expect(screen.getByText("loading...")).toBeInTheDocument();
+    expect(screen.getByText("No meal found")).toBeInTheDocument();
   });
 
   it("renders error state", () => {

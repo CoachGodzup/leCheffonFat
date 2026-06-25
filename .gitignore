@@ -52,3 +52,7 @@ requirements.md
 # local todo (personal tracking)
 todo.md
 .vscode/settings.json
+
+# playwright
+playwright-report/
+test-results/
