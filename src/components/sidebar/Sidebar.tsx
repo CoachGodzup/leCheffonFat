@@ -8,7 +8,7 @@ import { useState, useMemo } from "react";
 import { useShallow } from "zustand/shallow";
 import CheckboxFilter from "@/app/components/atoms/CheckboxFilter";
 import SortBy from "@/app/components/atoms/SortBy";
-import { ThumbsUp, ThumbsDown } from "lucide-react";
+import { ThumbsUp, ThumbsDown, X } from "lucide-react";
 
 const FILTER_OPTIONS = [
   {
@@ -93,7 +93,7 @@ const Sidebar = () => {
                   {`${new Date(entry.timestamp).toLocaleDateString()} - ${entry.inputs.category} ${entry.inputs.area}`}
                 </p>
                 <p>
-                  <button onClick={() => remove(entry.recipeId)}></button>
+                  <X onClick={() => remove(entry.recipeId)} />
                 </p>
               </Link>
             </li>
