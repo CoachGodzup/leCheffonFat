@@ -1,10 +1,11 @@
 import styles from "./footer.module.css";
 import Link from "next/link";
+import { Utensils } from "lucide-react";
 
 const Footer = () => (
   <footer className={styles.footer}>
     <p>
-      Made with 🥄 by{" "}
+      Made with <Utensils size={16} style={{ marginInlineEnd: "0.35em" }} /> by{" "}
       <Link href="https://github.com/CoachGodzup">Matteo Garza</Link>
     </p>
   </footer>

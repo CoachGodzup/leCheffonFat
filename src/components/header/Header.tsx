@@ -1,5 +1,6 @@
 import Link from "next/link";
 import styles from "./header.module.css";
+import { ChefHat } from "lucide-react";
 
 const Header = () => (
   <header className={styles.header}>
@@ -9,7 +10,7 @@ const Header = () => (
       aria-label="Le Cheffon Fat - Home"
       className={styles.homeLink}
     >
-      🧑‍🍳 Le Cheffon Fat
+      <ChefHat size={28} style={{ marginInlineEnd: "0.35em" }} /> Le Cheffon Fat
     </Link>
   </header>
 );

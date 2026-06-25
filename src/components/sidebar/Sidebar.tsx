@@ -8,12 +8,27 @@ import { useState, useMemo } from "react";
 import { useShallow } from "zustand/shallow";
 import CheckboxFilter from "@/app/components/atoms/CheckboxFilter";
 import SortBy from "@/app/components/atoms/SortBy";
+import { ThumbsUp, ThumbsDown } from "lucide-react";
 
 const FILTER_OPTIONS = [
-  { value: true, label: "Liked 👍" },
-  { value: false, label: "Disliked 👎" },
+  {
+    value: true,
+    label: (
+      <>
+        <ThumbsUp size={16} style={{ marginInlineEnd: "0.35em" }} /> Liked
+      </>
+    ),
+  },
+  {
+    value: false,
+    label: (
+      <>
+        <ThumbsDown size={16} style={{ marginInlineEnd: "0.35em" }} /> Disliked
+      </>
+    ),
+  },
   { value: null, label: "Unrated" },
-] as const;
+];
 
 import type { Sort } from "@/app/components/atoms/SortBy";
 
@@ -63,7 +78,14 @@ const Sidebar = () => {
             <li key={entry.timestamp} className={styles.entry}>
               <Link href={`/recommendation/${entry.recipeId}`}>
                 <h4>
-                  {entry.like ? "👍 " : entry.like === false ? "👎 " : "  "}
+                  {entry.like ? (
+                    <ThumbsUp size={16} style={{ marginInlineEnd: "0.35em" }} />
+                  ) : entry.like === false ? (
+                    <ThumbsDown
+                      size={16}
+                      style={{ marginInlineEnd: "0.35em" }}
+                    />
+                  ) : null}
                   {entry.title}
                 </h4>
                 <p>

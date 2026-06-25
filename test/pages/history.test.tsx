@@ -70,7 +70,7 @@ it("filters by liked", () => {
   });
 
   render(<History />);
-  fireEvent.click(screen.getByLabelText("Liked 👍"));
+  fireEvent.click(screen.getByRole("checkbox", { name: /Liked/ }));
   expect(screen.getByText((t) => t.includes("Sushi"))).toBeInTheDocument();
   expect(screen.queryByText("Bistecca")).not.toBeInTheDocument();
 });

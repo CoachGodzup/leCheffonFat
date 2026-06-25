@@ -1,8 +1,9 @@
 import "../styles/atoms/checkboxFilter.css";
+import type { ReactNode } from "react";
 
 interface Option<T> {
   value: T;
-  label: string;
+  label: ReactNode;
 }
 
 interface CheckboxFilterProps<T> {

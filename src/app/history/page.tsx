@@ -8,12 +8,27 @@ import CheckboxFilter from "@/app/components/atoms/CheckboxFilter";
 import SortBy from "@/app/components/atoms/SortBy";
 import HistoryList from "@/app/components/HistoryList";
 import type { Sort } from "@/app/components/atoms/SortBy";
+import { ThumbsUp, ThumbsDown } from "lucide-react";
 
 const FILTER_OPTIONS = [
-  { value: true, label: "Liked 👍" },
-  { value: false, label: "Disliked 👎" },
+  {
+    value: true,
+    label: (
+      <>
+        <ThumbsUp size={16} style={{ marginInlineEnd: "0.35em" }} /> Liked
+      </>
+    ),
+  },
+  {
+    value: false,
+    label: (
+      <>
+        <ThumbsDown size={16} style={{ marginInlineEnd: "0.35em" }} /> Disliked
+      </>
+    ),
+  },
   { value: null, label: "Unrated" },
-] as const;
+];
 
 const History = () => {
   const calls = useStore((s) => s.calls);

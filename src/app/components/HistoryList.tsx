@@ -2,6 +2,7 @@ import styles from "./HistoryList.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import type { Call } from "@/types/history";
+import { ThumbsUp, ThumbsDown } from "lucide-react";
 
 interface ListProps {
   entries: Call[];
@@ -24,7 +25,11 @@ const HistoryList = ({ entries }: ListProps) => {
             </div>
             <div className={styles.cardBody}>
               <strong>
-                {entry.like ? "👍 " : entry.like === false ? "👎 " : "  "}
+                {entry.like ? (
+                  <ThumbsUp size={16} style={{ marginInlineEnd: "0.35em" }} />
+                ) : entry.like === false ? (
+                  <ThumbsDown size={16} style={{ marginInlineEnd: "0.35em" }} />
+                ) : null}
                 {entry.title}
               </strong>
               <p>

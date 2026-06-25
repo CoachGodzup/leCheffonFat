@@ -1,4 +1,5 @@
 import "../styles/atoms/sortBy.css";
+import { ArrowUp, ArrowDown } from "lucide-react";
 
 export type Sort = "asc" | "desc";
 
@@ -14,7 +15,7 @@ const SortBy = ({ value, onChange }: SortByProps) => {
       onClick={() => onChange(value === "asc" ? "desc" : "asc")}
       aria-label={`Sort ${value === "asc" ? "descending" : "ascending"}`}
     >
-      {value === "asc" ? "🔼" : "🔽"}
+      {value === "asc" ? <ArrowUp size={20} /> : <ArrowDown size={20} />}
     </button>
   );
 };

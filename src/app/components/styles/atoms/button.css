@@ -1,0 +1,19 @@
+.button {
+  padding: 0.5em 1em;
+  border: 1px solid var(--color-lilac);
+  border-radius: 0.5em;
+  background: var(--color-white);
+  color: var(--color-text-main);
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.button:hover {
+  background: var(--color-bg-salvia);
+}
+
+.buttonActive {
+  background: var(--color-lilac);
+  color: var(--color-white);
+  border-color: var(--color-lilac);
+}
