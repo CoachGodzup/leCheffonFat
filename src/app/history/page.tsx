@@ -3,10 +3,10 @@
 import styles from "./history.module.css";
 import { useStore } from "@/store";
 import Link from "next/link";
-import Image from "next/image";
 import { useState, useMemo } from "react";
 import CheckboxFilter from "@/app/components/atoms/CheckboxFilter";
 import SortBy from "@/app/components/atoms/SortBy";
+import List from "@/app/components/List";
 import type { Sort } from "@/app/components/atoms/SortBy";
 
 const FILTER_OPTIONS = [
@@ -45,41 +45,13 @@ const History = () => {
       {list.length === 0 ? (
         <p className={styles.empty}>No history yet.</p>
       ) : (
-        <ul className={styles.grid}>
-          {list
-            .sort((a, b) =>
-              sort === "asc"
-                ? a.timestamp - b.timestamp
-                : b.timestamp - a.timestamp,
-            )
-            .map((entry) => (
-              <li key={entry.timestamp} className={styles.card}>
-                <Link href={`/recommendation/${entry.recipeId}`}>
-                  <div className={styles.imageWrapper}>
-                    <Image
-                      src={entry.imageUrl}
-                      alt={entry.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 33vw"
-                      className={styles.image}
-                    />
-                  </div>
-                  <div className={styles.cardBody}>
-                    <strong>
-                      {entry.like ? "👍 " : entry.like === false ? "👎 " : "  "}
-                      {entry.title}
-                    </strong>
-                    <p>
-                      {entry.inputs.category} — {entry.inputs.area}
-                    </p>
-                    <p className={styles.date}>
-                      {new Date(entry.timestamp).toLocaleDateString()}
-                    </p>
-                  </div>
-                </Link>
-              </li>
-            ))}
-        </ul>
+        <List
+          entries={list.sort((a, b) =>
+            sort === "asc"
+              ? a.timestamp - b.timestamp
+              : b.timestamp - a.timestamp,
+          )}
+        />
       )}
 
       <Link href="/" className={styles.back}>
