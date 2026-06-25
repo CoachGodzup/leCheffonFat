@@ -1,43 +1,11 @@
 import { render, screen } from "@testing-library/react";
 import Recommendation from "@/app/recommendation/page";
 import { useStore } from "@/store";
+import { mockOkResponse } from "../utils/mock-fetch";
+import { pizzaMargherita, singleMealFilterResponse } from "../fixtures/meals";
 
 const mockFetch = jest.fn();
 global.fetch = mockFetch;
-
-function mockOkResponse(data: unknown) {
-  return Promise.resolve({
-    ok: true,
-    json: () => Promise.resolve(data),
-  } as Response);
-}
-
-const mockFilterResponse = {
-  meals: [
-    {
-      idMeal: "99999",
-      strMeal: "Pizza Margherita",
-      strMealThumb: "",
-      strArea: "Italian",
-    },
-  ],
-};
-
-const mockFullMeal = {
-  idMeal: "99999",
-  strMeal: "Pizza Margherita",
-  strMealAlternate: null,
-  strCategory: "Italian",
-  strArea: "Italian",
-  strInstructions: "",
-  strMealThumb: "https://placehold.co/600x400/2563eb/ffffff?text=Pizza",
-  strTags: "Pizza,Italian,Cheese",
-  strYoutube: "",
-  strSource: "https://example.com/pizza",
-  strImageSource: null,
-  strCreativeCommonsConfirmed: null,
-  dateModified: null,
-};
 
 beforeEach(() => {
   mockFetch.mockClear();
@@ -51,8 +19,8 @@ beforeEach(() => {
 describe("Recommendation", () => {
   it("renders the heading and a meal", async () => {
     mockFetch
-      .mockReturnValueOnce(mockOkResponse(mockFilterResponse))
-      .mockReturnValueOnce(mockOkResponse({ meals: [mockFullMeal] }));
+      .mockReturnValueOnce(mockOkResponse(singleMealFilterResponse))
+      .mockReturnValueOnce(mockOkResponse({ meals: [pizzaMargherita] }));
 
     render(<Recommendation />);
 
@@ -64,8 +32,8 @@ describe("Recommendation", () => {
 
   it("renders the meal image", async () => {
     mockFetch
-      .mockReturnValueOnce(mockOkResponse(mockFilterResponse))
-      .mockReturnValueOnce(mockOkResponse({ meals: [mockFullMeal] }));
+      .mockReturnValueOnce(mockOkResponse(singleMealFilterResponse))
+      .mockReturnValueOnce(mockOkResponse({ meals: [pizzaMargherita] }));
 
     render(<Recommendation />);
 
@@ -75,8 +43,8 @@ describe("Recommendation", () => {
 
   it("renders category and area", async () => {
     mockFetch
-      .mockReturnValueOnce(mockOkResponse(mockFilterResponse))
-      .mockReturnValueOnce(mockOkResponse({ meals: [mockFullMeal] }));
+      .mockReturnValueOnce(mockOkResponse(singleMealFilterResponse))
+      .mockReturnValueOnce(mockOkResponse({ meals: [pizzaMargherita] }));
 
     render(<Recommendation />);
 
@@ -85,8 +53,8 @@ describe("Recommendation", () => {
 
   it("renders a source link", async () => {
     mockFetch
-      .mockReturnValueOnce(mockOkResponse(mockFilterResponse))
-      .mockReturnValueOnce(mockOkResponse({ meals: [mockFullMeal] }));
+      .mockReturnValueOnce(mockOkResponse(singleMealFilterResponse))
+      .mockReturnValueOnce(mockOkResponse({ meals: [pizzaMargherita] }));
 
     render(<Recommendation />);
 
@@ -97,8 +65,8 @@ describe("Recommendation", () => {
 
   it("renders a back link to page2", async () => {
     mockFetch
-      .mockReturnValueOnce(mockOkResponse(mockFilterResponse))
-      .mockReturnValueOnce(mockOkResponse({ meals: [mockFullMeal] }));
+      .mockReturnValueOnce(mockOkResponse(singleMealFilterResponse))
+      .mockReturnValueOnce(mockOkResponse({ meals: [pizzaMargherita] }));
 
     render(<Recommendation />);
 

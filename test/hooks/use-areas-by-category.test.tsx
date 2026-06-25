@@ -1,32 +1,10 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { useAreasByCategory } from "@/hooks/use-areas-by-category";
+import { mockOkResponse, mockErrorResponse } from "../utils/mock-fetch";
+import { mealsWithAreas } from "../fixtures/areas";
 
 const mockFetch = jest.fn();
 global.fetch = mockFetch;
-
-function mockOkResponse(data: unknown) {
-  return Promise.resolve({
-    ok: true,
-    json: () => Promise.resolve(data),
-  } as Response);
-}
-
-function mockErrorResponse() {
-  return Promise.resolve({
-    ok: false,
-    status: 500,
-    statusText: "Server Error",
-  } as Response);
-}
-
-const mealsWithAreas = {
-  meals: [
-    { strArea: "Italian" },
-    { strArea: "Canadian" },
-    { strArea: "Italian" },
-    { strArea: "French" },
-  ],
-};
 
 beforeEach(() => {
   mockFetch.mockClear();
@@ -62,7 +40,7 @@ describe("useAreasByCategory", () => {
   });
 
   it("returns error on failure", async () => {
-    mockFetch.mockReturnValue(mockErrorResponse());
+    mockFetch.mockReturnValue(mockErrorResponse(500, "Server Error"));
 
     const { result } = renderHook(() => useAreasByCategory("Dessert"));
 

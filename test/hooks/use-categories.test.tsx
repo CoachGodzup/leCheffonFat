@@ -1,34 +1,10 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { useCategories } from "@/hooks/use-categories";
+import { mockOkResponse, mockErrorResponse } from "../utils/mock-fetch";
+import { mockCategoriesResponse } from "../fixtures/categories";
 
 const mockFetch = jest.fn();
 global.fetch = mockFetch;
-
-function mockOkResponse(data: unknown) {
-  return Promise.resolve({
-    ok: true,
-    json: () => Promise.resolve(data),
-  } as Response);
-}
-
-function mockErrorResponse() {
-  return Promise.resolve({
-    ok: false,
-    status: 500,
-    statusText: "Server Error",
-  } as Response);
-}
-
-const mockCategoriesData = {
-  categories: [
-    {
-      idCategory: "1",
-      strCategory: "Dessert",
-      strCategoryThumb: "",
-      strCategoryDescription: "",
-    },
-  ],
-};
 
 beforeEach(() => {
   mockFetch.mockClear();
@@ -36,7 +12,7 @@ beforeEach(() => {
 
 describe("useCategories", () => {
   it("returns categories on success", async () => {
-    mockFetch.mockReturnValue(mockOkResponse(mockCategoriesData));
+    mockFetch.mockReturnValue(mockOkResponse(mockCategoriesResponse));
 
     const { result } = renderHook(() => useCategories());
 
@@ -44,12 +20,12 @@ describe("useCategories", () => {
 
     await waitFor(() => expect(result.current.isLoading).toBe(false));
 
-    expect(result.current.data).toEqual(mockCategoriesData.categories);
+    expect(result.current.data).toEqual(mockCategoriesResponse.categories);
     expect(result.current.error).toBeNull();
   });
 
   it("returns error on failure", async () => {
-    mockFetch.mockReturnValue(mockErrorResponse());
+    mockFetch.mockReturnValue(mockErrorResponse(500, "Server Error"));
 
     const { result } = renderHook(() => useCategories());
 

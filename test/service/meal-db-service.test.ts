@@ -7,26 +7,12 @@ import {
   filterByArea,
   filterByIngredient,
 } from "@/service/meal-db-service";
+import { mockOkResponse, mockErrorResponse } from "../utils/mock-fetch";
 
 const mockFetch = jest.fn();
 global.fetch = mockFetch;
 
 const BASE = "https://www.themealdb.com/api/json/v1/1";
-
-function mockResponse(data: unknown) {
-  return Promise.resolve({
-    ok: true,
-    json: () => Promise.resolve(data),
-  } as Response);
-}
-
-function mockErrorResponse(status: number) {
-  return Promise.resolve({
-    ok: false,
-    status,
-    statusText: "Not Found",
-  } as Response);
-}
 
 beforeEach(() => {
   mockFetch.mockClear();
@@ -35,7 +21,7 @@ beforeEach(() => {
 describe("searchMealsByName", () => {
   it("calls the search endpoint with the query", async () => {
     const data = { meals: [{ idMeal: "123", strMeal: "Soup" }] };
-    mockFetch.mockReturnValue(mockResponse(data));
+    mockFetch.mockReturnValue(mockOkResponse(data));
 
     const result = await searchMealsByName("soup");
 
@@ -44,7 +30,7 @@ describe("searchMealsByName", () => {
   });
 
   it("URL-encodes the query", async () => {
-    mockFetch.mockReturnValue(mockResponse({ meals: null }));
+    mockFetch.mockReturnValue(mockOkResponse({ meals: null }));
 
     await searchMealsByName("chicken soup");
 
@@ -54,7 +40,7 @@ describe("searchMealsByName", () => {
   });
 
   it("throws on non-ok response", async () => {
-    mockFetch.mockReturnValue(mockErrorResponse(404));
+    mockFetch.mockReturnValue(mockErrorResponse(404, "Not Found"));
 
     await expect(searchMealsByName("soup")).rejects.toThrow(
       "TheMealDB request failed: 404 Not Found",
@@ -64,7 +50,7 @@ describe("searchMealsByName", () => {
 
 describe("getMealById", () => {
   it("calls the lookup endpoint", async () => {
-    mockFetch.mockReturnValue(mockResponse({ meals: null }));
+    mockFetch.mockReturnValue(mockOkResponse({ meals: null }));
 
     await getMealById("52795");
 
@@ -74,7 +60,7 @@ describe("getMealById", () => {
 
 describe("getRandomMeal", () => {
   it("calls the random endpoint", async () => {
-    mockFetch.mockReturnValue(mockResponse({ meals: [] }));
+    mockFetch.mockReturnValue(mockOkResponse({ meals: [] }));
 
     await getRandomMeal();
 
@@ -84,7 +70,7 @@ describe("getRandomMeal", () => {
 
 describe("getCategories", () => {
   it("calls the categories endpoint", async () => {
-    mockFetch.mockReturnValue(mockResponse({ categories: [] }));
+    mockFetch.mockReturnValue(mockOkResponse({ categories: [] }));
 
     await getCategories();
 
@@ -94,7 +80,7 @@ describe("getCategories", () => {
 
 describe("filterByCategory", () => {
   it("calls the filter endpoint with the category", async () => {
-    mockFetch.mockReturnValue(mockResponse({ meals: null }));
+    mockFetch.mockReturnValue(mockOkResponse({ meals: null }));
 
     await filterByCategory("Dessert");
 
@@ -102,7 +88,7 @@ describe("filterByCategory", () => {
   });
 
   it("URL-encodes multi-word categories", async () => {
-    mockFetch.mockReturnValue(mockResponse({ meals: null }));
+    mockFetch.mockReturnValue(mockOkResponse({ meals: null }));
 
     await filterByCategory("Sea food");
 
@@ -114,7 +100,7 @@ describe("filterByCategory", () => {
 
 describe("filterByArea", () => {
   it("calls the filter endpoint with the area", async () => {
-    mockFetch.mockReturnValue(mockResponse({ meals: null }));
+    mockFetch.mockReturnValue(mockOkResponse({ meals: null }));
 
     await filterByArea("Canadian");
 
@@ -124,7 +110,7 @@ describe("filterByArea", () => {
 
 describe("filterByIngredient", () => {
   it("calls the filter endpoint with the ingredient", async () => {
-    mockFetch.mockReturnValue(mockResponse({ meals: null }));
+    mockFetch.mockReturnValue(mockOkResponse({ meals: null }));
 
     await filterByIngredient("chicken");
 
@@ -135,7 +121,7 @@ describe("filterByIngredient", () => {
     const data = {
       meals: [{ idMeal: "1", strMeal: "Chicken Soup", strMealThumb: "" }],
     };
-    mockFetch.mockReturnValue(mockResponse(data));
+    mockFetch.mockReturnValue(mockOkResponse(data));
 
     const result = await filterByIngredient("chicken");
 

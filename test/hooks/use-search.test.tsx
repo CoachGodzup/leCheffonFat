@@ -1,33 +1,12 @@
 import { renderHook, act, waitFor } from "@testing-library/react";
 import { useSearch } from "@/hooks/use-search";
+import { mockOkResponse } from "../utils/mock-fetch";
+import { fishPieFull } from "../fixtures/meals";
 
 const mockFetch = jest.fn();
 global.fetch = mockFetch;
 
-function mockOkResponse(data: unknown) {
-  return Promise.resolve({
-    ok: true,
-    json: () => Promise.resolve(data),
-  } as Response);
-}
-
-const mockMeal = {
-  idMeal: "52802",
-  strMeal: "Fish pie",
-  strMealAlternate: null,
-  strCategory: "Seafood",
-  strArea: "British",
-  strInstructions: "Bake it.",
-  strMealThumb: "",
-  strTags: null,
-  strYoutube: "",
-  strSource: "",
-  strImageSource: null,
-  strCreativeCommonsConfirmed: null,
-  dateModified: null,
-};
-
-const mockSearchResponse = { meals: [mockMeal] };
+const mockSearchResponse = { meals: [fishPieFull] };
 
 beforeEach(() => {
   mockFetch.mockClear();
