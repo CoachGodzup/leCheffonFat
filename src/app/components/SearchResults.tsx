@@ -1,6 +1,6 @@
 import styles from "./SearchResults.module.css";
 import Link from "next/link";
-import Image from "next/image";
+import RecipeImage from "@/app/components/atoms/RecipeImage";
 import type { Meal } from "@/types/meal-db";
 
 interface SearchResultsProps {
@@ -14,7 +14,7 @@ const SearchResults = ({ meals }: SearchResultsProps) => {
         <li key={meal.idMeal} className={styles.card}>
           <Link href={`/recommendation/${meal.idMeal}`}>
             <div className={styles.imageWrapper}>
-              <Image
+              <RecipeImage
                 src={meal.strMealThumb}
                 alt={meal.strMeal}
                 fill

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
-import Image from "next/image";
+import RecipeImage from "@/app/components/atoms/RecipeImage";
 import Link from "next/link";
 import { useStore } from "@/store";
 import RecipeCtas from "@/components/recipeCtas/RecipeCtas";
@@ -65,7 +65,7 @@ const RecommendationView = ({
     <section className="card">
       <div className="recipeContainer">
         <div className="recipe">
-          <Image
+          <RecipeImage
             src={meal.strMealThumb}
             alt={meal.strMeal}
             loading="eager"

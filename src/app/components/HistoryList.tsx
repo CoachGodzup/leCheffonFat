@@ -1,6 +1,6 @@
 import styles from "./HistoryList.module.css";
 import Link from "next/link";
-import Image from "next/image";
+import RecipeImage from "@/app/components/atoms/RecipeImage";
 import type { Call } from "@/types/history";
 import { ThumbsUp, ThumbsDown } from "lucide-react";
 
@@ -15,7 +15,7 @@ const HistoryList = ({ entries }: ListProps) => {
         <li key={entry.timestamp} className={styles.card}>
           <Link href={`/recommendation/${entry.recipeId}`}>
             <div className={styles.imageWrapper}>
-              <Image
+              <RecipeImage
                 src={entry.imageUrl}
                 alt={entry.title}
                 fill
