@@ -28,7 +28,7 @@ const RecommendationView = ({
   const logRequest = useStore((s) => s.logRequest);
   const setLike = useStore((s) => s.setLike);
   const currentLike = useStore(
-    (s) => s.calls.find((c) => c.recipeId === meal?.idMeal)?.like,
+    (s) => s.calls.find((c) => c.recipeId === meal?.idMeal)?.like ?? null,
   );
 
   useEffect(() => {
@@ -75,16 +75,16 @@ const RecommendationView = ({
               <RecipePrint meal={meal}></RecipePrint>
             </article>
           </div>
+          <LikeDislikeCtas
+            likeFn={(like) => setLike(meal.idMeal, like)}
+            currentLike={currentLike}
+          />
           <RecipeCtas
             retryFn={() => refetch()}
             meal={meal}
             backHref={backHref}
           />
         </Suspense>
-        <LikeDislikeCtas
-          likeFn={(like) => setLike(meal.idMeal, like)}
-          currentLike={currentLike}
-        />
       </div>
     </section>
   );
