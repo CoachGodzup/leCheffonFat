@@ -4,7 +4,7 @@
 
 :root {
   /* Light theme (default) */
-  --color-lilac: #8a7fad;
+  --color-lilac: #6a5f8a;
   --color-accent-yellow: #c4a97d;
   --color-bg-salvia: #f5f3f0;
   --color-text-main: #2e2a36;
@@ -16,7 +16,7 @@
   --color-lilac-dark: #a99bc8;
   --color-accent-gold: #c9ad81;
   --color-text-primary: #f0eef2;
-  --color-text-muted: #9b96ac;
+  --color-text-muted: #6a6578;
 
   --spacing: 1em;
 }
@@ -29,6 +29,7 @@
     --color-white: var(--color-bg-card-dark);
     --color-lilac: var(--color-lilac-dark);
     --color-accent-yellow: var(--color-accent-gold);
+    --color-text-muted: #9b96ac;
   }
 
   .btn-cta {
