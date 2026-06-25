@@ -7,6 +7,10 @@ import { useShallow } from "zustand/shallow";
 import { useRandomMeal } from "@/hooks/use-random-meal";
 
 const Recommendation = () => {
+  useEffect(() => {
+    document.title = "Recommendation | Le Cheffon Fat";
+  }, []);
+
   const router = useRouter();
   const { category, area } = useStore(
     useShallow((s) => ({

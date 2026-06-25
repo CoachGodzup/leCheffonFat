@@ -11,6 +11,10 @@ import { useAreasByCategory } from "@/hooks/use-areas-by-category";
 import { useShallow } from "zustand/shallow";
 
 const Page2 = () => {
+  useEffect(() => {
+    document.title = "Choose an Area | Le Cheffon Fat";
+  }, []);
+
   const {
     register,
     formState: { errors },

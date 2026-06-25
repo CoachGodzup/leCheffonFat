@@ -3,7 +3,7 @@
 import styles from "./history.module.css";
 import { useStore } from "@/store";
 import Link from "next/link";
-import { useState, useMemo } from "react";
+import { useEffect, useState, useMemo } from "react";
 import CheckboxFilter from "@/app/components/atoms/CheckboxFilter";
 import SortBy from "@/app/components/atoms/SortBy";
 import HistoryList from "@/app/components/HistoryList";
@@ -41,6 +41,10 @@ const FILTER_OPTIONS = [
 ];
 
 const History = () => {
+  useEffect(() => {
+    document.title = "History | Le Cheffon Fat";
+  }, []);
+
   const calls = useStore((s) => s.calls);
   const [filter, setFilter] = useState<(boolean | null)[]>([]);
   const [sort, setSort] = useState<Sort>("asc");

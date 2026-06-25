@@ -1,10 +1,15 @@
 "use client";
 
+import { useEffect } from "react";
 import styles from "./search.module.css";
 import { useSearch } from "@/hooks/use-search";
 import SearchResults from "@/app/components/SearchResults";
 
 const Search = () => {
+  useEffect(() => {
+    document.title = "Search Recipes | Le Cheffon Fat";
+  }, []);
+
   const { searchText, setSearchText, meals, isLoading, error, isActive } =
     useSearch();
 

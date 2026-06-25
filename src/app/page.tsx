@@ -1,5 +1,10 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import styles from "./page.module.css";
+
+export const metadata: Metadata = {
+  title: "Home | Le Cheffon Fat",
+};
 
 export default function Home() {
   return (

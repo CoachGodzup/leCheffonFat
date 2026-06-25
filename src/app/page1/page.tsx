@@ -10,6 +10,10 @@ import { useShallow } from "zustand/shallow";
 import { useCategories } from "@/hooks/use-categories";
 
 const Page1 = () => {
+  useEffect(() => {
+    document.title = "Choose a Category | Le Cheffon Fat";
+  }, []);
+
   const {
     register,
     formState: { errors },

@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams, useSearchParams, useRouter } from "next/navigation";
-import { useCallback, useMemo } from "react";
+import { useEffect, useCallback, useMemo } from "react";
 import { useMealById } from "@/hooks/use-meal-by-id";
 import { useStore } from "@/store";
 import { getRandomMealByFilter } from "@/service/meal-db-service";
@@ -14,6 +14,12 @@ const RecommendationById = () => {
   const calls = useStore((s) => s.calls);
 
   const { data, isLoading, error, refetch: refetchById } = useMealById(id);
+
+  useEffect(() => {
+    document.title = data
+      ? `${data.strMeal} | Le Cheffon Fat`
+      : "Recipe | Le Cheffon Fat";
+  }, [data]);
 
   const historyEntry = useMemo(
     () => calls.find((c) => c.recipeId === id),
