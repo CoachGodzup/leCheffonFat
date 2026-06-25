@@ -15,6 +15,7 @@ const Search = () => {
         <fieldset>
           <legend>Recipe name:</legend>
           <input
+            className={styles.search}
             aria-label="Recipe name"
             value={searchText}
             onChange={(elm) => setSearchText(elm.target.value)}
