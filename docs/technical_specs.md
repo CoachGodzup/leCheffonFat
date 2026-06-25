@@ -44,11 +44,11 @@ Backend calls for list and search were wrapped in _custom hooks_ to avoid async 
 
 For form handling and validation I chose [react-hook-form](https://react-hook-form.com/): it doesn't add much overhead and handles validation quite well.
 
-I used Categories for the first form and Area for the second. Area comes bundled with Categories, so I could filter previous results to narrow down the area scope.
+I used `Categories` for the first form and `Area` for the second. Area comes bundled with Categories, so I could filter previous results to narrow down the area scope.
 
 ## Printable area
 
-The recipe can also be printed. Some data is shown only in the print version to avoid clutter and discourage printing from an external source. Only a photo, the ingredients with measures, and a recipe summary are displayed.
+The recipe can also _be printed_. Some data is shown only in the print version to avoid clutter and discourage printing from an external source. Only a photo, the ingredients with measures, and a recipe summary are displayed. This is simply driven by pure css.
 
 ### User Experience (UX) Design
 
@@ -60,9 +60,11 @@ I designed three flows in this project:
 
 In the first case, the two searches are tied together: categories carry area information (step 2), so the second form auto-adapts based on the choice made in step 1.
 
-Search is a dynamic search by name.
+Search is a dynamic search by name. Search field is done immediately, without a button. Minimal char lenght to begin a search is 3 and I've debounced to 300ms in order to limit backend calls (useless to do that char by char, flooding the servers with throw-away requests).
 
-## Design choices
+History components are both in a fixed sidebar and in a separate page, differently rendered. In the sidebar, I've no photo (keeping rows as short as possible in order to put more in this thight space) and I've the possibility to erase chronology ("I've never searched fettuccine Alfredo! NEVER! I swear!") one by one or in bulk. Also, list are sorted by date, with newer on top, but it can also be reversed with older on top. List can be filtered with liked, disliked or unassigned recipes.
+
+## UI Design choices
 
 I used a custom dark mode style, lilac-based.
 I used pure CSS — for a small project it didn't cause integration overhead.
@@ -78,9 +80,15 @@ Using real calls to The Meal DB for unit tests didn't make sense, so I overrode 
 
 I decided to create tests for every page and component. I created a separate `'/tests'` folder, split into pages, components, and layout. At first I stuck to the happy path only (making sure everything rendered correctly).
 
+### E2E tests
+
+I made also a little test suite for end to end tests, checking happy path. This can be further improved, raising the covering also for throttling, empty and wrong cases and so on. I used [Playwright](https://playwright.dev/), putting tests into `e2e` folder.
+
 ## With a little help from my friends — AI section
 
-It was 2026, and AI assistance was pretty much expected. In this project I used [Opencode](https://opencode.ai/it), which let me do agentic programming for some trivial tasks. With this tool I had several US-hosted open models, like [Deepseek V4 Flash](https://benchlm.ai/models/deepseek-v4-flash), which helped me:
+In 2026, and AI assistance is pretty much expected.
+
+In this project I used [Opencode](https://opencode.ai/it), which let me do agentic programming for some trivial tasks. With this tool I had several US-hosted open models, like [Deepseek V4 Flash](https://benchlm.ai/models/deepseek-v4-flash), which helped me:
 
 - speed up _creating boilerplates_ and _types_
 - speed up _quick refactoring_ like switching from emojis to icons
@@ -88,5 +96,6 @@ It was 2026, and AI assistance was pretty much expected. In this project I used 
 - _debug_ code
 - _create and handle_ the tests I needed
 - _review code_, keeping me on track with specifications like [WCAG](https://wcag.it/)
+  _ quick \_refactoring_ if I change my mind on some specification.
 
-I preferred this self-hosted model because _I liked having control over which model to choose_. Even if they weren't the frontier ones, I could manage which model to use for what purpose (based on benchmarks, without overshooting with a too-powerful model for simple tasks like code completion) and I was free to change it anytime, instead of binding myself to a powerful provider that could change policies at any time (Fable 5, for instance).
+I preferred this self-hosted model because _I liked having control over which model to choose_. Even if they weren't the frontier ones, I could manage which model to use for what purpose (based on benchmarks, without overshooting with a too-powerful model for simple tasks like code completion) and I was free to change it anytime, instead of binding myself to a powerful provider that could change policies at any time (Fable 5, for instance). I've not used local AI for this project, but I'm planning to use something with Gemma 4 in the near future.
