@@ -87,13 +87,6 @@ const mealsByCategory: Record<string, MealSearchResponse> = {
           "https://www.themealdb.com/images/media/meals/ysxwuq1487323065.jpg",
         strArea: "Italian",
       } as Meal,
-      {
-        idMeal: "52768",
-        strMeal: "Apple Frangipan Tart",
-        strMealThumb:
-          "https://www.themealdb.com/images/media/meals/wxywrq1468235067.jpg",
-        strArea: "Italian",
-      } as Meal,
     ],
   },
 };
