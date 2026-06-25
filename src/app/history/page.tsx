@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useState, useMemo } from "react";
 import CheckboxFilter from "@/app/components/atoms/CheckboxFilter";
 import SortBy from "@/app/components/atoms/SortBy";
-import List from "@/app/components/List";
+import HistoryList from "@/app/components/HistoryList";
 import type { Sort } from "@/app/components/atoms/SortBy";
 
 const FILTER_OPTIONS = [
@@ -45,7 +45,7 @@ const History = () => {
       {list.length === 0 ? (
         <p className={styles.empty}>No history yet.</p>
       ) : (
-        <List
+        <HistoryList
           entries={list.sort((a, b) =>
             sort === "asc"
               ? a.timestamp - b.timestamp

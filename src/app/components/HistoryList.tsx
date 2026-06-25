@@ -1,4 +1,4 @@
-import styles from "./List.module.css";
+import styles from "./HistoryList.module.css";
 import Link from "next/link";
 import Image from "next/image";
 import type { Call } from "@/types/history";
@@ -7,7 +7,7 @@ interface ListProps {
   entries: Call[];
 }
 
-const List = ({ entries }: ListProps) => {
+const HistoryList = ({ entries }: ListProps) => {
   return (
     <ul className={styles.grid}>
       {entries.map((entry) => (
@@ -41,4 +41,4 @@ const List = ({ entries }: ListProps) => {
   );
 };
 
-export default List;
+export default HistoryList;

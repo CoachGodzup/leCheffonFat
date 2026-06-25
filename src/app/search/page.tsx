@@ -2,6 +2,7 @@
 
 import styles from "./search.module.css";
 import { useSearch } from "@/hooks/use-search";
+import SearchResults from "@/app/components/SearchResults";
 
 const Search = () => {
   const { searchText, setSearchText, meals, isLoading, error, isActive } =
@@ -26,7 +27,7 @@ const Search = () => {
         {isActive && !isLoading && !error && (!meals || meals.length === 0) && (
           <p>No meals found.</p>
         )}
-        {meals && meals.length > 0 && <pre>{JSON.stringify(meals)}</pre>}
+        {meals && meals.length > 0 && <SearchResults meals={meals} />}
       </nav>
     </section>
   );
