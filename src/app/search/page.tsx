@@ -1,20 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import styles from "./search.module.css";
-
-const MIN_SEARCH_TEXT_LENGTH = 3;
+import { useSearch } from "@/hooks/use-search";
 
 const Search = () => {
-  const [searchText, setSearchText] = useState("");
-  const [list, setList] = useState([]);
-
-  useEffect(() => {
-    if (searchText.length > MIN_SEARCH_TEXT_LENGTH) {
-      // call search
-      // cache results
-    }
-  }, [searchText]);
+  const { searchText, setSearchText, meals, isLoading, error, isActive } =
+    useSearch();
 
   return (
     <section className={styles.page}>
@@ -22,10 +13,21 @@ const Search = () => {
       <form>
         <fieldset>
           <legend>Recipe name:</legend>
-          <input value={searchText} onChange={setSearchText}></input>
+          <input
+            aria-label="Recipe name"
+            value={searchText}
+            onChange={(elm) => setSearchText(elm.target.value)}
+          ></input>
         </fieldset>
       </form>
-      <nav></nav>
+      <nav>
+        {isActive && isLoading && <p>loading...</p>}
+        {isActive && error && <p>An error occurred: {error}.</p>}
+        {isActive && !isLoading && !error && (!meals || meals.length === 0) && (
+          <p>No meals found.</p>
+        )}
+        {meals && meals.length > 0 && <pre>{JSON.stringify(meals)}</pre>}
+      </nav>
     </section>
   );
 };
