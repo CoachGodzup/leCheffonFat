@@ -7,19 +7,21 @@ Two-step recipe recommender app built with Next.js.
 Pull the repository from Github.
 
 Install all dependencies
+
 ```bash
 npm install
 ```
 
-Set in a `.env.local` file. See `.env_example` as reference. 
+Set in a `.env.local` file. See `.env_example` as reference.
 This project use [The Meal API](https://www.themealdb.com/). You just go for the public API key (1).
 
 Fire the project
+
 ```
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) and... *bon apetit* 🧑‍🍳.
+Open [http://localhost:3000](http://localhost:3000) and... _bon apetit_ 🧑‍🍳.
 
 ## Offline mock
 
