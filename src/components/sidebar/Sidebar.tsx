@@ -70,7 +70,7 @@ const Sidebar = () => {
       <ul className={styles.entryList}>
         {list
           .sort((a, b) =>
-            sort === "asc"
+            sort === "desc"
               ? a.timestamp - b.timestamp
               : b.timestamp - a.timestamp,
           )
