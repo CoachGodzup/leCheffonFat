@@ -2,7 +2,7 @@
 
 ## Problem
 
-The recommendation page URL (`/recommendation`) was not shareable — it contained neither the meal ID nor the search criteria. The `ShareButton` copied a URL that would show a *different* random recipe when opened by someone else. Moreover, the `/recommendation/[id]` page (used from History and Search) had no "New Idea" functionality, since it had no access to the search criteria that produced that recipe.
+The recommendation page URL (`/recommendation`) was not shareable — it contained neither the meal ID nor the search criteria. The `ShareButton` copied a URL that would show a _different_ random recipe when opened by someone else. Moreover, the `/recommendation/[id]` page (used from History and Search) had no "New Idea" functionality, since it had no access to the search criteria that produced that recipe.
 
 ## Solution
 
@@ -19,11 +19,11 @@ The recommendation flow now enriches the URL with both the meal ID and the searc
 
 On `/recommendation/[id]/page.tsx`, the category and area for "New Idea" are resolved from three sources:
 
-| Priority | Source | Use case |
-|----------|--------|----------|
-| 1 | URL search params (`?category=...&area=...`) | Shared URL |
-| 2 | Store history (`calls[].inputs`) | Coming from History |
-| 3 | Meal data (`strCategory`/`strArea`) | Coming from Search |
+| Priority | Source                                       | Use case            |
+| -------- | -------------------------------------------- | ------------------- |
+| 1        | URL search params (`?category=...&area=...`) | Shared URL          |
+| 2        | Store history (`calls[].inputs`)             | Coming from History |
+| 3        | Meal data (`strCategory`/`strArea`)          | Coming from Search  |
 
 When criteria are available, clicking "New Idea" calls `getRandomMealByFilter(category, area)` directly and navigates to the new result via `router.push()`. When they are not (edge case), it falls back to the previous behavior (refetching the same meal by ID).
 

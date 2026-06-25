@@ -109,10 +109,14 @@ const Sidebar = () => {
                     {`${new Date(entry.timestamp).toLocaleDateString()} - ${entry.inputs.category} ${entry.inputs.area}`}
                   </p>
                 </div>
-                <p>
-                  <X onClick={() => remove(entry.recipeId)} />
-                </p>
               </Link>
+              <button
+                type="button"
+                onClick={() => remove(entry.recipeId)}
+                aria-label={`Remove ${entry.title} from history`}
+              >
+                <X size={16} aria-hidden="true" />
+              </button>
             </li>
           ))}
       </ul>

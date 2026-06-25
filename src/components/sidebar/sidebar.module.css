@@ -27,16 +27,18 @@
   color: var(--color-text-main);
 }
 
-.entry a {
-  font-weight: 500;
-  padding: 0;
+.entry {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  width: 100%;
+  gap: 0.25em;
+}
+
+.entry a {
+  flex: 1;
+  font-weight: 500;
+  padding: 0.5em 0.75em;
   background: var(--color-white);
   border-radius: 8px;
-  padding: 0.5em 0.75em;
   transition:
     transform 0.15s ease,
     box-shadow 0.15s ease;

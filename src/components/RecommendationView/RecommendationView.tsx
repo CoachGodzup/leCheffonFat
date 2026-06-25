@@ -12,14 +12,14 @@ import { RecipePrint } from "../recipePrint/recipePrint";
 
 type Props = {
   data: Meal | null;
-  isLoading: boolean;
+  _isLoading: boolean;
   error: string | null;
   refetch: () => void;
 };
 
 const RecommendationView = ({
   data: meal,
-  isLoading,
+  _isLoading,
   error,
   refetch,
 }: Props) => {

@@ -51,7 +51,7 @@ describe("Search page", () => {
   it("renders search input", () => {
     render(<Search />);
     expect(
-      screen.getByRole("textbox", { name: /recipe name/i }),
+      screen.getByRole("searchbox", { name: /recipe name/i }),
     ).toBeInTheDocument();
   });
 
@@ -61,7 +61,7 @@ describe("Search page", () => {
       searchText: "pasta",
     });
     render(<Search />);
-    const input = screen.getByRole("textbox", { name: /recipe name/i });
+    const input = screen.getByRole("searchbox", { name: /recipe name/i });
     expect(input).toHaveValue("pasta");
   });
 
@@ -69,7 +69,7 @@ describe("Search page", () => {
     const user = userEvent.setup();
     render(<Search />);
 
-    const input = screen.getByRole("textbox", { name: /recipe name/i });
+    const input = screen.getByRole("searchbox", { name: /recipe name/i });
     await user.type(input, "a");
 
     expect(mockSetSearchText).toHaveBeenCalledWith("a");
