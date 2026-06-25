@@ -10,7 +10,8 @@ Project will have those pages:
 2. Form step 1
 3. Form step 2
 4. Results + feedback
-5. History - this can also be in the side panel
+5. Search page
+6. History - this can also be in the side panel
 
 ## API
 
@@ -24,6 +25,18 @@ Form handling and validation: I'll go with [react-hook-form](https://react-hook-
 I've used Categories for first form, Area for the second. Area comes freely with categories, so I can act a filter on previous results to reduce the scope of the area.
 
 Backend calls for list and search are wrapped into custom hooks, in order to avoid problems with asyncrounicity and hooks, that need syncronous functions. Also, decoupling that let the code to be cleaner.
+
+### User Experience (UX) Design
+
+I've decided to have three fluxes in this project:
+
+- choosing a recipe by category and area
+- searching a recipe by name (dynamic search)
+- handling history with like and dislike
+
+In the first case, the two searches are binded: categories has inside an information about the area (step 2), so the second form auto-adapts on the choice you made on step1.
+
+Search is a dynamic search part, that need
 
 ## Technical choices
 
@@ -42,6 +55,12 @@ This project will need a store to handle states between pages. It will be someth
 
 As a package manager, I'll stick to npm. I will know alternatives like bun or npnm, just to keep it simple and focused.
 
+## Design choices
+
+Used a custom style, dark mode, lilac based.
+Used pure css solution, for a small project will not cause integration overhead
+Used at first emojis as icons, then switched to [lucide](https://lucide.dev/), that are already integrated in React. Emojis are not consistent between devices and normally too colorful.
+
 ## Testing
 
 ### Unit tests
@@ -50,14 +69,13 @@ I will decide to create tests for every page and components. I will create a sep
 
 ## With a little help from my friends - AI section.
 
-Since it will be 2026, help from AI will be quite expected. In this project, I will use [Opencode](https://opencode.ai/it), that will let me have some agentic programming, for some thrivial tasks. With this tool, I will have several US-hosted open model, like [Deepseek V4 Flash](https://benchlm.ai/models/deepseek-v4-flash) that:
+Since it's 2026, help from AI is quite expected. In this project, I will use [Opencode](https://opencode.ai/it), that will let me have some agentic programming, for some trivial tasks. With this tool, I will have several US-hosted open model, like [Deepseek V4 Flash](https://benchlm.ai/models/deepseek-v4-flash) that:
 
 - speeding up _creating boilerplates_ and _types_
-- will help me decide _architectural choices_ that will be impactful, will speed up research online
+- speeding up _quick refactoring_ like from emojis to icons.
+- will help me decide _architectural choices_ that will be impactful, speeding up research online
 - will help me _debug_ code
 - will help me _create and handle_ tests I will need
 - will keep me _reviewing code_, will keep me on track with some specification like [WCAG](https://wcag.it/)
-
-I will also use a local model to help me with autocomplete. In my case, I will use [Qwen 2.5 Coder-7B](https://www.ollama.com/library/qwen2.5-coder:7b) that will run on [Ollama](https://www.ollama.com/).
 
 I will prefer to go for this self hosted model, because _I will like to have control over the model I will choose_. Even if they will not be the frontier ones, I will be able to handle which model to use, for what purpouse (based on benchmarks and maybe without overshoot a too-powerful model for simple tasks like code completion) and I will be free to change it anytime, instead of binding me to a powerful provider that will change policies anytime ([Fable 5, for instance](https://www.anthropic.com/news/fable-mythos-access)).
