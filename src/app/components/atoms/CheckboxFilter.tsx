@@ -1,17 +1,17 @@
 import "../styles/atoms/checkboxFilter.css";
 import type { ReactNode } from "react";
 
-interface Option<T> {
+type Option<T> = {
   value: T;
   label: ReactNode;
-}
+};
 
-interface CheckboxFilterProps<T> {
+type CheckboxFilterProps<T> = {
   legend: string;
   options: Option<T>[];
   value: T[];
   onChange: (selected: T[]) => void;
-}
+};
 
 const CheckboxFilter = <T,>({
   legend,

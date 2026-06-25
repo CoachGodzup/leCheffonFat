@@ -3,9 +3,9 @@ import Link from "next/link";
 import RecipeImage from "@/app/components/atoms/RecipeImage";
 import type { Meal } from "@/types/meal-db";
 
-interface SearchResultsProps {
+type SearchResultsProps = {
   meals: Meal[];
-}
+};
 
 const SearchResults = ({ meals }: SearchResultsProps) => {
   return (

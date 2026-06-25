@@ -1,11 +1,11 @@
 import type { ReactNode } from "react";
 import "../styles/atoms/button.css";
 
-interface ButtonProps {
+type ButtonProps = {
   text: ReactNode;
   click: () => void;
   active: boolean;
-}
+};
 
 const Button = ({ text, click, active }: ButtonProps) => (
   <button

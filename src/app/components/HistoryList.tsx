@@ -4,9 +4,9 @@ import RecipeImage from "@/app/components/atoms/RecipeImage";
 import type { Call } from "@/types/history";
 import { ThumbsUp, ThumbsDown } from "lucide-react";
 
-interface ListProps {
+type ListProps = {
   entries: Call[];
-}
+};
 
 const HistoryList = ({ entries }: ListProps) => {
   return (

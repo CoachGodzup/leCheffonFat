@@ -3,10 +3,10 @@ import { ChevronUp, ChevronDown } from "lucide-react";
 
 export type Sort = "asc" | "desc";
 
-interface SortByProps {
+type SortByProps = {
   value: Sort;
   onChange: (sort: Sort) => void;
-}
+};
 
 const SortBy = ({ value, onChange }: SortByProps) => {
   return (
