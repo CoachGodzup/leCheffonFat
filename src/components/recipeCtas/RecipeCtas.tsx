@@ -7,17 +7,17 @@ import ShareButton from "../shareButton/ShareButton";
 type RecipeCtasProps = {
   retryFn: () => void;
   meal: Meal | null;
-  backHref?: string;
+  onBack?: () => void;
 };
 
-const RecipeCtas = ({ retryFn, meal, backHref }: RecipeCtasProps) => {
+const RecipeCtas = ({ retryFn, meal, onBack }: RecipeCtasProps) => {
   const recipeUrl = meal ? getMealPageUrl(meal) : null;
 
   return (
     <div className="cta-container">
-      <Link href={backHref ?? "/page2"} aria-label="Back to previous page">
+      <button onClick={onBack} aria-label="Back to previous page">
         Back
-      </Link>
+      </button>
       {recipeUrl && (
         <Link
           href={recipeUrl}

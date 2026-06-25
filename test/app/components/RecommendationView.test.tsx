@@ -3,6 +3,10 @@ import RecommendationView from "@/components/RecommendationView/RecommendationVi
 import { useStore } from "@/store";
 import type { Meal } from "@/types/meal-db";
 
+jest.mock("next/navigation", () => ({
+  useRouter: () => ({ back: jest.fn() }),
+}));
+
 const mockMeal: Meal = {
   idMeal: "99999",
   strMeal: "Pizza Margherita",
@@ -77,22 +81,7 @@ describe("RecommendationView", () => {
     expect(screen.getByText("Italian — Italian")).toBeInTheDocument();
   });
 
-  it("renders custom backHref in loading state", () => {
-    render(
-      <RecommendationView
-        data={null}
-        isLoading={true}
-        error={null}
-        refetch={jest.fn()}
-        backHref="/history"
-      />,
-    );
-
-    const link = screen.getByRole("link", { name: /back/i });
-    expect(link).toHaveAttribute("href", "/history");
-  });
-
-  it("renders default backHref in loading state", () => {
+  it("renders back button in error state", () => {
     render(
       <RecommendationView
         data={null}
@@ -102,8 +91,8 @@ describe("RecommendationView", () => {
       />,
     );
 
-    const link = screen.getByRole("link", { name: /back/i });
-    expect(link).toHaveAttribute("href", "/page2");
+    const btn = screen.getByRole("button", { name: /^back$/i });
+    expect(btn).toBeInTheDocument();
   });
 
   it("renders the meal image", () => {

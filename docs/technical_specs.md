@@ -68,25 +68,6 @@ I used a custom dark mode style, lilac-based.
 I used pure CSS — for a small project it didn't cause integration overhead.
 I started with emojis as icons, then switched to [lucide](https://lucide.dev/), which is already integrated with React. Emojis are inconsistent across devices and usually too colorful.
 
-### Image Placeholder — `RecipeImage` component
-
-To handle broken or missing recipe images gracefully, I created a reusable `RecipeImage` wrapper that replaces direct usage of `next/image` in three components: `RecommendationView`, `HistoryList`, and `SearchResults`.
-
-**How it works:**
-
-- If `src` is empty or falsy, the component renders a placeholder immediately.
-- If the image fails to load (`onError`), a `hasError` state flag triggers the same placeholder.
-- The placeholder is a `<div>` with a CSS gradient background (`linear-gradient(135deg, var(--color-lilac), var(--color-accent-yellow))`), using existing theme colors.
-- The wrapper has `position: relative` and `overflow: hidden` to support `next/image`'s `fill` layout.
-- When explicit `width` and `height` props are provided (non-fill mode), the wrapper receives them as inline styles so the placeholder occupies the same area as the intended image.
-- Sizing for `fill` mode is delegated to the parent element (e.g., the `.imageWrapper` divs with `aspect-ratio: 16/9` in `HistoryList` and `SearchResults`).
-
-**Files:**
-
-- `src/app/components/atoms/RecipeImage.tsx` — component implementation
-- `src/app/components/atoms/RecipeImage.module.css` — styles
-- `test/app/components/atoms/RecipeImage.test.tsx` — unit tests
-
 ## Mock Offline — Bonus point
 
 Using real calls to The Meal DB for unit tests didn't make sense, so I overrode the fetch API with a `jest.fn()` that returns data. To do the same during development, I used _fixtures_ — carbon copies of the calls — overriding `global.fetch`.

@@ -1,8 +1,8 @@
 "use client";
 
 import { Suspense, useEffect } from "react";
+import { useRouter } from "next/navigation";
 import RecipeImage from "@/app/components/atoms/RecipeImage";
-import Link from "next/link";
 
 import { useStore } from "@/store";
 import RecipeCtas from "@/components/recipeCtas/RecipeCtas";
@@ -15,7 +15,6 @@ type Props = {
   isLoading: boolean;
   error: string | null;
   refetch: () => void;
-  backHref?: string;
 };
 
 const RecommendationView = ({
@@ -23,8 +22,8 @@ const RecommendationView = ({
   isLoading,
   error,
   refetch,
-  backHref = "/page2",
 }: Props) => {
+  const router = useRouter();
   const logRequest = useStore((s) => s.logRequest);
   const setLike = useStore((s) => s.setLike);
   const currentLike = useStore(
@@ -48,7 +47,7 @@ const RecommendationView = ({
         <h1>Recommendation</h1>
         <p role="alert">{error || "No meal found"}</p>
         <div className="ctaContainer">
-          <Link href={backHref}>back</Link>
+          <button onClick={() => router.back()}>back</button>
         </div>
       </section>
     );
@@ -82,7 +81,7 @@ const RecommendationView = ({
           <RecipeCtas
             retryFn={() => refetch()}
             meal={meal}
-            backHref={backHref}
+            onBack={() => router.back()}
           />
         </Suspense>
       </div>

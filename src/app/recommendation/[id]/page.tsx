@@ -1,12 +1,60 @@
 "use client";
 
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams, useRouter } from "next/navigation";
+import { useCallback, useMemo } from "react";
 import { useMealById } from "@/hooks/use-meal-by-id";
+import { useStore } from "@/store";
+import { getRandomMealByFilter } from "@/service/meal-db-service";
 import RecommendationView from "@/components/RecommendationView/RecommendationView";
 
 const RecommendationById = () => {
   const { id } = useParams<{ id: string }>();
-  const { data, isLoading, error, refetch } = useMealById(id);
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const calls = useStore((s) => s.calls);
+
+  const { data, isLoading, error, refetch: refetchById } = useMealById(id);
+
+  const historyEntry = useMemo(
+    () => calls.find((c) => c.recipeId === id),
+    [calls, id],
+  );
+
+  const category = useMemo(
+    () =>
+      searchParams.get("category") ||
+      historyEntry?.inputs.category ||
+      data?.strCategory ||
+      "",
+    [searchParams, historyEntry, data],
+  );
+  const area = useMemo(
+    () =>
+      searchParams.get("area") ||
+      historyEntry?.inputs.area ||
+      data?.strArea ||
+      "",
+    [searchParams, historyEntry, data],
+  );
+
+  const hasCriteria = Boolean(category && area);
+
+  const handleNewIdea = useCallback(async () => {
+    if (!hasCriteria) {
+      refetchById();
+      return;
+    }
+    try {
+      const meal = await getRandomMealByFilter(category, area);
+      if (!meal) throw new Error("No meal found");
+      const params = new URLSearchParams({ category, area });
+      router.push(`/recommendation/${meal.idMeal}?${params}`);
+    } catch {
+      /* user stays on current page */
+    }
+  }, [hasCriteria, category, area, refetchById, router]);
+
+  const refetch = hasCriteria ? handleNewIdea : refetchById;
 
   return (
     <RecommendationView
@@ -14,7 +62,6 @@ const RecommendationById = () => {
       isLoading={isLoading}
       error={error}
       refetch={refetch}
-      backHref="/history"
     />
   );
 };
