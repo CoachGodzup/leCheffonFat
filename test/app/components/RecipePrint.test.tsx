@@ -37,7 +37,7 @@ describe("RecipePrint", () => {
     render(<RecipePrint meal={mockMeal} />);
 
     expect(
-      screen.getByRole("heading", { level: 5, name: /instructions/i }),
+      screen.getByRole("heading", { level: 2, name: /instructions/i }),
     ).toBeInTheDocument();
   });
 

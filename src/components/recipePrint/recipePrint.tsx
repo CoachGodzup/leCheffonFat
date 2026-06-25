@@ -17,9 +17,11 @@ export const RecipePrint = ({ meal }: RecipePrintProps) => {
             </li>
           ))}
       </ul>
-      <h5>Instructions</h5>
+      <h2>Instructions</h2>
       <div>{meal.strInstructions}</div>
-      <p>Printed by Le Cheffon Fat using The Meal DB (https://www.themealdb.com)</p>
+      <p>
+        Printed by Le Cheffon Fat using The Meal DB (https://www.themealdb.com)
+      </p>
     </div>
   );
 };

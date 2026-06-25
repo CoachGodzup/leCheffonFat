@@ -15,7 +15,12 @@ const FILTER_OPTIONS = [
     value: true,
     label: (
       <>
-        <ThumbsUp size={16} style={{ marginInlineEnd: "0.35em" }} /> Liked
+        <ThumbsUp
+          size={16}
+          style={{ marginInlineEnd: "0.35em" }}
+          aria-hidden="true"
+        />{" "}
+        Liked
       </>
     ),
   },
@@ -23,7 +28,12 @@ const FILTER_OPTIONS = [
     value: false,
     label: (
       <>
-        <ThumbsDown size={16} style={{ marginInlineEnd: "0.35em" }} /> Disliked
+        <ThumbsDown
+          size={16}
+          style={{ marginInlineEnd: "0.35em" }}
+          aria-hidden="true"
+        />{" "}
+        Disliked
       </>
     ),
   },
@@ -79,20 +89,22 @@ const Sidebar = () => {
             <li key={entry.timestamp} className={styles.entry}>
               <Link href={`/recommendation/${entry.recipeId}`}>
                 <div>
-                  <h4>
+                  <h3>
                     {entry.like ? (
                       <ThumbsUp
                         size={16}
                         style={{ marginInlineEnd: "0.35em" }}
+                        aria-hidden="true"
                       />
                     ) : entry.like === false ? (
                       <ThumbsDown
                         size={16}
                         style={{ marginInlineEnd: "0.35em" }}
+                        aria-hidden="true"
                       />
                     ) : null}
                     {entry.title}
-                  </h4>
+                  </h3>
                   <p>
                     {`${new Date(entry.timestamp).toLocaleDateString()} - ${entry.inputs.category} ${entry.inputs.area}`}
                   </p>

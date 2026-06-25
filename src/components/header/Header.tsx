@@ -10,7 +10,12 @@ const Header = () => (
       aria-label="Le Cheffon Fat - Home"
       className={styles.homeLink}
     >
-      <ChefHat size={28} style={{ marginInlineEnd: "0.35em" }} /> Le Cheffon Fat
+      <ChefHat
+        size={28}
+        style={{ marginInlineEnd: "0.35em" }}
+        aria-hidden="true"
+      />{" "}
+      Le Cheffon Fat
     </Link>
   </header>
 );

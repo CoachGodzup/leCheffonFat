@@ -14,22 +14,23 @@ const Search = () => {
       <form>
         <fieldset>
           <legend>Recipe name:</legend>
+          <label htmlFor="recipe-name">Recipe name</label>
           <input
+            id="recipe-name"
             className={styles.search}
-            aria-label="Recipe name"
             value={searchText}
             onChange={(elm) => setSearchText(elm.target.value)}
-          ></input>
+          />
         </fieldset>
       </form>
-      <nav>
+      <div>
         {isActive && isLoading && <p>loading...</p>}
         {isActive && error && <p>An error occurred: {error}.</p>}
         {isActive && !isLoading && !error && (!meals || meals.length === 0) && (
           <p>No meals found.</p>
         )}
         {meals && meals.length > 0 && <SearchResults meals={meals} />}
-      </nav>
+      </div>
     </section>
   );
 };

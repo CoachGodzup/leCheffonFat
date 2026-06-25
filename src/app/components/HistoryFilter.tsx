@@ -19,7 +19,12 @@ const HistoryFilter = () => {
         active={activeFilter.type === "like"}
         text={
           <>
-            <ThumbsUp size={16} style={{ marginInlineEnd: "0.35em" }} /> Liked
+            <ThumbsUp
+              size={16}
+              style={{ marginInlineEnd: "0.35em" }}
+              aria-hidden="true"
+            />{" "}
+            Liked
           </>
         }
       />
@@ -28,7 +33,11 @@ const HistoryFilter = () => {
         active={activeFilter.type === "dislike"}
         text={
           <>
-            <ThumbsDown size={16} style={{ marginInlineEnd: "0.35em" }} />{" "}
+            <ThumbsDown
+              size={16}
+              style={{ marginInlineEnd: "0.35em" }}
+              aria-hidden="true"
+            />{" "}
             Disliked
           </>
         }
@@ -38,7 +47,12 @@ const HistoryFilter = () => {
         active={activeFilter.type === "none"}
         text={
           <>
-            <RefreshCw size={16} style={{ marginInlineEnd: "0.35em" }} /> None
+            <RefreshCw
+              size={16}
+              style={{ marginInlineEnd: "0.35em" }}
+              aria-hidden="true"
+            />{" "}
+            None
           </>
         }
       />

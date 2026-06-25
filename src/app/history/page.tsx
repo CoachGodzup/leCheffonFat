@@ -15,7 +15,12 @@ const FILTER_OPTIONS = [
     value: true,
     label: (
       <>
-        <ThumbsUp size={16} style={{ marginInlineEnd: "0.35em" }} /> Liked
+        <ThumbsUp
+          size={16}
+          style={{ marginInlineEnd: "0.35em" }}
+          aria-hidden="true"
+        />{" "}
+        Liked
       </>
     ),
   },
@@ -23,7 +28,12 @@ const FILTER_OPTIONS = [
     value: false,
     label: (
       <>
-        <ThumbsDown size={16} style={{ marginInlineEnd: "0.35em" }} /> Disliked
+        <ThumbsDown
+          size={16}
+          style={{ marginInlineEnd: "0.35em" }}
+          aria-hidden="true"
+        />{" "}
+        Disliked
       </>
     ),
   },

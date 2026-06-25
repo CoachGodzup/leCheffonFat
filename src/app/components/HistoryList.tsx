@@ -26,9 +26,17 @@ const HistoryList = ({ entries }: ListProps) => {
             <div className={styles.cardBody}>
               <strong>
                 {entry.like ? (
-                  <ThumbsUp size={16} style={{ marginInlineEnd: "0.35em" }} />
+                  <ThumbsUp
+                    size={16}
+                    style={{ marginInlineEnd: "0.35em" }}
+                    aria-hidden="true"
+                  />
                 ) : entry.like === false ? (
-                  <ThumbsDown size={16} style={{ marginInlineEnd: "0.35em" }} />
+                  <ThumbsDown
+                    size={16}
+                    style={{ marginInlineEnd: "0.35em" }}
+                    aria-hidden="true"
+                  />
                 ) : null}
                 {entry.title}
               </strong>

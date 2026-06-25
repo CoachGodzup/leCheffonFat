@@ -65,7 +65,9 @@ const Page2 = () => {
           register={register}
         />
         <div className="cta-container submit-container">
-          <Link href="/page1">Back</Link>
+          <Link href="/page1" aria-label="Back to category selection">
+            Back
+          </Link>
           <button type="submit">Complete</button>
         </div>
         {areasError && (
