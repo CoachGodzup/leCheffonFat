@@ -11,16 +11,18 @@ const LikeDislikeCtas = ({ likeFn, currentLike }: LikeDislikeCtasProps) => (
     <button
       onClick={() => likeFn(true)}
       aria-label="Like"
+      aria-pressed={currentLike === true}
       className={currentLike === true ? "btn-primary" : undefined}
     >
-      <ThumbsUp size={24} />
+      <ThumbsUp size={24} aria-hidden="true" /> Like
     </button>
     <button
       onClick={() => likeFn(false)}
       aria-label="Dislike"
+      aria-pressed={currentLike === false}
       className={currentLike === false ? "btn-primary" : undefined}
     >
-      <ThumbsDown size={24} />
+      <ThumbsDown size={24} aria-hidden="true" /> Dislike
     </button>
   </div>
 );
