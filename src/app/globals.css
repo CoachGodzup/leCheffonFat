@@ -285,42 +285,36 @@ section {
 
 @media print {
   body {
-    grid-template-areas:
-      "header header"
-      "content content";
+    display: flex;
+    flex-direction: column;
     gap: 1em;
+  }
+
+  div.recipe img {
+    max-height: 5cm;
   }
 
   .print-only {
     display: block;
   }
 
-  @media print {
-    body {
-      grid-template-areas:
-        "header header"
-        "content content";
-      gap: 1em;
-    }
+  /* all elements hidden for printed page */
 
-    /* all elements hidden for printed page */
+  aside,
+  footer,
+  .cta-container,
+  .ctaContainer,
+  a {
+    display: none !important;
+  }
 
-    aside,
-    footer,
-    .cta-container,
-    .ctaContainer,
-    a {
-      display: none !important;
-    }
+  div.recipeContainer .recipe {
+    display: flex;
+    flex-flow: column;
+  }
 
-    div.recipeContainer .recipe {
-      display: flex;
-      flex-flow: column;
-    }
-
-    /* padding */
-    main > section.card {
-      margin: 0;
-    }
+  /* padding */
+  main > section.card {
+    margin: 0;
   }
 }
