@@ -4,6 +4,7 @@ import type { History } from "@/types/history";
 export type HistorySlice = History & {
   logRequest: (data: Omit<Call, "timestamp" | "like">) => void;
   resetHistory: () => void;
+  remove: (recipeId: string) => void;
   setLike: (recipeId: string, like: boolean) => void;
 };
 
@@ -21,6 +22,12 @@ export const createHistorySlice = (
     });
   },
   resetHistory: () => set({ calls: [] }),
+  remove: (recipeId: string) => {
+    const state = get();
+    set({
+      calls: [...state.calls.filter((c) => c.recipeId !== recipeId)],
+    });
+  },
   setLike: (recipeId, like) => {
     const state = get();
     set({

@@ -39,9 +39,10 @@ const Sidebar = () => {
   const [filter, setFilter] = useState<(boolean | null)[]>([]);
   const [sort, setSort] = useState<Sort>("asc");
 
-  const { calls } = useStore(
+  const { calls, remove } = useStore(
     useShallow((s) => ({
       calls: s.calls,
+      remove: s.remove,
     })),
   );
 
@@ -90,6 +91,9 @@ const Sidebar = () => {
                 </h4>
                 <p>
                   {`${new Date(entry.timestamp).toLocaleDateString()} - ${entry.inputs.category} ${entry.inputs.area}`}
+                </p>
+                <p>
+                  <button onClick={() => remove(entry.recipeId)}></button>
                 </p>
               </Link>
             </li>
