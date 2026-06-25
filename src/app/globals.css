@@ -292,6 +292,29 @@ section {
    Print Styles
    ============================================= */
 
+/* Focus-visible ring for keyboard navigation */
+:focus-visible {
+  outline: 2px solid var(--color-accent-yellow);
+  outline-offset: 2px;
+}
+
+/* Skip-to-content link — visually hidden until focused */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 0;
+  z-index: 1000;
+  padding: 0.5em 1em;
+  background: var(--color-lilac);
+  color: var(--color-white);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 @media print {
   body {
     display: flex;
