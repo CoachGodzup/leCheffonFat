@@ -197,6 +197,11 @@ button:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+.cta-container .btn-primary,
+.cta-container button.btn-primary {
+  border: none;
+}
+
 .recipe-card {
   background-color: var(--color-white);
   border-radius: 12px;
@@ -269,6 +274,17 @@ section {
   font-size: 0.9375em;
   max-width: 65ch;
   color: var(--color-text-main);
+}
+
+.likeRow {
+  display: flex;
+  gap: 0.5em;
+  align-items: center;
+  margin: 0.5em 0;
+}
+
+.likeRow span.liked {
+  color: var(--color-accent-yellow);
 }
 
 /* =============================================

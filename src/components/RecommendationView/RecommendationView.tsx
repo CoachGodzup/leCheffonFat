@@ -3,10 +3,12 @@
 import { Suspense, useEffect } from "react";
 import RecipeImage from "@/app/components/atoms/RecipeImage";
 import Link from "next/link";
+
 import { useStore } from "@/store";
 import RecipeCtas from "@/components/recipeCtas/RecipeCtas";
 import LikeDislikeCtas from "@/components/recipeCtas/likeDislikeCtas";
 import type { Meal } from "@/types/meal-db";
+import { RecipePrint } from "../recipePrint/recipePrint";
 
 type Props = {
   data: Meal | null;
@@ -25,6 +27,9 @@ const RecommendationView = ({
 }: Props) => {
   const logRequest = useStore((s) => s.logRequest);
   const setLike = useStore((s) => s.setLike);
+  const currentLike = useStore(
+    (s) => s.calls.find((c) => c.recipeId === meal?.idMeal)?.like,
+  );
 
   useEffect(() => {
     if (meal) {
@@ -67,20 +72,7 @@ const RecommendationView = ({
                 {meal.strCategory} — {meal.strArea}
               </p>
               <p>{meal.strTags}</p>
-              <div className="print-only instructions">
-                <ul>
-                  {[...Array(20).keys()]
-                    .filter((num) => meal[`strIngredient${num}`])
-                    .map((num) => (
-                      <li key={`Ingredients${num}`}>
-                        {meal[`strIngredient${num}`] as string} -{" "}
-                        {meal[`strMeasure${num}`]}
-                      </li>
-                    ))}
-                </ul>
-                <h5>Instructions</h5>
-                <div className="print-only">{meal.strInstructions}</div>
-              </div>
+              <RecipePrint meal={meal}></RecipePrint>
             </article>
           </div>
           <RecipeCtas
@@ -89,7 +81,10 @@ const RecommendationView = ({
             backHref={backHref}
           />
         </Suspense>
-        <LikeDislikeCtas likeFn={(like) => setLike(meal.idMeal, like)} />
+        <LikeDislikeCtas
+          likeFn={(like) => setLike(meal.idMeal, like)}
+          currentLike={currentLike}
+        />
       </div>
     </section>
   );
