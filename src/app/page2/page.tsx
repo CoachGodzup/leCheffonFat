@@ -49,7 +49,7 @@ const Page2 = () => {
     <section className="card">
       <h1>Where are you cooking from?</h1>
       <p>
-        {} results found for {category}
+        {areas?.length || "No"} results found for {category}
       </p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormSelect
