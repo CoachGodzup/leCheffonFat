@@ -9,7 +9,14 @@ const THE_MEAL_DB = "https://www.themealdb.com";
 const API_BASE = `${THE_MEAL_DB}/api/json/v1`;
 const FULL_BASE = `${API_BASE}/${process.env.MEALDB_API_KEY ?? "1"}`;
 
+const USE_MOCK = process.env.NEXT_PUBLIC_MOCK_API === "1";
+
 async function request<T>(endpoint: string): Promise<T> {
+  if (USE_MOCK) {
+    const { getMockResponse } = await import("./meal-db-mock");
+    return getMockResponse<T>(endpoint);
+  }
+
   const res = await fetch(`${FULL_BASE}/${endpoint}`);
   if (!res.ok) {
     throw new Error(
