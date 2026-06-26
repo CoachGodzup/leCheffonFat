@@ -123,10 +123,13 @@ Actions:
 
 ## Component architecture
 
-Two component directories:
+Components follow Atomic Design:
 
-- **`src/app/components/`** — page-specific or app-level components (`HistoryList`, `SearchResults`, atoms)
-- **`src/components/`** — truly reusable, generic components (`Header`, `Footer`, `Sidebar`, `FormSelect`, `RecommendationView`, `RecipeCtas`, `ShareButton`, `RecipePrint`)
+- **Atoms** (`src/components/atoms/`) — primitive UI elements (Button, CheckboxFilter, SortBy, RecipeImage, ShareButton)
+- **Molecules** (`src/components/molecules/`) — composed atoms (FormSelect, RecipeCtas, LikeDislikeCtas, RecipePrint)
+- **Organisms** (`src/components/organisms/`) — complex sections (Header, Footer, Sidebar, RecommendationView)
+
+Plus page-specific components in **`src/app/components/`** (`HistoryList`, `SearchResults`).
 
 ### Atoms (primitive UI)
 
