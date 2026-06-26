@@ -15,9 +15,13 @@ The unit test framework choice was straightforward: [Jest](https://jestjs.io/), 
 
 For end-to-end tests I chose [Playwright](https://playwright.dev/). I picked a few happy paths to test, then deliberately caused problems to see how the application behaved in non-ideal scenarios.
 
-The project needed a store to manage state across pages — something simple and well integrated with LocalStorage for persistence. I went with [Zustand](https://zustand.site/en/). Its [persist](https://zustand.docs.pmnd.rs/reference/middlewares/persist) middleware handled localStorage efficiently.
+The project needed a store to manage state across pages — something simple and well integrated with LocalStorage for persistence. I went with [Zustand](https://zustand.site/en/). Its [persist](https://zustand.docs.pmnd.rs/reference/middlewares/persist) middleware handled localStorage efficiently. I choose it for simplicity, otherwise I've opted in for Redux Toolkit, rock solid and efficient with low boilerplate and the possibility to navigate history back and forth, but I though it would be overshooting for this project.
 
 As a package manager I stuck with [npm](https://www.npmjs.com/). I knew about alternatives like bun, yarn, and pnpm, but I wanted to keep things simple and focused.
+
+## Code choices
+
+They're summarized [in the specific document](code_choices.md).
 
 ## Navigation
 
@@ -84,6 +88,10 @@ I decided to create tests for every page and component. I created a separate `'/
 
 I made also a little test suite for end to end tests, checking happy path. This can be further improved, raising the covering also for throttling, empty and wrong cases and so on. I used [Playwright](https://playwright.dev/), putting tests into `e2e` folder.
 
+### Accessibility
+
+With the help of an AI (see later), I've added also the requested [WCAG] accessibility directives for this project, at least at A level. [You can see a report here](wcag-report.md).
+
 ## With a little help from my friends — AI section
 
 In 2026, and AI assistance is pretty much expected.
@@ -94,7 +102,7 @@ In this project I used [Opencode](https://opencode.ai/it), which let me do agent
 - speed up _quick refactoring_ like switching from emojis to icons
 - decide _architectural choices_ that were impactful, speeding up online research
 - _debug_ code
-- _create and handle_ the tests I needed
+- _create and handle the tests_ I needed
 - _review code_, keeping me on track with specifications like [WCAG](https://wcag.it/)
   _ quick \_refactoring_ if I change my mind on some specification.
 
