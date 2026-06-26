@@ -266,6 +266,11 @@ section {
   color: var(--color-text-main);
 }
 
+.recipeContainer .instructions {
+  max-height: 15em;
+  overflow-y: scroll;
+}
+
 .likeRow {
   display: flex;
   gap: 0.5em;
