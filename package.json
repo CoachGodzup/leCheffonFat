@@ -1,6 +1,6 @@
 {
   "name": "le-cheffon-fat",
-  "version": "0.1.0-demo",
+  "version": "0.1.1-demo",
   "private": true,
   "scripts": {
     "build": "next build",
