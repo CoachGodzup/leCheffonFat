@@ -46,7 +46,7 @@ const RecommendationView = ({
       <section className="card">
         <h1>Recommendation</h1>
         <p role="alert">{error || "No meal found"}</p>
-        <div className="ctaContainer">
+        <div className="cta-container">
           <button onClick={() => router.back()}>back</button>
         </div>
       </section>

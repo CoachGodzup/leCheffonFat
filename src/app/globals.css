@@ -143,8 +143,7 @@ aside {
    Components
    ============================================= */
 
-.cta-container,
-.ctaContainer {
+.cta-container {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -154,9 +153,7 @@ aside {
 }
 
 .cta-container > a,
-.cta-container button,
-.ctaContainer > a,
-.ctaContainer button {
+.cta-container button {
   padding: 1em;
   border: 1px solid currentColor;
   height: 100%;
