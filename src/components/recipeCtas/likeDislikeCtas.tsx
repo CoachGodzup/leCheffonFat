@@ -1,4 +1,5 @@
 import { ThumbsUp, ThumbsDown } from "lucide-react";
+import styles from "./likeDislikeCtas.module.css";
 
 type LikeDislikeCtasProps = {
   likeFn: (like: boolean) => void;
@@ -6,7 +7,7 @@ type LikeDislikeCtasProps = {
 };
 
 const LikeDislikeCtas = ({ likeFn, currentLike }: LikeDislikeCtasProps) => (
-  <div className="cta-container">
+  <div className={"cta-container " + styles.container}>
     <p>Did it match your preferences?</p>
     <button
       onClick={() => likeFn(true)}
