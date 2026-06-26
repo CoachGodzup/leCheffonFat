@@ -16,8 +16,17 @@ beforeEach(() => {
 });
 
 describe("useSearch", () => {
+  beforeEach(() => {
+    jest.spyOn(console, "error").mockImplementation(() => {});
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
   it("returns empty state initially", async () => {
     const { result } = renderHook(() => useSearch());
+    await act(async () => {});
     await waitFor(() => expect(result.current.isLoading).toBe(false));
 
     expect(result.current.searchText).toBe("");
@@ -28,6 +37,7 @@ describe("useSearch", () => {
 
   it("sets searchText on input", async () => {
     const { result } = renderHook(() => useSearch());
+    await act(async () => {});
     await waitFor(() => expect(result.current.isLoading).toBe(false));
 
     act(() => result.current.setSearchText("pasta"));
@@ -72,6 +82,7 @@ describe("useSearch", () => {
   it("clears results when text goes below 3 chars", async () => {
     jest.useFakeTimers();
     const { result } = renderHook(() => useSearch());
+    await act(async () => {});
 
     act(() => result.current.setSearchText("fish"));
     act(() => jest.advanceTimersByTime(300));
@@ -97,6 +108,7 @@ describe("useSearch", () => {
     );
 
     const { result } = renderHook(() => useSearch());
+    await act(async () => {});
 
     act(() => result.current.setSearchText("fish"));
     act(() => jest.advanceTimersByTime(300));
