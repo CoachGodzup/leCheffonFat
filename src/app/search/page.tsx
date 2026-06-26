@@ -5,6 +5,7 @@ import { useEffect } from "react";
 import styles from "./search.module.css";
 import { useSearch } from "@/hooks/use-search";
 import RecipeImage from "@/app/components/atoms/RecipeImage";
+import { SearchIcon } from "lucide-react";
 
 const Search = () => {
   useEffect(() => {
@@ -21,17 +22,20 @@ const Search = () => {
         <fieldset className={styles.fieldset}>
           {" "}
           <legend>Recipe name</legend>
-          <input
-            id="recipe-name"
-            type="search"
-            aria-label="Recipe name"
-            className={styles.search}
-            value={searchText}
-            onChange={(elm) => setSearchText(elm.target.value)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") e.preventDefault();
-            }}
-          />
+          <div className={styles.inputContainer}>
+            <SearchIcon></SearchIcon>
+            <input
+              id="recipe-name"
+              type="search"
+              aria-label="Recipe name"
+              className={styles.search}
+              value={searchText}
+              onChange={(elm) => setSearchText(elm.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") e.preventDefault();
+              }}
+            />
+          </div>
           <button type="submit" style={{ display: "none" }}>
             Search
           </button>
@@ -44,20 +48,23 @@ const Search = () => {
           <p>No meals found.</p>
         )}
         {meals && meals.length > 0 && (
-          <ul>
+          <ul className={styles.resultsContainer}>
             {meals.map((meal) => (
-              <li key={meal.idMeal}>
+              <li key={meal.idMeal} className={styles.result}>
                 <Link href={`/recommendation/${meal.idMeal}`}>
                   <RecipeImage
                     src={meal.strMealThumb}
                     alt={meal.strMeal}
-                    width={100}
-                    height={100}
+                    width={300}
+                    height={110}
                   />
-                  <span>{meal.strMeal}</span>
-                  <span>
-                    {meal.strCategory} — {meal.strArea}
-                  </span>
+                  <nav role="contentinfo">
+                    <h4>{meal.strMeal}</h4>
+                    <p>
+                      {meal.strCategory} — {meal.strArea}
+                    </p>
+                    <p>{meal.strTags}</p>
+                  </nav>
                 </Link>
               </li>
             ))}
