@@ -239,40 +239,40 @@ The recommendation pages support shareable URLs. The mechanism is detailed in `d
 
 ## Configuration files
 
-| File                  | Purpose                                                                  |
-| --------------------- | ------------------------------------------------------------------------ |
-| `tsconfig.json`       | TypeScript config: `strict`, `bundler` moduleResolution, `@/` path alias |
-| `next.config.ts`      | Next.js config: `remotePatterns` for TheMealDB image host                |
-| `jest.config.ts`      | Jest via `next/jest`, jsdom environment, `@/` path mapped to `./src/`    |
-| `playwright.config.ts`| Playwright: chromium only, dev server on port 3000 with `MOCK_API=1`     |
-| `eslint.config.mjs`   | ESLint flat config with `eslint-config-next`                             |
+| File                   | Purpose                                                                  |
+| ---------------------- | ------------------------------------------------------------------------ |
+| `tsconfig.json`        | TypeScript config: `strict`, `bundler` moduleResolution, `@/` path alias |
+| `next.config.ts`       | Next.js config: `remotePatterns` for TheMealDB image host                |
+| `jest.config.ts`       | Jest via `next/jest`, jsdom environment, `@/` path mapped to `./src/`    |
+| `playwright.config.ts` | Playwright: chromium only, dev server on port 3000 with `MOCK_API=1`     |
+| `eslint.config.mjs`    | ESLint flat config with `eslint-config-next`                             |
 
 ## Build tooling
 
 ### NPM scripts
 
-| Script             | Command                   |
-| ------------------ | ------------------------- |
-| `npm run dev`      | `next dev`                |
-| `npm run build`    | `next build`              |
-| `npm run start`    | `next start`              |
-| `npm run lint`     | `eslint`                  |
-| `npm run typecheck`| `tsc --noEmit`            |
-| `npm test`         | `jest`                    |
-| `npm run test:e2e` | `playwright test`         |
+| Script              | Command           |
+| ------------------- | ----------------- |
+| `npm run dev`       | `next dev`        |
+| `npm run build`     | `next build`      |
+| `npm run start`     | `next start`      |
+| `npm run lint`      | `eslint`          |
+| `npm run typecheck` | `tsc --noEmit`    |
+| `npm test`          | `jest`            |
+| `npm run test:e2e`  | `playwright test` |
 
 ### Key dependencies
 
-| Package               | Version  | Purpose                                |
-| --------------------- | -------- | -------------------------------------- |
-| `next`                | 16.2.9   | Framework (App Router)                 |
-| `react` / `react-dom` | 19.2.4   | UI library                             |
-| `zustand`             | 5.0.14   | State management + localStorage persist|
-| `react-hook-form`     | 7.80.0   | Form handling and validation           |
-| `lucide-react`        | 1.21.0   | Icon set                               |
-| `jest`                | 30.4.2   | Test runner                            |
-| `ts-jest`             | 29.4.11  | TypeScript transformer for Jest        |
-| `@playwright/test`    | 1.61.1   | E2E testing                            |
+| Package               | Version | Purpose                                 |
+| --------------------- | ------- | --------------------------------------- |
+| `next`                | 16.2.9  | Framework (App Router)                  |
+| `react` / `react-dom` | 19.2.4  | UI library                              |
+| `zustand`             | 5.0.14  | State management + localStorage persist |
+| `react-hook-form`     | 7.80.0  | Form handling and validation            |
+| `lucide-react`        | 1.21.0  | Icon set                                |
+| `jest`                | 30.4.2  | Test runner                             |
+| `ts-jest`             | 29.4.11 | TypeScript transformer for Jest         |
+| `@playwright/test`    | 1.61.1  | E2E testing                             |
 
 The API key lives in `.env.local` as `MEALDB_API_KEY` (defaults to TheMealDB public key `"1"`). Set `NEXT_PUBLIC_MOCK_API=1` to use offline mock data.
 

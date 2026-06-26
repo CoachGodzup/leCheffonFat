@@ -168,11 +168,10 @@ button {
   background-color: var(--color-bg-card);
   color: var(--color-text-main);
   font-weight: bold;
-  border-radius: .5em;
+  border-radius: 0.5em;
   cursor: pointer;
   transition: transform 0.2s;
 }
-
 
 .btn-cta:hover,
 .btn-primary:hover,
