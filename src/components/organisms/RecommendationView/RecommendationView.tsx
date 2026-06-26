@@ -5,7 +5,7 @@ import { Suspense, useEffect } from "react";
 
 import RecipeImage from "@/components/atoms/RecipeImage/RecipeImage";
 import RecipeCtas from "@/components/molecules/RecipeCtas/RecipeCtas";
-import LikeDislikeCtas from "@/components/molecules/RecipeCtas/likeDislikeCtas";
+import LikeDislikeCtas from "@/components/molecules/RecipeCtas/LikeDislikeCtas";
 import RecipePrint from "@/components/molecules/RecipePrint/RecipePrint";
 import { useStore } from "@/store";
 import type { Meal } from "@/types/meal-db";

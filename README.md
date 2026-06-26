@@ -48,6 +48,6 @@ If you want to have offline data, set in the `.env.local` the variable `NEXT_PUB
 ## Technical choices
 
 All technical decisions are documented in [docs/technical_specs.md](./docs/technical_specs.md).
-There's also a file for code specific decision in [docs/code_guide.md](./docs/code_guide.md), one for [graphics guide](./docs/graphics_guide.md) and a little accessibility report [here](./docs/wcag-report.md).
+There's also a file for [code specific decisions](./docs/code_guide.md), one for [graphics guide](./docs/graphics_guide.md) and a little accessibility report [here](./docs/wcag-report.md).
 
 Warning: this can cause fatness in [le chat](https://www.explainx.ai/blog/le-chaton-fat-mistral-ai-viral-hoax-meme-2026).
