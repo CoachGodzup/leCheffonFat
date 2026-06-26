@@ -1,4 +1,4 @@
-# e🧑‍🍳 Le Cheffon Fat
+# 🧑‍🍳 Le Cheffon Fat
 
 Two-step recipe recommender app built with Next.js.
 
