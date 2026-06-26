@@ -16,12 +16,12 @@ This version has breaking changes — APIs, conventions, and file structure may 
 
 ## React Components
 
-- Create components in 'src/app/components' folder.
-- in the same folder, there should be a '.tsx' and a '.css' file.
-- when you create a component, create the unit test
-- prefer pure components
+- Create components in 'src/components/' using atomic design: atoms/, molecules/, organisms/.
+- Each component in its own subfolder with a `.tsx` and a `.module.css` file.
+- When you create a component, create the unit test.
+- Prefer pure components.
 
-See full guidelines in /docs/style_guide.md
+See full guidelines in `/docs/code_guide.md` (code) and `/docs/graphics_guide.md` (graphics).
 
 ## Security
 
@@ -58,7 +58,7 @@ See full guidelines in /docs/style_guide.md
 ### Where to place tests
 
 - **Page tests**: `test/pages/[name].test.tsx` (e.g. `test/pages/page1.test.tsx`)
-- **Component tests**: `test/app/components/[name].test.tsx` mirroring `src/app/components/`
+- **Component tests**: `test/app/components/[name].test.tsx` mirroring `src/components/`
 - **Layout/utility tests**: `test/app/` mirroring `src/app/`
 
 ### What to test for pages
