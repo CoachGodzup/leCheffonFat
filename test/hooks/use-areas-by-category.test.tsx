@@ -6,7 +6,7 @@ import { mealsWithAreas } from "../fixtures/areas";
 import { mockErrorResponse, mockOkResponse } from "../utils/mock-fetch";
 
 const mockFetch = jest.fn();
-global.fetch = mockFetch;
+globalThis.fetch = mockFetch;
 
 beforeEach(() => {
   mockFetch.mockClear();

@@ -20,7 +20,7 @@ jest.mock("next/navigation", () => ({
 }));
 
 const mockFetch = jest.fn();
-global.fetch = mockFetch;
+globalThis.fetch = mockFetch;
 
 const carbonara: Meal = {
   idMeal: "52802",

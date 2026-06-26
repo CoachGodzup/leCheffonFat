@@ -41,6 +41,8 @@ See full guidelines in `/docs/code_guide.md` (code) and `/docs/graphics_guide.md
 - Create short functions
 - Prefer arrow functions over `function` declarations
 - Wrap every async operation in a try-catch that rejects on failure. See `src/service/meal-db-service.ts:17-22` for the pattern.
+- **Prettier** sorts imports (third-party → `@/` → relative) and orders `package.json` fields. Run `npx prettier --write .` before committing.
+- **ESLint** uses `eslint-plugin-unicorn` on top of Next.js defaults. Run `npm run lint` before committing; it must pass with zero warnings.
 
 ## Colors
 

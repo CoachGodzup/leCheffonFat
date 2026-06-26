@@ -43,7 +43,7 @@ const FILTER_OPTIONS = [
   { value: null, label: "Unrated" },
 ];
 
-const HIDE_PATHS = ["/"];
+const HIDE_PATHS = new Set(["/"]);
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -65,7 +65,7 @@ const Sidebar = () => {
     [calls, filter],
   );
 
-  if (HIDE_PATHS.includes(pathname)) return null;
+  if (HIDE_PATHS.has(pathname)) return null;
 
   return (
     <aside aria-labelledby="sidebar-heading" className={styles.menu}>

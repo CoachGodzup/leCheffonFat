@@ -4,7 +4,7 @@ import { fishPieFull, seafoodFilterResponse } from "../fixtures/meals";
 import { mockOkResponse } from "../utils/mock-fetch";
 
 const mockFetch = jest.fn();
-global.fetch = mockFetch;
+globalThis.fetch = mockFetch;
 
 const BASE = "https://www.themealdb.com/api/json/v1/1";
 

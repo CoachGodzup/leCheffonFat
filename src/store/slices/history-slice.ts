@@ -25,7 +25,7 @@ export const createHistorySlice = (
   remove: (recipeId: string) => {
     const state = get();
     set({
-      calls: [...state.calls.filter((c) => c.recipeId !== recipeId)],
+      calls: state.calls.filter((c) => c.recipeId !== recipeId),
     });
   },
   setLike: (recipeId, like) => {

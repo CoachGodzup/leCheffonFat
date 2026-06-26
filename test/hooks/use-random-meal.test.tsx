@@ -6,7 +6,7 @@ import { fishPieFull } from "../fixtures/meals";
 import { mockOkResponse } from "../utils/mock-fetch";
 
 const mockFetch = jest.fn();
-global.fetch = mockFetch;
+globalThis.fetch = mockFetch;
 
 const mockFilterResponse = {
   meals: [

@@ -216,42 +216,64 @@ test/
 3. "New Idea" re-runs `getRandomMealByFilter(category, area)` when criteria are available
 4. "Back" uses `router.back()` to return to the origin regardless of entry point
 
+## Code style
+
+### Import order
+
+Prettier's `@trivago/prettier-plugin-sort-imports` enforces a fixed order:
+
+1. `node:` modules
+2. Third-party packages (`react`, `next`, `lucide-react`, etc.)
+3. Internal `@/` aliases
+4. Relative imports (`./`, `../`)
+
+Groups are separated by a blank line. Run `npx prettier --write .` to fix.
+
+### Filename convention
+
+Component folders and files use **PascalCase** for React components (e.g. `Button/Button.tsx`) and **kebab-case** for non-component files (e.g. `meal-db-service.ts`). Enforced by `unicorn/filename-case`.
+
 ## Configuration & build
 
 ### Config files
 
-| File                   | Purpose                                                                  |
-| ---------------------- | ------------------------------------------------------------------------ |
-| `tsconfig.json`        | TypeScript config: `strict`, `bundler` moduleResolution, `@/` path alias |
-| `next.config.ts`       | Next.js config: `remotePatterns` for TheMealDB image host                |
-| `jest.config.ts`       | Jest via `next/jest`, jsdom environment, `@/` path mapped to `./src/`    |
-| `playwright.config.ts` | Playwright: chromium only, dev server on port 3000 with `MOCK_API=1`     |
-| `eslint.config.mjs`    | ESLint flat config with `eslint-config-next`                             |
+| File                   | Purpose                                                                                      |
+| ---------------------- | -------------------------------------------------------------------------------------------- |
+| `tsconfig.json`        | TypeScript config: `strict`, `bundler` moduleResolution, `@/` path alias                     |
+| `next.config.ts`       | Next.js config: `remotePatterns` for TheMealDB image host                                    |
+| `jest.config.ts`       | Jest via `next/jest`, jsdom environment, `@/` path mapped to `./src/`                        |
+| `playwright.config.ts` | Playwright: chromium only, dev server on port 3000 with `MOCK_API=1`                         |
+| `eslint.config.mjs`    | ESLint flat config with `eslint-config-next` + `eslint-plugin-unicorn`                       |
+| `.prettierrc`          | Prettier config with `@trivago/prettier-plugin-sort-imports` + `prettier-plugin-packagejson` |
 
 ### NPM scripts
 
-| Script              | Command           |
-| ------------------- | ----------------- |
-| `npm run dev`       | `next dev`        |
-| `npm run build`     | `next build`      |
-| `npm run start`     | `next start`      |
-| `npm run lint`      | `eslint`          |
-| `npm run typecheck` | `tsc --noEmit`    |
-| `npm test`          | `jest`            |
-| `npm run test:e2e`  | `playwright test` |
+| Script                   | Command                                               |
+| ------------------------ | ----------------------------------------------------- |
+| `npm run dev`            | `next dev`                                            |
+| `npm run build`          | `next build`                                          |
+| `npm run start`          | `next start`                                          |
+| `npm run lint`           | `eslint`                                              |
+| `npx prettier --write .` | Prettier formatting (import sort + package.json sort) |
+| `npm run typecheck`      | `tsc --noEmit`                                        |
+| `npm test`               | `jest`                                                |
+| `npm run test:e2e`       | `playwright test`                                     |
 
 ### Key dependencies
 
-| Package               | Version | Purpose                                 |
-| --------------------- | ------- | --------------------------------------- |
-| `next`                | 16.2.9  | Framework (App Router)                  |
-| `react` / `react-dom` | 19.2.4  | UI library                              |
-| `zustand`             | 5.0.14  | State management + localStorage persist |
-| `react-hook-form`     | 7.80.0  | Form handling and validation            |
-| `lucide-react`        | 1.21.0  | Icon set                                |
-| `jest`                | 30.4.2  | Test runner                             |
-| `ts-jest`             | 29.4.11 | TypeScript transformer for Jest         |
-| `@playwright/test`    | 1.61.1  | E2E testing                             |
+| Package                                 | Version | Purpose                                 |
+| --------------------------------------- | ------- | --------------------------------------- |
+| `next`                                  | 16.2.9  | Framework (App Router)                  |
+| `react` / `react-dom`                   | 19.2.4  | UI library                              |
+| `zustand`                               | 5.0.14  | State management + localStorage persist |
+| `react-hook-form`                       | 7.80.0  | Form handling and validation            |
+| `lucide-react`                          | 1.21.0  | Icon set                                |
+| `jest`                                  | 30.4.2  | Test runner                             |
+| `ts-jest`                               | 29.4.11 | TypeScript transformer for Jest         |
+| `@playwright/test`                      | 1.61.1  | E2E testing                             |
+| `@trivago/prettier-plugin-sort-imports` | 6.x     | Prettier import sorting                 |
+| `prettier-plugin-packagejson`           | latest  | Prettier package.json sorting           |
+| `eslint-plugin-unicorn`                 | 56.x    | ESLint opinionated rules                |
 
 ### Environment
 

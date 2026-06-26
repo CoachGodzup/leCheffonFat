@@ -32,7 +32,7 @@ const RecipeCtas = ({ retryFn, meal, onBack }: RecipeCtasProps) => {
       <button onClick={retryFn} aria-label="Get a new recipe idea">
         New idea
       </button>
-      <button onClick={() => window.print()} aria-label="Print this recipe">
+      <button onClick={() => globalThis.print()} aria-label="Print this recipe">
         Print
       </button>
       <ShareButton />

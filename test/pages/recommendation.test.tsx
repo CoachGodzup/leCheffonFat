@@ -13,7 +13,7 @@ jest.mock("next/navigation", () => ({
 }));
 
 const mockFetch = jest.fn();
-global.fetch = mockFetch;
+globalThis.fetch = mockFetch;
 
 beforeEach(() => {
   mockFetch.mockClear();

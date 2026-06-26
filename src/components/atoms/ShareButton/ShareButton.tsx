@@ -9,7 +9,7 @@ const ShareButton = () => {
 
   const handleShare = useCallback(async () => {
     try {
-      await navigator.clipboard.writeText(window.location.href);
+      await navigator.clipboard.writeText(globalThis.location.href);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
