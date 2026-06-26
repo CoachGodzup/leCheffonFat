@@ -19,6 +19,7 @@
   --color-text-muted: #6a6578;
 
   --spacing: 1em;
+  --default-border-radius: 0.5em;
 }
 
 @media (prefers-color-scheme: dark) {
