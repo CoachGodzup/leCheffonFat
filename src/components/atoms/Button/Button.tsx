@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import "../styles/atoms/button.css";
+import "./button.css";
 
 type ButtonProps = {
   text: ReactNode;

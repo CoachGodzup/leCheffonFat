@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import styles from "./search.module.css";
 import { useSearch } from "@/hooks/use-search";
-import RecipeImage from "@/app/components/atoms/RecipeImage";
+import RecipeImage from "@/components/atoms/RecipeImage/RecipeImage";
 import { SearchIcon } from "lucide-react";
 
 const Search = () => {

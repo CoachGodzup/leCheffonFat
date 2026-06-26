@@ -2,7 +2,7 @@ import { getMealPageUrl } from "@/service/meal-db-service";
 import { Meal } from "@/types/meal-db";
 import Link from "next/link";
 
-import ShareButton from "../shareButton/ShareButton";
+import ShareButton from "@/components/atoms/ShareButton/ShareButton";
 
 type RecipeCtasProps = {
   retryFn: () => void;

@@ -3,10 +3,11 @@
 import styles from "./history.module.css";
 import { useStore } from "@/store";
 import Link from "next/link";
-import RecipeImage from "@/app/components/atoms/RecipeImage";
+import RecipeImage from "@/components/atoms/RecipeImage/RecipeImage";
 import { useEffect, useState, useMemo } from "react";
-import CheckboxFilter from "@/app/components/atoms/CheckboxFilter";
-import SortBy from "@/app/components/atoms/SortBy";
+import CheckboxFilter from "@/components/atoms/CheckboxFilter/CheckboxFilter";
+import SortBy from "@/components/atoms/SortBy/SortBy";
+import type { Sort } from "@/components/atoms/SortBy/SortBy";
 import { ThumbsUp, ThumbsDown } from "lucide-react";
 
 const FILTER_OPTIONS = [

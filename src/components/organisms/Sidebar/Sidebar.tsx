@@ -6,8 +6,8 @@ import { useStore } from "@/store";
 import Link from "next/link";
 import { useState, useMemo } from "react";
 import { useShallow } from "zustand/shallow";
-import CheckboxFilter from "@/app/components/atoms/CheckboxFilter";
-import SortBy from "@/app/components/atoms/SortBy";
+import CheckboxFilter from "@/components/atoms/CheckboxFilter/CheckboxFilter";
+import SortBy from "@/components/atoms/SortBy/SortBy";
 import { ThumbsUp, ThumbsDown, X } from "lucide-react";
 
 const FILTER_OPTIONS = [
@@ -40,7 +40,7 @@ const FILTER_OPTIONS = [
   { value: null, label: "Unrated" },
 ];
 
-import type { Sort } from "@/app/components/atoms/SortBy";
+import type { Sort } from "@/components/atoms/SortBy/SortBy";
 
 const HIDE_PATHS = ["/"];
 

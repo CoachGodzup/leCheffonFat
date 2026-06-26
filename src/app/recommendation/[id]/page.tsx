@@ -5,7 +5,7 @@ import { useEffect, useCallback, useMemo } from "react";
 import { useMealById } from "@/hooks/use-meal-by-id";
 import { useStore } from "@/store";
 import { getRandomMealByFilter } from "@/service/meal-db-service";
-import RecommendationView from "@/components/RecommendationView/RecommendationView";
+import RecommendationView from "@/components/organisms/RecommendationView/RecommendationView";
 
 const RecommendationById = () => {
   const { id } = useParams<{ id: string }>();

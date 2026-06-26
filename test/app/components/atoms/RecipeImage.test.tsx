@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
-import RecipeImage from "@/app/components/atoms/RecipeImage";
+import RecipeImage from "@/components/atoms/RecipeImage/RecipeImage";
 
 describe("RecipeImage", () => {
   it("renders an image with alt text when src is valid", () => {

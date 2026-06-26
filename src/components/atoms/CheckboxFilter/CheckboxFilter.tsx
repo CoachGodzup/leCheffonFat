@@ -1,4 +1,4 @@
-import "../styles/atoms/checkboxFilter.css";
+import "./checkboxFilter.css";
 import type { ReactNode } from "react";
 
 type Option<T> = {

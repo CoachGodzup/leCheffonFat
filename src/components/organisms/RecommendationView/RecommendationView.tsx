@@ -2,13 +2,13 @@
 
 import { Suspense, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import RecipeImage from "@/app/components/atoms/RecipeImage";
+import RecipeImage from "@/components/atoms/RecipeImage/RecipeImage";
 
 import { useStore } from "@/store";
-import RecipeCtas from "@/components/recipeCtas/RecipeCtas";
-import LikeDislikeCtas from "@/components/recipeCtas/likeDislikeCtas";
+import RecipeCtas from "@/components/molecules/RecipeCtas/RecipeCtas";
+import LikeDislikeCtas from "@/components/molecules/RecipeCtas/likeDislikeCtas";
 import type { Meal } from "@/types/meal-db";
-import { RecipePrint } from "../recipePrint/recipePrint";
+import { RecipePrint } from "@/components/molecules/RecipePrint/recipePrint";
 
 type Props = {
   data: Meal | null;

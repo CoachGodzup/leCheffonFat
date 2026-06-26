@@ -1,4 +1,4 @@
-import "../styles/atoms/sortBy.css";
+import "./sortBy.css";
 import { ChevronUp, ChevronDown } from "lucide-react";
 
 export type Sort = "asc" | "desc";

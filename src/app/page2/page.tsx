@@ -5,7 +5,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import type { Page2Request } from "@/types/form";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import FormSelect from "@/components/form/formSelect/FormSelect";
+import FormSelect from "@/components/molecules/FormSelect/FormSelect";
 import { useStore } from "@/store";
 import { useAreasByCategory } from "@/hooks/use-areas-by-category";
 import { useShallow } from "zustand/shallow";
