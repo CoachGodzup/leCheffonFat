@@ -78,7 +78,7 @@ export const getRandomMealByFilter = (
 ) =>
   filterByCategory(category)
     .then(extractMeals)
-    .then((meals) => meals.filter((m) => (oldId ? m : m.idMeal !== oldId)))
+    .then((meals) => meals.filter((m) => !oldId || m.idMeal !== oldId))
     .then((meals) => meals.filter(byArea(area)))
     .then(pickRandom)
     .then((meal) => (meal ? fetchFullMeal(meal) : null));
