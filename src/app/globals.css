@@ -264,9 +264,6 @@ section {
   font-size: 0.9375em;
   max-width: 65ch;
   color: var(--color-text-main);
-}
-
-.recipeContainer .instructions {
   max-height: 15em;
   overflow-y: scroll;
 }
@@ -350,5 +347,11 @@ section {
   /* padding */
   main > section.card {
     margin: 0;
+  }
+
+  .recipeContainer .instructions {
+    height: auto;
+    max-height: none;
+    overflow: show;
   }
 }

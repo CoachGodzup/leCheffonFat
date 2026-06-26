@@ -220,9 +220,9 @@ typing forces `string`.
 
 ## Summary
 
-| Severity | Count |
-|----------|-------|
-| Critical | 5 |
-| Major | 7 |
-| Minor | 8 |
+| Severity  | Count  |
+| --------- | ------ |
+| Critical  | 5      |
+| Major     | 7      |
+| Minor     | 8      |
 | **Total** | **20** |
