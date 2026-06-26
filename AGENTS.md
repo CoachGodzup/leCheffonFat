@@ -21,6 +21,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - when you create a component, create the unit test
 - prefer pure components
 
+See full guidelines in /docs/style_guide.md
+
 ## Security
 
 - API keys and secrets go in `.env.local` at the project root (`KEY=VALUE` format).

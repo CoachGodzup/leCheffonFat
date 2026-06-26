@@ -78,6 +78,10 @@ I started with emojis as icons, then switched to [lucide](https://lucide.dev/), 
 
 Using real calls to The Meal DB for unit tests didn't make sense, so I overrode the fetch API with a `jest.fn()` that returns data. To do the same during development, I used _fixtures_ — carbon copies of the calls — overriding `global.fetch`.
 
+## Style guide
+
+Code style guide is [in this file](./style_guide.md). Styling choices are in [this one](./styling_choices.md).
+
 ## Testing
 
 ### Unit tests
