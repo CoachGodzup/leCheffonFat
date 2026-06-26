@@ -13,15 +13,16 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - Be short: 70 chars max
 - Before committing, run `npx prettier --write .` and `npm run lint` to ensure formatting and lint consistency.
 - Stage only the intended files; never commit secrets or env files.
+- There's two branches: `main` and `develop`. Please use `git flow` branching convention, create a new branch for each prompt you get, and merge into `develop`. Be careful if it's a feature or an hotfix, and merge accordingly.
 
 ## React Components
 
-- Create components in 'src/app/components' folder.
-- in the same folder, there should be a '.tsx' and a '.css' file.
-- when you create a component, create the unit test
-- prefer pure components
+- Create components in 'src/components/' using atomic design: atoms/, molecules/, organisms/.
+- Each component in its own subfolder with a `.tsx` and a `.module.css` file.
+- When you create a component, create the unit test.
+- Prefer pure components.
 
-See full guidelines in /docs/style_guide.md
+See full guidelines in `/docs/code_guide.md` (code) and `/docs/graphics_guide.md` (graphics).
 
 ## Security
 
@@ -36,10 +37,14 @@ See full guidelines in /docs/style_guide.md
 - Use strict TypeScript; avoid `any` unless absolutely necessary.
 - Prefer pure CSS (modules) — no CSS frameworks.
 - use helper functions whenever possible, and save it in a './src/service' folder. Update or create a '/agents/services.md' file as a list of every available services. Keep it updated, and search there before creating other overlapping services.
+- Keep `agents/components.md` up to date: register new components when created (with path, props, description) and remove entries when components are deleted.
+- Keep `agents/types.md`, `agents/pages.md`, and `agents/store.md` up to date when adding/removing types, pages, or store slices.
 - Always use `type` (not `interface`) for component props
 - Create short functions
 - Prefer arrow functions over `function` declarations
 - Wrap every async operation in a try-catch that rejects on failure. See `src/service/meal-db-service.ts:17-22` for the pattern.
+- **Prettier** sorts imports (third-party → `@/` → relative) and orders `package.json` fields. Run `npx prettier --write .` before committing.
+- **ESLint** uses `eslint-plugin-unicorn` on top of Next.js defaults. Run `npm run lint` before committing; it must pass with zero warnings.
 
 ## Colors
 
@@ -58,7 +63,7 @@ See full guidelines in /docs/style_guide.md
 ### Where to place tests
 
 - **Page tests**: `test/pages/[name].test.tsx` (e.g. `test/pages/page1.test.tsx`)
-- **Component tests**: `test/app/components/[name].test.tsx` mirroring `src/app/components/`
+- **Component tests**: `test/app/components/[name].test.tsx` mirroring `src/components/`
 - **Layout/utility tests**: `test/app/` mirroring `src/app/`
 
 ### What to test for pages

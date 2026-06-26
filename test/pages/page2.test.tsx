@@ -1,6 +1,8 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+
 import Page2 from "@/app/page2/page";
+import { useStore } from "@/store";
 
 const mockPush = jest.fn();
 const mockReset = jest.fn();
@@ -40,8 +42,6 @@ jest.mock("react-hook-form", () => ({
     reset: mockReset,
   }),
 }));
-
-import { useStore } from "@/store";
 
 describe("Page2", () => {
   beforeEach(() => {

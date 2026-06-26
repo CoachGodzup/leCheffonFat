@@ -1,8 +1,10 @@
 import { render, screen, waitFor } from "@testing-library/react";
+
 import Recommendation from "@/app/recommendation/page";
 import { useStore } from "@/store";
+
+import { pizzaMargherita, singleMealFilterResponse } from "../fixtures/meals";
 import { mockOkResponse } from "../utils/mock-fetch";
-import { singleMealFilterResponse, pizzaMargherita } from "../fixtures/meals";
 
 const mockReplace = jest.fn();
 
@@ -11,7 +13,7 @@ jest.mock("next/navigation", () => ({
 }));
 
 const mockFetch = jest.fn();
-global.fetch = mockFetch;
+globalThis.fetch = mockFetch;
 
 beforeEach(() => {
   mockFetch.mockClear();

@@ -1,11 +1,11 @@
 ```
 
 
- _             _____ _           __  __              ______    _   
-| |           / ____| |         / _|/ _|            |  ____|  | |  
-| |     ___  | |    | |__   ___| |_| |_ ___  _ __   | |__ __ _| |_ 
+ _             _____ _           __  __              ______    _
+| |           / ____| |         / _|/ _|            |  ____|  | |
+| |     ___  | |    | |__   ___| |_| |_ ___  _ __   | |__ __ _| |_
 | |    / _ \ | |    | '_ \ / _ \  _|  _/ _ \| '_ \  |  __/ _` | __|
-| |___|  __/ | |____| | | |  __/ | | || (_) | | | | | | | (_| | |_ 
+| |___|  __/ | |____| | | |  __/ | | || (_) | | | | | | | (_| | |_
 |______\___|  \_____|_| |_|\___|_| |_| \___/|_| |_| |_|  \__,_|\__|
 
 
@@ -43,9 +43,11 @@ Open [http://localhost:3000](http://localhost:3000) and... _bon apetit_ 🧑‍�
 
 ## Offline mock
 
+If you want to have offline data, set in the `.env.local` the variable `NEXT_PUBLIC_MOCK_API=1`
+
 ## Technical choices
 
 All technical decisions are documented in [docs/technical_specs.md](./docs/technical_specs.md).
-There's also a file for code specific decision in [docs/code_choices.md](./docs/code_choices.md) and a little accessibility report [here](./docs/wcag-report.md).
+There's also a file for [code specific decisions](./docs/code_guide.md), one for [graphics guide](./docs/graphics_guide.md) and a little accessibility report [here](./docs/wcag-report.md).
 
 Warning: this can cause fatness in [le chat](https://www.explainx.ai/blog/le-chaton-fat-mistral-ai-viral-hoax-meme-2026).

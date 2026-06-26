@@ -1,5 +1,6 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import RecipeImage from "@/app/components/atoms/RecipeImage";
+import { act, render, screen, waitFor } from "@testing-library/react";
+
+import RecipeImage from "@/components/atoms/RecipeImage/RecipeImage";
 
 describe("RecipeImage", () => {
   it("renders an image with alt text when src is valid", () => {
@@ -35,7 +36,9 @@ describe("RecipeImage", () => {
     );
 
     const img = container.querySelector("img")!;
-    img.dispatchEvent(new Event("error", { bubbles: true }));
+    act(() => {
+      img.dispatchEvent(new Event("error", { bubbles: true }));
+    });
 
     await waitFor(() => {
       expect(container.querySelector("img")).not.toBeInTheDocument();

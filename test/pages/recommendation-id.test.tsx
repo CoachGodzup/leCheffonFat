@@ -1,10 +1,12 @@
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+
 import RecommendationById from "@/app/recommendation/[id]/page";
 import { useStore } from "@/store";
-import { mockOkResponse } from "../utils/mock-fetch";
-import { pizzaMargherita } from "../fixtures/meals";
 import type { Meal } from "@/types/meal-db";
+
+import { pizzaMargherita } from "../fixtures/meals";
+import { mockOkResponse } from "../utils/mock-fetch";
 
 const mockPush = jest.fn();
 const mockBack = jest.fn();
@@ -18,7 +20,7 @@ jest.mock("next/navigation", () => ({
 }));
 
 const mockFetch = jest.fn();
-global.fetch = mockFetch;
+globalThis.fetch = mockFetch;
 
 const carbonara: Meal = {
   idMeal: "52802",

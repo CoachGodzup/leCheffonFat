@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import CheckboxFilter from "@/app/components/atoms/CheckboxFilter";
+
+import CheckboxFilter from "@/components/atoms/CheckboxFilter/CheckboxFilter";
 
 describe("CheckboxFilter", () => {
   const options = [

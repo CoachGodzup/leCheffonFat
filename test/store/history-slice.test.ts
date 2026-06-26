@@ -1,4 +1,4 @@
-import { createHistorySlice, HistorySlice } from "@/store/slices/history-slice";
+import { HistorySlice, createHistorySlice } from "@/store/slices/history-slice";
 
 describe("createHistorySlice", () => {
   let set: jest.Mock;

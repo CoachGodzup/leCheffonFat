@@ -1,11 +1,13 @@
 "use client";
 
+import { SearchIcon } from "lucide-react";
 import Link from "next/link";
 import { useEffect } from "react";
-import styles from "./search.module.css";
+
+import RecipeImage from "@/components/atoms/RecipeImage/RecipeImage";
 import { useSearch } from "@/hooks/use-search";
-import RecipeImage from "@/app/components/atoms/RecipeImage";
-import { SearchIcon } from "lucide-react";
+
+import styles from "./search.module.css";
 
 const Search = () => {
   useEffect(() => {

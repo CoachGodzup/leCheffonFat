@@ -1,5 +1,6 @@
-import type { Meal } from "@/types/meal-db";
 import { getRandomMealByFilter } from "@/service/meal-db-service";
+import type { Meal } from "@/types/meal-db";
+
 import { useApi } from "./use-api";
 
 export const useRandomMeal = (

@@ -1,5 +1,6 @@
-import type { Meal } from "@/types/meal-db";
 import { getMealById } from "@/service/meal-db-service";
+import type { Meal } from "@/types/meal-db";
+
 import { useApi } from "./use-api";
 
 export const useMealById = (id: string) => {

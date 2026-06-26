@@ -1,10 +1,12 @@
 import { renderHook, waitFor } from "@testing-library/react";
+
 import { useAreasByCategory } from "@/hooks/use-areas-by-category";
-import { mockOkResponse, mockErrorResponse } from "../utils/mock-fetch";
+
 import { mealsWithAreas } from "../fixtures/areas";
+import { mockErrorResponse, mockOkResponse } from "../utils/mock-fetch";
 
 const mockFetch = jest.fn();
-global.fetch = mockFetch;
+globalThis.fetch = mockFetch;
 
 beforeEach(() => {
   mockFetch.mockClear();

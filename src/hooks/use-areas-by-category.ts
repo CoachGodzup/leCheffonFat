@@ -1,5 +1,6 @@
-import type { Area } from "@/types/meal-db";
 import { filterByCategory } from "@/service/meal-db-service";
+import type { Area } from "@/types/meal-db";
+
 import { useApi } from "./use-api";
 
 export const useAreasByCategory = (category: string) => {

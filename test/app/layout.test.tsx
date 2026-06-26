@@ -1,4 +1,5 @@
 import { renderToString } from "react-dom/server";
+
 import RootLayout from "@/app/layout";
 
 describe("RootLayout", () => {

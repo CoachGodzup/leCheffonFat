@@ -1,10 +1,12 @@
-import { renderHook, waitFor, act } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
+
 import { useRandomMeal } from "@/hooks/use-random-meal";
-import { mockOkResponse } from "../utils/mock-fetch";
+
 import { fishPieFull } from "../fixtures/meals";
+import { mockOkResponse } from "../utils/mock-fetch";
 
 const mockFetch = jest.fn();
-global.fetch = mockFetch;
+globalThis.fetch = mockFetch;
 
 const mockFilterResponse = {
   meals: [

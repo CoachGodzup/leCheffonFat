@@ -1,10 +1,12 @@
-import { renderHook, waitFor, act } from "@testing-library/react";
+import { act, renderHook, waitFor } from "@testing-library/react";
+
 import { useMealById } from "@/hooks/use-meal-by-id";
-import { mockOkResponse } from "../utils/mock-fetch";
+
 import { fishPieFull } from "../fixtures/meals";
+import { mockOkResponse } from "../utils/mock-fetch";
 
 const mockFetch = jest.fn();
-global.fetch = mockFetch;
+globalThis.fetch = mockFetch;
 
 beforeEach(() => {
   mockFetch.mockClear();

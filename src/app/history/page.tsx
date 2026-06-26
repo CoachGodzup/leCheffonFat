@@ -1,13 +1,16 @@
 "use client";
 
-import styles from "./history.module.css";
-import { useStore } from "@/store";
+import { ThumbsDown, ThumbsUp } from "lucide-react";
 import Link from "next/link";
-import RecipeImage from "@/app/components/atoms/RecipeImage";
-import { useEffect, useState, useMemo } from "react";
-import CheckboxFilter from "@/app/components/atoms/CheckboxFilter";
-import SortBy from "@/app/components/atoms/SortBy";
-import { ThumbsUp, ThumbsDown } from "lucide-react";
+import { useEffect, useMemo, useState } from "react";
+
+import CheckboxFilter from "@/components/atoms/CheckboxFilter/CheckboxFilter";
+import RecipeImage from "@/components/atoms/RecipeImage/RecipeImage";
+import SortBy from "@/components/atoms/SortBy/SortBy";
+import type { Sort } from "@/components/atoms/SortBy/SortBy";
+import { useStore } from "@/store";
+
+import styles from "./history.module.css";
 
 const FILTER_OPTIONS = [
   {

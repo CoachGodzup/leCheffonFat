@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 
 test.describe("Happy path", () => {
   test("full flow: home → page1 → page2 → recommendation", async ({ page }) => {
@@ -44,7 +44,7 @@ test.describe("Happy path", () => {
     await page.getByLabel("Recipe name").fill("Pizza");
 
     await expect(page.getByText("Pizza Margherita")).toBeVisible({
-      timeout: 10000,
+      timeout: 10_000,
     });
     await expect(page.getByText("Fish pie")).toBeVisible();
   });

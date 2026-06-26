@@ -1,8 +1,10 @@
-import { useDebounce } from "./use-debounce";
 import { useState } from "react";
-import { useApi } from "./use-api";
-import { MealSearchResponse } from "@/types/meal-db";
+
 import { searchMealsByName } from "@/service/meal-db-service";
+import { MealSearchResponse } from "@/types/meal-db";
+
+import { useApi } from "./use-api";
+import { useDebounce } from "./use-debounce";
 
 const SEARCH_DELAY = 300;
 const MIN_CHAR_FOR_SEARCH = 3;

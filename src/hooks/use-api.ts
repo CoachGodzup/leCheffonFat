@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 export interface UseApiState<T> {
   data: T | null;
@@ -34,13 +34,15 @@ export function useApi<T>(
       .then((data) => {
         if (!cancelled) setState({ data, isLoading: false, error: null });
       })
-      .catch((err) => {
+      .catch((error) => {
         if (!cancelled)
           setState({
             data: null,
             isLoading: false,
             error:
-              err instanceof Error ? err.message : "An unknown error occurred",
+              error instanceof Error
+                ? error.message
+                : "An unknown error occurred",
           });
       });
 
@@ -56,12 +58,14 @@ export function useApi<T>(
     fetcherRef
       .current()
       .then((data) => setState({ data, isLoading: false, error: null }))
-      .catch((err) =>
+      .catch((error) =>
         setState({
           data: null,
           isLoading: false,
           error:
-            err instanceof Error ? err.message : "An unknown error occurred",
+            error instanceof Error
+              ? error.message
+              : "An unknown error occurred",
         }),
       );
   }, []);

@@ -1,14 +1,15 @@
 "use client";
 
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import type { Page2Request } from "@/types/form";
-import { useRouter } from "next/navigation";
-import Link from "next/link";
-import FormSelect from "@/components/form/formSelect/FormSelect";
-import { useStore } from "@/store";
-import { useAreasByCategory } from "@/hooks/use-areas-by-category";
 import { useShallow } from "zustand/shallow";
+
+import FormSelect from "@/components/molecules/FormSelect/FormSelect";
+import { useAreasByCategory } from "@/hooks/use-areas-by-category";
+import { useStore } from "@/store";
+import type { Page2Request } from "@/types/form";
 
 const Page2 = () => {
   useEffect(() => {
