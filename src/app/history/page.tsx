@@ -3,11 +3,10 @@
 import styles from "./history.module.css";
 import { useStore } from "@/store";
 import Link from "next/link";
+import RecipeImage from "@/app/components/atoms/RecipeImage";
 import { useEffect, useState, useMemo } from "react";
 import CheckboxFilter from "@/app/components/atoms/CheckboxFilter";
 import SortBy from "@/app/components/atoms/SortBy";
-import HistoryList from "@/app/components/HistoryList";
-import type { Sort } from "@/app/components/atoms/SortBy";
 import { ThumbsUp, ThumbsDown } from "lucide-react";
 
 const FILTER_OPTIONS = [
@@ -74,13 +73,24 @@ const History = () => {
       {list.length === 0 ? (
         <p>No history yet.</p>
       ) : (
-        <HistoryList
-          entries={[...list].sort((a, b) =>
-            sort === "asc"
-              ? a.timestamp - b.timestamp
-              : b.timestamp - a.timestamp,
-          )}
-        />
+        <ul>
+          {list.map((entry) => (
+            <li key={entry.recipeId}>
+              <Link href={`/recommendation/${entry.recipeId}`}>
+                <RecipeImage
+                  src={entry.imageUrl}
+                  alt={entry.title}
+                  width={100}
+                  height={100}
+                />
+                <span>{entry.title}</span>
+                <span>
+                  {entry.inputs.category} — {entry.inputs.area}
+                </span>
+              </Link>
+            </li>
+          ))}
+        </ul>
       )}
 
       <Link href="/" className={styles.back}>

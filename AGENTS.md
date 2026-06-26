@@ -53,6 +53,8 @@ See full guidelines in /docs/style_guide.md
 - Unit tests use Jest + `@testing-library/react`.
 - Run tests with `npm test` before committing.
 
+- E2E tests live in `test/e2e/` and use Playwright. Run with `npm run test:e2e`.
+
 ### Where to place tests
 
 - **Page tests**: `test/pages/[name].test.tsx` (e.g. `test/pages/page1.test.tsx`)
@@ -64,6 +66,10 @@ See full guidelines in /docs/style_guide.md
 - Renders without crashing.
 - Heading or main title is present.
 - All navigation Links are rendered with correct `href`.
+
+### Cleanup
+
+- When removing a component, class, or module, always remove its corresponding test file(s) too.
 
 ### What to test for components
 
