@@ -48,3 +48,9 @@
   transform: translateX(3px);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
+
+.close {
+  border: none;
+  width: 4em;
+  background: var(--color-white);
+}

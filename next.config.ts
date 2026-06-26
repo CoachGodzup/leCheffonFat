@@ -1,4 +1,3 @@
-import { API_BASE, THE_MEAL_DB } from "@/service/meal-db-service";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {

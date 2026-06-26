@@ -72,10 +72,10 @@ const History = () => {
       </div>
 
       {list.length === 0 ? (
-        <p className={styles.empty}>No history yet.</p>
+        <p>No history yet.</p>
       ) : (
         <HistoryList
-          entries={list.sort((a, b) =>
+          entries={[...list].sort((a, b) =>
             sort === "asc"
               ? a.timestamp - b.timestamp
               : b.timestamp - a.timestamp,

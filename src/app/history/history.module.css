@@ -20,8 +20,12 @@
 }
 
 .back {
-  display: inline-block;
-  margin-top: 1.5em;
-  color: var(--color-lilac);
-  text-decoration: underline;
+  border: 1px solid var(--color-lilac);
+  cursor: pointer;
+  background: none;
+  border-radius: 6px;
+  margin-top: .5em;
+  padding: .25em .5em;
+  font-size: 1em;
+  max-width: fit-content;
 }

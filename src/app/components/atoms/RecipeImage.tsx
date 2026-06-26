@@ -9,7 +9,9 @@ type Props = ComponentProps<typeof Image>;
 const RecipeImage = (props: Props) => {
   const { src, alt, className, ...rest } = props;
   const [hasError, setHasError] = useState(false);
-  const handleError = useCallback(() => setHasError(true), []);
+  const handleError = useCallback(() => {
+    setHasError(true);
+  }, []);
 
   const hasExplicitSize =
     typeof rest.width === "number" && typeof rest.height === "number";

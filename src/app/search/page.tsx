@@ -17,8 +17,7 @@ const Search = () => {
     <section className={styles.page}>
       <h1>Search page</h1>
       <form>
-        <fieldset>
-          <legend>Recipe name</legend>
+        <fieldset className={styles.fieldset}>          <legend>Recipe name</legend>
           <input
             id="recipe-name"
             type="search"
@@ -26,7 +25,13 @@ const Search = () => {
             className={styles.search}
             value={searchText}
             onChange={(elm) => setSearchText(elm.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") e.preventDefault();
+            }}
           />
+          <button type="submit" style={{ display: "none" }}>
+            Search
+          </button>
         </fieldset>
       </form>
       <div role="status" aria-live="polite">

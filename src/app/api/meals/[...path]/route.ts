@@ -1,5 +1,6 @@
 import { NextRequest } from "next/server";
-import { API_BASE, THE_MEAL_DB } from "@/service/meal-db-service";
+
+const API_BASE = "https://www.themealdb.com/api/json/v1";
 
 export async function GET(
   request: NextRequest,

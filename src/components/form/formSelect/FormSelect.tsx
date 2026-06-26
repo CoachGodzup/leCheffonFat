@@ -42,7 +42,7 @@ const FormSelect = <
           </option>
         ))}
       </select>
-      {error ? <p role="alert">{error}</p> : <p></p>}
+      {error ? <p role="alert">{error}</p> : null}
     </div>
   );
 };

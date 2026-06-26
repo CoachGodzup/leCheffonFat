@@ -27,6 +27,8 @@ Open [http://localhost:3000](http://localhost:3000) and... _bon apetit_ 🧑‍�
 
 ## Technical choices
 
-All design decisions are documented in [docs/technical_specs.md](./docs/technical_specs.md). Logs are in [docs/HIMYP.md](./docs/HIMYP.md).
+All technical decisions are documented in [docs/technical_specs.md](./docs/technical_specs.md).
+There's also a file for code specific decision in [docs/code_choices.md](./docs/code_choices.md) and a little accessibility report [here](./docs/wcag-report.md).
+
 
 Warning: this can cause fatness in [le chat](https://www.explainx.ai/blog/le-chaton-fat-mistral-ai-viral-hoax-meme-2026).
