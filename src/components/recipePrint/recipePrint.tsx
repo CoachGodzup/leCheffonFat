@@ -6,7 +6,7 @@ type RecipePrintProps = {
 
 export const RecipePrint = ({ meal }: RecipePrintProps) => {
   return (
-    <div className="print-only instructions">
+    <div className="instructions">
       <ul>
         {[...Array(20).keys()]
           .filter((num) => meal[`strIngredient${num}` as keyof Meal])
