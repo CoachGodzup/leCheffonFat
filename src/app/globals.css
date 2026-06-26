@@ -165,15 +165,14 @@ aside {
 .btn-cta,
 a,
 button {
-  background-color: var(--color-bg-card-dark);
+  background-color: var(--color-bg-card);
   color: var(--color-text-main);
   font-weight: bold;
-  padding: 10px 20px;
-  border: 1px solid var(--color-bg-salvia);
-  border-radius: 20px;
+  border-radius: .5em;
   cursor: pointer;
   transition: transform 0.2s;
 }
+
 
 .btn-cta:hover,
 .btn-primary:hover,
