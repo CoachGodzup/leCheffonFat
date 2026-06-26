@@ -17,9 +17,11 @@ export const RecipePrint = ({ meal }: RecipePrintProps) => {
             </li>
           ))}
       </ul>
-      <h2>Instructions</h2>
-      <div>{meal.strInstructions}</div>
-      <p>
+      <article role="main">
+        <h2>Instructions</h2>
+        <div>{meal.strInstructions}</div>
+      </article>
+      <p className="print-only">
         Printed by Le Cheffon Fat using The Meal DB (https://www.themealdb.com)
       </p>
     </div>
