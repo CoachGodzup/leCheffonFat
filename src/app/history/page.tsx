@@ -74,30 +74,32 @@ const History = () => {
       </div>
 
       {list.length === 0 ? (
-        <p>No history yet.</p>
+        <p>No meals found.</p>
       ) : (
-        <ul>
+        <ul className={styles.resultsContainer}>
           {list.map((entry) => (
-            <li key={entry.recipeId}>
+            <li key={entry.recipeId} className={styles.result}>
               <Link href={`/recommendation/${entry.recipeId}`}>
                 <RecipeImage
                   src={entry.imageUrl}
                   alt={entry.title}
-                  width={100}
-                  height={100}
+                  width={300}
+                  height={110}
                 />
-                <span>{entry.title}</span>
-                <span>
-                  {entry.inputs.category} — {entry.inputs.area}
-                </span>
+                <nav role="contentinfo">
+                  <h4>{entry.title}</h4>
+                  <p>
+                    {entry.inputs.category} — {entry.inputs.area}
+                  </p>
+                </nav>
               </Link>
             </li>
           ))}
         </ul>
       )}
 
-      <Link href="/" className={styles.back}>
-        back to home
+      <Link href="/page1" className={styles.back}>
+        Inspire me!
       </Link>
     </section>
   );
