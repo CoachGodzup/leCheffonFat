@@ -37,6 +37,8 @@ See full guidelines in `/docs/code_guide.md` (code) and `/docs/graphics_guide.md
 - Use strict TypeScript; avoid `any` unless absolutely necessary.
 - Prefer pure CSS (modules) — no CSS frameworks.
 - use helper functions whenever possible, and save it in a './src/service' folder. Update or create a '/agents/services.md' file as a list of every available services. Keep it updated, and search there before creating other overlapping services.
+- Keep `agents/components.md` up to date: register new components when created (with path, props, description) and remove entries when components are deleted.
+- Keep `agents/types.md`, `agents/pages.md`, and `agents/store.md` up to date when adding/removing types, pages, or store slices.
 - Always use `type` (not `interface`) for component props
 - Create short functions
 - Prefer arrow functions over `function` declarations
