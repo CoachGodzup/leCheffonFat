@@ -8,7 +8,7 @@ export const RecipePrint = ({ meal }: RecipePrintProps) => {
   return (
     <div className="instructions">
       <ul>
-        {[...Array(20).keys()]
+        {[...Array.from({ length: 20 }).keys()]
           .filter((num) => meal[`strIngredient${num}` as keyof Meal])
           .map((num) => (
             <li key={`Ingredients${num}`}>

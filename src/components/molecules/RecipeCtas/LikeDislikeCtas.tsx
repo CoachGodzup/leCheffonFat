@@ -1,6 +1,6 @@
 import { ThumbsDown, ThumbsUp } from "lucide-react";
 
-import styles from "./likeDislikeCtas.module.css";
+import styles from "./LikeDislikeCtas.module.css";
 
 type LikeDislikeCtasProps = {
   likeFn: (like: boolean) => void;
