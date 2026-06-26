@@ -66,7 +66,7 @@ const RecommendationById = () => {
   return (
     <RecommendationView
       data={data}
-      isLoading={isLoading}
+      _isLoading={isLoading}
       error={error}
       refetch={refetch}
     />
