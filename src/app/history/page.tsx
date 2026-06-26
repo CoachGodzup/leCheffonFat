@@ -53,10 +53,14 @@ const History = () => {
 
   const list = useMemo(
     () =>
-      calls.filter((c) =>
-        filter.length === 0 ? filter : filter.includes(c.like),
-      ),
-    [calls, filter],
+      calls
+        .filter((c) => (filter.length === 0 ? filter : filter.includes(c.like)))
+        .sort((a, b) =>
+          sort === "asc"
+            ? a.timestamp - b.timestamp
+            : b.timestamp - a.timestamp,
+        ),
+    [calls, filter, sort],
   );
 
   return (
@@ -70,11 +74,17 @@ const History = () => {
           value={filter}
           onChange={setFilter}
         />
-        <SortBy value={sort} onChange={setSort} />
+        <div>
+          <SortBy value={sort} onChange={setSort} />
+        </div>
       </div>
 
       {list.length === 0 ? (
-        <p>No meals found.</p>
+        <div>
+          <div>
+            <p>No meals found.</p>
+          </div>
+        </div>
       ) : (
         <ul className={styles.resultsContainer}>
           {list.map((entry) => (
@@ -97,10 +107,6 @@ const History = () => {
           ))}
         </ul>
       )}
-
-      <Link href="/page1" className={styles.back}>
-        Inspire me!
-      </Link>
     </section>
   );
 };

@@ -54,7 +54,7 @@ test.describe("Happy path", () => {
   }) => {
     await page.goto("/history");
     await expect(page.locator("h1")).toContainText("History");
-    await expect(page.getByText("No history yet.")).toBeVisible();
+    await expect(page.getByText("No meals found.")).toBeVisible();
 
     await page.goto("/recommendation/99999");
     await expect(page.locator("section.card article h1")).toHaveText(

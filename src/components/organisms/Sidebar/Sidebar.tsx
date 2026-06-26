@@ -80,6 +80,7 @@ const Sidebar = () => {
         <SortBy value={sort} onChange={setSort} />
       </nav>
       <ul className={styles.entryList}>
+        {list.length === 0 && <p>No results found.</p>}
         {list
           .sort((a, b) =>
             sort === "desc"
