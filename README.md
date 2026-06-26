@@ -1,10 +1,14 @@
 ```
-██╗     ███████╗     ██████╗██╗  ██╗███████╗███████╗███████╗ ██████╗ ███╗   ██╗    ███████╗ █████╗ ████████╗
-██║     ██╔════╝    ██╔════╝██║  ██║██╔════╝██╔════╝██╔════╝██╔═══██╗████╗  ██║    ██╔════╝██╔══██╗╚══██╔══╝
-██║     █████╗      ██║     ███████║█████╗  █████╗  █████╗  ██║   ██║██╔██╗ ██║    █████╗  ███████║   ██║
-██║     ██╔══╝      ██║     ██╔══██║██╔══╝  ██╔══╝  ██╔══╝  ██║   ██║██║╚██╗██║    ██╔══╝  ██╔══██║   ██║
-███████╗███████╗    ╚██████╗██║  ██║███████╗██║     ██║     ╚██████╔╝██║ ╚████║    ██║     ██║  ██║   ██║
-╚══════╝╚══════╝     ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝      ╚═════╝ ╚═╝  ╚═══╝    ╚═╝     ╚═╝  ╚═╝   ╚═╝
+
+
+ _             _____ _           __  __              ______    _   
+| |           / ____| |         / _|/ _|            |  ____|  | |  
+| |     ___  | |    | |__   ___| |_| |_ ___  _ __   | |__ __ _| |_ 
+| |    / _ \ | |    | '_ \ / _ \  _|  _/ _ \| '_ \  |  __/ _` | __|
+| |___|  __/ | |____| | | |  __/ | | || (_) | | | | | | | (_| | |_ 
+|______\___|  \_____|_| |_|\___|_| |_| \___/|_| |_| |_|  \__,_|\__|
+
+
 The goto stop when you don't know what to cook
 ```
 
@@ -14,7 +18,7 @@ The goto stop when you don't know what to cook
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff)](https://www.typescriptlang.org/)
 [![Next.js](https://img.shields.io/badge/Next.js-16.2.9-000?logo=next.js)](https://nextjs.org/)
 
-Two-step recipe recommender app, built with [Next.js](https://nextjs.org/) that uses [TheMealDB API](https://www.themealdb.com/). I
+Two-step recipe recommender app, built with [Next.js](https://nextjs.org/) that uses [TheMealDB API](https://www.themealdb.com/).
 
 ## Getting Started
 
