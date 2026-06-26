@@ -13,6 +13,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - Be short: 70 chars max
 - Before committing, run `npx prettier --write .` and `npm run lint` to ensure formatting and lint consistency.
 - Stage only the intended files; never commit secrets or env files.
+- There's two branches: `main` and `develop`. Please use `git flow` branching convention, create a new branch for each prompt you get, and merge into `develop`. Be careful if it's a feature or an hotfix, and merge accordingly.
 
 ## React Components
 
