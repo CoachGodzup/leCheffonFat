@@ -7,8 +7,8 @@ export type FormSlice = UserRequest & {
 };
 
 export const createFormSlice = (
-  set: (partial: Partial<FormSlice>) => void,
-  _get: () => Partial<FormSlice>,
+  set: (partial: Partial<FormSlice> | ((current: FormSlice) => Partial<FormSlice>)) => void,
+  _get: () => FormSlice,
   _api: unknown,
 ): FormSlice => ({
   category: "",
