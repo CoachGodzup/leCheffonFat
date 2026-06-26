@@ -208,6 +208,11 @@ button:hover {
   margin: 2em auto;
 }
 
+.card.full-page {
+  margin: 0;
+  max-width: none;
+}
+
 form {
   display: flex;
   flex-direction: column;
