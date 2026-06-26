@@ -1,13 +1,14 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { FieldValues, useForm } from "react-hook-form";
-import type { Page1Request } from "@/types/form";
-import { useRouter } from "next/navigation";
-import FormSelect from "@/components/molecules/FormSelect/FormSelect";
-import { useStore } from "@/store";
 import { useShallow } from "zustand/shallow";
+
+import FormSelect from "@/components/molecules/FormSelect/FormSelect";
 import { useCategories } from "@/hooks/use-categories";
+import { useStore } from "@/store";
+import type { Page1Request } from "@/types/form";
 
 const Page1 = () => {
   useEffect(() => {

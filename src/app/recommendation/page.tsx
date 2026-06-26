@@ -1,10 +1,11 @@
 "use client";
 
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useStore } from "@/store";
+import { useEffect } from "react";
 import { useShallow } from "zustand/shallow";
+
 import { useRandomMeal } from "@/hooks/use-random-meal";
+import { useStore } from "@/store";
 
 const Recommendation = () => {
   useEffect(() => {

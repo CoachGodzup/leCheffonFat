@@ -1,13 +1,14 @@
 import {
-  searchMealsByName,
+  filterByArea,
+  filterByCategory,
+  filterByIngredient,
+  getCategories,
   getMealById,
   getRandomMeal,
-  getCategories,
-  filterByCategory,
-  filterByArea,
-  filterByIngredient,
+  searchMealsByName,
 } from "@/service/meal-db-service";
-import { mockOkResponse, mockErrorResponse } from "../utils/mock-fetch";
+
+import { mockErrorResponse, mockOkResponse } from "../utils/mock-fetch";
 
 const mockFetch = jest.fn();
 global.fetch = mockFetch;

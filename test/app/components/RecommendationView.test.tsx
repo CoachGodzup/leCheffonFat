@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import RecommendationView from "@/components/organisms/RecommendationView/RecommendationView";
 import { useStore } from "@/store";
 import type { Meal } from "@/types/meal-db";

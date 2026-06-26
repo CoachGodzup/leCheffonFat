@@ -1,6 +1,7 @@
 import { getRandomMealByFilter } from "@/service/meal-db-service";
-import { mockOkResponse } from "../utils/mock-fetch";
+
 import { fishPieFull, seafoodFilterResponse } from "../fixtures/meals";
+import { mockOkResponse } from "../utils/mock-fetch";
 
 const mockFetch = jest.fn();
 global.fetch = mockFetch;

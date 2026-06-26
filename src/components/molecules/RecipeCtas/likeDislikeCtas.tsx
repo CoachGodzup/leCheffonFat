@@ -1,4 +1,5 @@
-import { ThumbsUp, ThumbsDown } from "lucide-react";
+import { ThumbsDown, ThumbsUp } from "lucide-react";
+
 import styles from "./likeDislikeCtas.module.css";
 
 type LikeDislikeCtasProps = {

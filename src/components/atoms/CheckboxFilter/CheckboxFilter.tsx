@@ -1,5 +1,6 @@
-import "./checkboxFilter.css";
 import type { ReactNode } from "react";
+
+import "./checkboxFilter.css";
 
 type Option<T> = {
   value: T;

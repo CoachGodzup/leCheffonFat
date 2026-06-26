@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
-import "./globals.css";
+
+import Footer from "@/components/organisms/Footer/Footer";
 import Header from "@/components/organisms/Header/Header";
 import Sidebar from "@/components/organisms/Sidebar/Sidebar";
-import Footer from "@/components/organisms/Footer/Footer";
+
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Le Cheffon Fat",

@@ -1,7 +1,8 @@
 import { create } from "zustand";
-import { persist, createJSONStorage } from "zustand/middleware";
-import { createFormSlice, FormSlice } from "./slices/form-slice";
-import { createHistorySlice, HistorySlice } from "./slices/history-slice";
+import { createJSONStorage, persist } from "zustand/middleware";
+
+import { FormSlice, createFormSlice } from "./slices/form-slice";
+import { HistorySlice, createHistorySlice } from "./slices/history-slice";
 
 export type AppStore = FormSlice & HistorySlice;
 

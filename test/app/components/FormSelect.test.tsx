@@ -1,5 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+
 import FormSelect from "@/components/molecules/FormSelect/FormSelect";
 
 const mockRegister = jest.fn().mockReturnValue({});

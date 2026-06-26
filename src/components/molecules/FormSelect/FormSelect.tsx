@@ -1,6 +1,7 @@
 "use client";
 
 import type { FieldValues, Path, UseFormRegister } from "react-hook-form";
+
 import styles from "./FormSelect.module.css";
 
 type Option = {

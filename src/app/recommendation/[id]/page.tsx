@@ -1,11 +1,12 @@
 "use client";
 
-import { useParams, useSearchParams, useRouter } from "next/navigation";
-import { useEffect, useCallback, useMemo } from "react";
-import { useMealById } from "@/hooks/use-meal-by-id";
-import { useStore } from "@/store";
-import { getRandomMealByFilter } from "@/service/meal-db-service";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useCallback, useEffect, useMemo } from "react";
+
 import RecommendationView from "@/components/organisms/RecommendationView/RecommendationView";
+import { useMealById } from "@/hooks/use-meal-by-id";
+import { getRandomMealByFilter } from "@/service/meal-db-service";
+import { useStore } from "@/store";
 
 const RecommendationById = () => {
   const { id } = useParams<{ id: string }>();

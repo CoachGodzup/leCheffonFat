@@ -1,4 +1,5 @@
 import { render, screen } from "@testing-library/react";
+
 import { RecipePrint } from "@/components/molecules/RecipePrint/recipePrint";
 import type { Meal } from "@/types/meal-db";
 

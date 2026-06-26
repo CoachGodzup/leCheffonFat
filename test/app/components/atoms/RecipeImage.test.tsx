@@ -1,4 +1,5 @@
 import { render, screen, waitFor } from "@testing-library/react";
+
 import RecipeImage from "@/components/atoms/RecipeImage/RecipeImage";
 
 describe("RecipeImage", () => {

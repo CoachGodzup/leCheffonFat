@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useCallback, type ComponentProps } from "react";
 import Image from "next/image";
+import { type ComponentProps, useCallback, useState } from "react";
+
 import styles from "./RecipeImage.module.css";
 
 type Props = ComponentProps<typeof Image>;

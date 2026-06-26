@@ -1,14 +1,14 @@
 "use client";
 
-import { Suspense, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import RecipeImage from "@/components/atoms/RecipeImage/RecipeImage";
+import { Suspense, useEffect } from "react";
 
-import { useStore } from "@/store";
+import RecipeImage from "@/components/atoms/RecipeImage/RecipeImage";
 import RecipeCtas from "@/components/molecules/RecipeCtas/RecipeCtas";
 import LikeDislikeCtas from "@/components/molecules/RecipeCtas/likeDislikeCtas";
-import type { Meal } from "@/types/meal-db";
 import { RecipePrint } from "@/components/molecules/RecipePrint/recipePrint";
+import { useStore } from "@/store";
+import type { Meal } from "@/types/meal-db";
 
 type Props = {
   data: Meal | null;

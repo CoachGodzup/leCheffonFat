@@ -1,5 +1,6 @@
+import { ChevronDown, ChevronUp } from "lucide-react";
+
 import "./sortBy.css";
-import { ChevronUp, ChevronDown } from "lucide-react";
 
 export type Sort = "asc" | "desc";
 

@@ -1,14 +1,17 @@
 "use client";
 
-import { usePathname } from "next/navigation";
-import styles from "./sidebar.module.css";
-import { useStore } from "@/store";
+import { ThumbsDown, ThumbsUp, X } from "lucide-react";
 import Link from "next/link";
-import { useState, useMemo } from "react";
+import { usePathname } from "next/navigation";
+import { useMemo, useState } from "react";
 import { useShallow } from "zustand/shallow";
+
 import CheckboxFilter from "@/components/atoms/CheckboxFilter/CheckboxFilter";
 import SortBy from "@/components/atoms/SortBy/SortBy";
-import { ThumbsUp, ThumbsDown, X } from "lucide-react";
+import type { Sort } from "@/components/atoms/SortBy/SortBy";
+import { useStore } from "@/store";
+
+import styles from "./sidebar.module.css";
 
 const FILTER_OPTIONS = [
   {
@@ -39,8 +42,6 @@ const FILTER_OPTIONS = [
   },
   { value: null, label: "Unrated" },
 ];
-
-import type { Sort } from "@/components/atoms/SortBy/SortBy";
 
 const HIDE_PATHS = ["/"];
 
