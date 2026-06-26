@@ -1,6 +1,20 @@
-# 🧑‍🍳 Le Cheffon Fat
+```
+██╗     ███████╗     ██████╗██╗  ██╗███████╗███████╗███████╗ ██████╗ ███╗   ██╗    ███████╗ █████╗ ████████╗
+██║     ██╔════╝    ██╔════╝██║  ██║██╔════╝██╔════╝██╔════╝██╔═══██╗████╗  ██║    ██╔════╝██╔══██╗╚══██╔══╝
+██║     █████╗      ██║     ███████║█████╗  █████╗  █████╗  ██║   ██║██╔██╗ ██║    █████╗  ███████║   ██║
+██║     ██╔══╝      ██║     ██╔══██║██╔══╝  ██╔══╝  ██╔══╝  ██║   ██║██║╚██╗██║    ██╔══╝  ██╔══██║   ██║
+███████╗███████╗    ╚██████╗██║  ██║███████╗██║     ██║     ╚██████╔╝██║ ╚████║    ██║     ██║  ██║   ██║
+╚══════╝╚══════╝     ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝      ╚═════╝ ╚═╝  ╚═══╝    ╚═╝     ╚═╝  ╚═╝   ╚═╝
+The goto stop when you don't know what to cook
+```
 
-Two-step recipe recommender app built with Next.js.
+[![CI](https://github.com/CoachGodzup/leCheffonFat/actions/workflows/test.yml/badge.svg)](https://github.com/CoachGodzup/leCheffonFat/actions/workflows/test.yml)
+[![Stars](https://img.shields.io/github/stars/CoachGodzup/leCheffonFat?style=social)](https://github.com/CoachGodzup/leCheffonFat)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=fff)](https://www.typescriptlang.org/)
+[![Next.js](https://img.shields.io/badge/Next.js-16.2.9-000?logo=next.js)](https://nextjs.org/)
+
+Two-step recipe recommender app, built with [Next.js](https://nextjs.org/) that uses [TheMealDB API](https://www.themealdb.com/). I
 
 ## Getting Started
 
@@ -13,7 +27,7 @@ npm install
 ```
 
 Set in a `.env.local` file. See `.env_example` as reference.
-This project use [The Meal API](https://www.themealdb.com/). You just go for the public API key (1).
+This project use [The Meal API](https://www.themealdb.com/). You just go for the public API key (`1`).
 
 Fire the project
 

@@ -56,3 +56,8 @@ todo.md
 # playwright
 playwright-report/
 test-results/
+
+# agents
+.opencode/*
+
+.swc/plugins/linux_x86_64_24.0.0/
