@@ -54,7 +54,7 @@ const RecommendationView = ({
   }
 
   return (
-    <section className="card">
+    <section className="card full-page">
       <div className="recipeContainer">
         <Suspense fallback={<p role="status">loading...</p>}>
           <div className="recipe">
