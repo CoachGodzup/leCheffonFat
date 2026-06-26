@@ -112,6 +112,7 @@ const Sidebar = () => {
               </Link>
               <button
                 type="button"
+                className={styles.close}
                 onClick={() => remove(entry.recipeId)}
                 aria-label={`Remove ${entry.title} from history`}
               >
