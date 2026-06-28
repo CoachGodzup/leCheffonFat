@@ -1,7 +1,7 @@
 "use client";
 
 import { useParams, useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 import RecommendationView from "@/components/organisms/RecommendationView/RecommendationView";
 import { useMealById } from "@/hooks/use-meal-by-id";
@@ -27,47 +27,50 @@ const RecommendationById = () => {
     [calls, id],
   );
 
-  const category = useMemo(
-    () =>
-      searchParams.get("category") ||
-      historyEntry?.inputs.category ||
-      data?.strCategory ||
-      "",
-    [searchParams, historyEntry, data],
-  );
-  const area = useMemo(
-    () =>
-      searchParams.get("area") ||
-      historyEntry?.inputs.area ||
-      data?.strArea ||
-      "",
-    [searchParams, historyEntry, data],
-  );
+  const category =
+    searchParams.get("category") ||
+    historyEntry?.inputs.category ||
+    data?.strCategory ||
+    "";
+  const area =
+    searchParams.get("area") ||
+    historyEntry?.inputs.area ||
+    data?.strArea ||
+    "";
 
   const hasCriteria = Boolean(category && area);
 
+  const [newIdeaError, setNewIdeaError] = useState<string | null>(null);
+  const fetchingRef = useRef(false);
+
   const handleNewIdea = useCallback(async () => {
+    if (fetchingRef.current) return;
     if (!hasCriteria) {
       refetchById();
       return;
     }
+    fetchingRef.current = true;
+    setNewIdeaError(null);
     try {
       const meal = await getRandomMealByFilter(category, area);
       if (!meal) throw new Error("No meal found");
       const params = new URLSearchParams({ category, area });
       router.push(`/recommendation/${meal.idMeal}?${params}`);
     } catch {
-      /* user stays on current page */
+      setNewIdeaError("No new recipe found for these criteria");
+    } finally {
+      fetchingRef.current = false;
     }
   }, [hasCriteria, category, area, refetchById, router]);
 
   const refetch = hasCriteria ? handleNewIdea : refetchById;
+  const displayError = error || newIdeaError;
 
   return (
     <RecommendationView
       data={data}
-      _isLoading={isLoading}
-      error={error}
+      isLoading={isLoading}
+      error={displayError}
       refetch={refetch}
     />
   );
