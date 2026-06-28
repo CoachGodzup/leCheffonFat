@@ -27,6 +27,7 @@ const FormSelect = <
   register,
 }: FormSelectProps<T>) => {
   const id = `form-select-${name}`;
+  const errorId = `${id}-error`;
 
   return (
     <div className={styles.inputGroup}>
@@ -34,7 +35,8 @@ const FormSelect = <
       <select
         {...register(name, { required: true })}
         id={id}
-        aria-invalid={error ? "true" : "false"}
+        aria-invalid={error ? "true" : undefined}
+        aria-describedby={error ? errorId : undefined}
       >
         <option value="">Select a {label.toLowerCase()}</option>
         {options.map((opt) => (
@@ -43,7 +45,11 @@ const FormSelect = <
           </option>
         ))}
       </select>
-      {error ? <p role="alert">{error}</p> : null}
+      {error ? (
+        <p id={errorId} role="alert">
+          {error}
+        </p>
+      ) : null}
     </div>
   );
 };

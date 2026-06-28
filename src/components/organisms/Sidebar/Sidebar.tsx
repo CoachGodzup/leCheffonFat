@@ -79,7 +79,7 @@ const Sidebar = () => {
         />
         <SortBy value={sort} onChange={setSort} />
       </nav>
-      <ul className={styles.entryList}>
+      <ul className={styles.entryList} role="status">
         {list.length === 0 && <p>No results found.</p>}
         {list
           .sort((a, b) =>

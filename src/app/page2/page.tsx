@@ -54,7 +54,7 @@ const Page2 = () => {
     <section className="card">
       <h1>Where are you cooking from?</h1>
       <p>
-        {areas?.length || "No"} results found for {category}
+        {areas?.length || "No"} results found for {category || "all categories"}
       </p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormSelect
@@ -70,9 +70,6 @@ const Page2 = () => {
           register={register}
         />
         <div className="cta-container submit-container">
-          <Link href="/page1" aria-label="Back to category selection">
-            Back
-          </Link>
           <button type="submit">Complete</button>
         </div>
         {areasError && (
@@ -81,6 +78,9 @@ const Page2 = () => {
           </div>
         )}
       </form>
+      <Link href="/page1" aria-label="Back to category selection">
+        Back
+      </Link>
     </section>
   );
 };

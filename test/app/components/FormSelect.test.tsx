@@ -97,10 +97,7 @@ describe("FormSelect", () => {
       />,
     );
 
-    expect(screen.getByRole("combobox")).toHaveAttribute(
-      "aria-invalid",
-      "false",
-    );
+    expect(screen.getByRole("combobox")).not.toHaveAttribute("aria-invalid");
   });
 
   it("selects an option on user interaction", async () => {

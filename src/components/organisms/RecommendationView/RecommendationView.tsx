@@ -55,6 +55,7 @@ const RecommendationView = ({
 
   return (
     <section className="card full-page">
+      <h1>Recommendation</h1>
       <div className="recipeContainer">
         <Suspense fallback={<p role="status">loading...</p>}>
           <div className="recipe">
@@ -66,7 +67,7 @@ const RecommendationView = ({
               height={200}
             />
             <article>
-              <h1>{meal.strMeal}</h1>
+              <h2>{meal.strMeal}</h2>
               <p>
                 {meal.strCategory} — {meal.strArea}
               </p>
