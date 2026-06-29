@@ -13,14 +13,14 @@ import styles from './recommendationView.module.css'
 
 type Props = {
   data: Meal | null;
-  _isLoading: boolean;
+  isLoading: boolean;
   error: string | null;
   refetch: () => void;
 };
 
 const RecommendationView = ({
   data: meal,
-  _isLoading,
+  isLoading,
   error,
   refetch,
 }: Props) => {
@@ -45,6 +45,15 @@ const RecommendationView = ({
       });
     }
   }, [meal, logRequest]);
+
+  if (isLoading) {
+    return (
+      <section className="card full-page">
+        <h1>Recommendation</h1>
+        <p role="status">Loading recipe...</p>
+      </section>
+    );
+  }
 
   if (error || !meal || !isMeal(meal)) {
     return (
