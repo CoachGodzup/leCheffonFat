@@ -20,30 +20,22 @@ const Search = () => {
   return (
     <section className={styles.page}>
       <h1>Search page</h1>
-      <form>
-        <fieldset className={styles.fieldset}>
-          {" "}
-          <legend>Recipe name</legend>
+      <form onSubmit={(e) => e.preventDefault()}>
+        <div className={styles.fieldset}>
+          <label htmlFor="recipe-name">Recipe name</label>
           <div className={styles.inputContainer}>
             <SearchIcon></SearchIcon>
             <input
               id="recipe-name"
               type="search"
-              aria-label="Recipe name"
               className={styles.search}
               value={searchText}
               onChange={(elm) => setSearchText(elm.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") e.preventDefault();
-              }}
             />
           </div>
-          <button type="submit" style={{ display: "none" }}>
-            Search
-          </button>
-        </fieldset>
+        </div>
       </form>
-      <div role="status" aria-live="polite">
+      <div role="status">
         {isActive && isLoading && <p>loading...</p>}
         {isActive && error && <p role="alert">An error occurred: {error}.</p>}
         {isActive && !isLoading && !error && (!meals || meals.length === 0) && (
@@ -60,13 +52,13 @@ const Search = () => {
                     width={300}
                     height={110}
                   />
-                  <nav role="contentinfo">
-                    <h4>{meal.strMeal}</h4>
+                  <div className={styles.resultInfo}>
+                    <h2>{meal.strMeal}</h2>
                     <p>
                       {meal.strCategory} — {meal.strArea}
                     </p>
                     <p>{meal.strTags}</p>
-                  </nav>
+                  </div>
                 </Link>
               </li>
             ))}

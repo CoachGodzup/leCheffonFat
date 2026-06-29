@@ -54,3 +54,9 @@
   width: 4em;
   background: var(--color-white);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .entry a:hover {
+    transform: none;
+  }
+}

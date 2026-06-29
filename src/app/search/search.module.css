@@ -65,22 +65,27 @@
   height: 100%;
 }
 
-.result [role="contentinfo"] {
+.resultInfo {
   display: flex;
   flex-direction: column;
   gap: 0.25em;
   padding: 0 0.25em;
 }
 
-.result [role="contentinfo"] h4 {
+.resultInfo h2 {
   font-weight: 700;
   font-size: 1em;
   color: var(--color-text-main);
 }
 
-.result [role="contentinfo"] p {
-  font-weight: 100;
+.resultInfo p {
+  font-weight: 400;
   color: var(--color-text-muted);
-  opacity: 0.8;
   font-size: 0.85em;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .result a:hover {
+    transform: none;
+  }
 }

@@ -17,7 +17,7 @@ export const RecipePrint = ({ meal }: RecipePrintProps) => {
             </li>
           ))}
       </ul>
-      <article role="main">
+      <article>
         <h2>Instructions</h2>
         <div>{meal.strInstructions}</div>
       </article>
