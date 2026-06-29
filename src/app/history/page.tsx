@@ -1,45 +1,13 @@
 "use client";
 
-import { ThumbsDown, ThumbsUp } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
 import CheckboxFilter from "@/components/atoms/CheckboxFilter/CheckboxFilter";
 import SortBy from "@/components/atoms/SortBy/SortBy";
 import type { Sort } from "@/components/atoms/SortBy/SortBy";
 import RecipeCard from "@/components/molecules/RecipeCard/RecipeCard";
+import { FILTER_OPTIONS } from "@/constants/filter-options";
 import { useStore } from "@/store";
-
-import styles from "./history.module.css";
-
-const FILTER_OPTIONS = [
-  {
-    value: true,
-    label: (
-      <>
-        <ThumbsUp
-          size={16}
-          style={{ marginInlineEnd: "0.35em" }}
-          aria-hidden="true"
-        />{" "}
-        Liked
-      </>
-    ),
-  },
-  {
-    value: false,
-    label: (
-      <>
-        <ThumbsDown
-          size={16}
-          style={{ marginInlineEnd: "0.35em" }}
-          aria-hidden="true"
-        />{" "}
-        Disliked
-      </>
-    ),
-  },
-  { value: null, label: "Unrated" },
-];
 
 const History = () => {
   useEffect(() => {

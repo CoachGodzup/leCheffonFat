@@ -44,17 +44,14 @@ export const getCategories = () => {
   return request<CategoryResponse>("categories.php");
 };
 
-export const filterByCategory = (category: string) => {
-  return request<MealSearchResponse>(
-    `filter.php?c=${encodeURIComponent(category)}`,
-  );
-};
+const filterBy = <T>(param: string, value: string) =>
+  request<T>(`filter.php?${param}=${encodeURIComponent(value)}`);
 
-export const filterByArea = (area: string) => {
-  return request<MealSearchResponse>(
-    `filter.php?a=${encodeURIComponent(area)}`,
-  );
-};
+export const filterByCategory = (category: string) =>
+  filterBy<MealSearchResponse>("c", category);
+
+export const filterByArea = (area: string) =>
+  filterBy<MealSearchResponse>("a", area);
 
 // ---- Pure predicates (composable) ----
 
@@ -97,11 +94,8 @@ export const getRandomMealByFilter = (
     .then(pickRandom)
     .then((meal) => (meal ? fetchFullMeal(meal) : null));
 
-export const filterByIngredient = (ingredient: string) => {
-  return request<IngredientFilterResponse>(
-    `filter.php?i=${encodeURIComponent(ingredient)}`,
-  );
-};
+export const filterByIngredient = (ingredient: string) =>
+  filterBy<IngredientFilterResponse>("i", ingredient);
 
 export const getMealPageUrl = (meal: Meal): string => {
   if (meal.strSource) return meal.strSource;
