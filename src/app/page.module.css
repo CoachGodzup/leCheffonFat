@@ -1,3 +1,14 @@
+.pattern {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: repeating-conic-gradient(
+    var(--color-check) 0% 25%,
+    transparent 0% 50%
+  );
+  background-size: 128px 128px;
+}
+
 .page {
   --background: #fafafa;
   --foreground: #fff;
