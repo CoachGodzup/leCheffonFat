@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+import AnimatedIcons from "@/components/atoms/AnimatedIcons/AnimatedIcons";
+
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
@@ -10,6 +12,7 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <>
+      <AnimatedIcons />
       <div className={styles.pattern} aria-hidden="true" />
       <div className="card">
         <section>
