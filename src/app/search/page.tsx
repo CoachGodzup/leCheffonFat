@@ -1,10 +1,9 @@
 "use client";
 
 import { SearchIcon } from "lucide-react";
-import Link from "next/link";
 import { useEffect } from "react";
 
-import RecipeImage from "@/components/atoms/RecipeImage/RecipeImage";
+import RecipeCard from "@/components/molecules/RecipeCard/RecipeCard";
 import { useSearch } from "@/hooks/use-search";
 
 import styles from "./search.module.css";
@@ -44,23 +43,15 @@ const Search = () => {
         {meals && meals.length > 0 && (
           <ul className={styles.resultsContainer}>
             {meals.map((meal) => (
-              <li key={meal.idMeal} className={styles.result}>
-                <Link href={`/recommendation/${meal.idMeal}`}>
-                  <RecipeImage
-                    src={meal.strMealThumb}
-                    alt={meal.strMeal}
-                    width={300}
-                    height={110}
-                  />
-                  <div className={styles.resultInfo}>
-                    <h2>{meal.strMeal}</h2>
-                    <p>
-                      {meal.strCategory} — {meal.strArea}
-                    </p>
-                    <p>{meal.strTags}</p>
-                  </div>
-                </Link>
-              </li>
+              <RecipeCard
+                key={meal.idMeal}
+                id={meal.idMeal}
+                title={meal.strMeal}
+                imageUrl={meal.strMealThumb}
+                category={meal.strCategory}
+                area={meal.strArea}
+                tags={meal.strTags}
+              />
             ))}
           </ul>
         )}

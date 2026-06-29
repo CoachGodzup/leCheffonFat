@@ -12,12 +12,13 @@
 
 ## Molecules
 
-| Component       | File                                                      | Props                                                                                               | Description                                                                                         |
-| --------------- | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| FormSelect      | `src/components/molecules/FormSelect/FormSelect.tsx`      | `{ label: string; name: Path<T>; options: Option[]; error?: string; register: UseFormRegister<T> }` | Controlled `<select>` integrated with `react-hook-form`; shows error with `role="alert"`.           |
-| LikeDislikeCtas | `src/components/molecules/RecipeCtas/LikeDislikeCtas.tsx` | `{ likeFn: (like: boolean) => void; currentLike: boolean \| null }`                                 | Thumbs up/down buttons; highlights active choice via `aria-pressed`.                                |
-| RecipeCtas      | `src/components/molecules/RecipeCtas/RecipeCtas.tsx`      | `{ retryFn: () => void; meal: Meal \| null; onBack?: () => void }`                                  | Action bar: back, external recipe link, new idea, print, share.                                     |
-| RecipePrint     | `src/components/molecules/RecipePrint/RecipePrint.tsx`    | `{ meal: Meal }`                                                                                    | Print-only view with ingredient list and full instructions. Hidden on screen via `.print-only` CSS. |
+| Component       | File                                                      | Props                                                                                                    | Description                                                                                              |
+| --------------- | --------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| FormSelect      | `src/components/molecules/FormSelect/FormSelect.tsx`      | `{ label: string; name: Path<T>; options: Option[]; error?: string; register: UseFormRegister<T> }`      | Controlled `<select>` integrated with `react-hook-form`; shows error with `role="alert"`.                |
+| LikeDislikeCtas | `src/components/molecules/RecipeCtas/LikeDislikeCtas.tsx` | `{ likeFn: (like: boolean) => void; currentLike: boolean \| null }`                                      | Thumbs up/down buttons; highlights active choice via `aria-pressed`.                                     |
+| RecipeCtas      | `src/components/molecules/RecipeCtas/RecipeCtas.tsx`      | `{ retryFn: () => void; meal: Meal \| null; onBack?: () => void }`                                       | Action bar: back, external recipe link, new idea, print, share.                                          |
+| RecipeCard      | `src/components/molecules/RecipeCard/RecipeCard.tsx`      | `{ id: string; title: string; imageUrl: string; category: string; area: string; tags?: string \| null }` | Search result card with image, title, category/area, and optional tags. Links to `/recommendation/[id]`. |
+| RecipePrint     | `src/components/molecules/RecipePrint/RecipePrint.tsx`    | `{ meal: Meal }`                                                                                         | Print-only view with ingredient list and full instructions. Hidden on screen via `.print-only` CSS.      |
 
 ## Organisms
 

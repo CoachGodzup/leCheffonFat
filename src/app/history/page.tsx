@@ -1,13 +1,12 @@
 "use client";
 
 import { ThumbsDown, ThumbsUp } from "lucide-react";
-import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 
 import CheckboxFilter from "@/components/atoms/CheckboxFilter/CheckboxFilter";
-import RecipeImage from "@/components/atoms/RecipeImage/RecipeImage";
 import SortBy from "@/components/atoms/SortBy/SortBy";
 import type { Sort } from "@/components/atoms/SortBy/SortBy";
+import RecipeCard from "@/components/molecules/RecipeCard/RecipeCard";
 import { useStore } from "@/store";
 
 import styles from "./history.module.css";
@@ -88,22 +87,14 @@ const History = () => {
       ) : (
         <ul className={styles.resultsContainer}>
           {list.map((entry) => (
-            <li key={entry.recipeId} className={styles.result}>
-              <Link href={`/recommendation/${entry.recipeId}`}>
-                <RecipeImage
-                  src={entry.imageUrl}
-                  alt={entry.title}
-                  width={300}
-                  height={110}
-                />
-                <nav role="contentinfo">
-                  <h4>{entry.title}</h4>
-                  <p>
-                    {entry.inputs.category} — {entry.inputs.area}
-                  </p>
-                </nav>
-              </Link>
-            </li>
+            <RecipeCard
+              key={entry.recipeId}
+              id={entry.recipeId}
+              title={entry.title}
+              imageUrl={entry.imageUrl}
+              category={entry.inputs.category}
+              area={entry.inputs.area}
+            />
           ))}
         </ul>
       )}
