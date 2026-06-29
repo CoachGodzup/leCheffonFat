@@ -1,4 +1,5 @@
 import { getRandomMealByFilter } from "@/service/meal-db-service";
+import { InvalidMealId } from "@/types/meal-db";
 
 import { fishPieFull, seafoodFilterResponse } from "../fixtures/meals";
 import { mockOkResponse } from "../utils/mock-fetch";
@@ -44,6 +45,14 @@ describe("getRandomMealByFilter", () => {
     const result = await getRandomMealByFilter("Seafood", "Italian");
 
     expect(result).toBeNull();
+  });
+
+  it("throws when API returns 'Invalid ID' string", async () => {
+    mockFetch.mockReturnValueOnce(mockOkResponse({ meals: InvalidMealId }));
+
+    await expect(getRandomMealByFilter("Seafood", "British")).rejects.toMatch(
+      /Invalid response/,
+    );
   });
 
   it("returns a random meal when multiple match", async () => {

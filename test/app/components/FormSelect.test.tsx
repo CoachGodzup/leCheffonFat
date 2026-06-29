@@ -100,6 +100,38 @@ describe("FormSelect", () => {
     expect(screen.getByRole("combobox")).not.toHaveAttribute("aria-invalid");
   });
 
+  it("links error via aria-describedby", () => {
+    render(
+      <FormSelect
+        label="Category"
+        name="category"
+        options={options}
+        error="This field is required"
+        register={mockRegister}
+      />,
+    );
+
+    const select = screen.getByRole("combobox");
+    const alert = screen.getByRole("alert");
+
+    expect(select).toHaveAttribute("aria-describedby", alert.id);
+  });
+
+  it("does not set aria-describedby when no error", () => {
+    render(
+      <FormSelect
+        label="Category"
+        name="category"
+        options={options}
+        register={mockRegister}
+      />,
+    );
+
+    expect(screen.getByRole("combobox")).not.toHaveAttribute(
+      "aria-describedby",
+    );
+  });
+
   it("selects an option on user interaction", async () => {
     const user = userEvent.setup();
     render(

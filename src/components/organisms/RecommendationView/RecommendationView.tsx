@@ -9,13 +9,18 @@ import RecipeCtas from "@/components/molecules/RecipeCtas/RecipeCtas";
 import RecipePrint from "@/components/molecules/RecipePrint/RecipePrint";
 import { useStore } from "@/store";
 import type { Meal } from "@/types/meal-db";
-import styles from './recommendationView.module.css'
+
+import styles from "./recommendationView.module.css";
 
 type Props = {
   data: Meal | null;
   isLoading: boolean;
   error: string | null;
   refetch: () => void;
+};
+
+const isMeal = (meal?: unknown): boolean => {
+  return !!(meal && typeof meal === "object" && "idMeal" in meal);
 };
 
 const RecommendationView = ({
@@ -30,10 +35,6 @@ const RecommendationView = ({
   const currentLike = useStore(
     (s) => s.calls.find((c) => c.recipeId === meal?.idMeal)?.like ?? null,
   );
-
-  const isMeal = (meal?: unknown): boolean => {
-    return !!(meal && typeof meal === 'object' && 'idMeal' in meal);
-  }
 
   useEffect(() => {
     if (meal) {

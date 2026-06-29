@@ -54,7 +54,7 @@ export interface Ingredient {
   strType: string | null;
 }
 
-export const InvalidMealId = 'Invalid ID'
+export const InvalidMealId = "Invalid ID";
 
 export interface MealSearchResponse {
   meals: Meal[] | typeof InvalidMealId | null;

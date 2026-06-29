@@ -1,6 +1,7 @@
 import { act, renderHook, waitFor } from "@testing-library/react";
 
 import { useRandomMeal } from "@/hooks/use-random-meal";
+import { InvalidMealId } from "@/types/meal-db";
 
 import { fishPieFull } from "../fixtures/meals";
 import { mockOkResponse } from "../utils/mock-fetch";
@@ -48,6 +49,17 @@ describe("useRandomMeal", () => {
 
     expect(result.current.data).toBeNull();
     expect(result.current.error).toBe("No meal found");
+  });
+
+  it("returns error when API returns InvalidMealId", async () => {
+    mockFetch.mockReturnValueOnce(mockOkResponse({ meals: InvalidMealId }));
+
+    const { result } = renderHook(() => useRandomMeal("Seafood", "Italian"));
+
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
+
+    expect(result.current.data).toBeNull();
+    expect(result.current.error).toBe("An unknown error occurred");
   });
 
   it("refetch fetches again", async () => {

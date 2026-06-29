@@ -83,6 +83,13 @@ describe("Page2", () => {
     );
   });
 
+  it("shows 'all categories' fallback when category is empty", async () => {
+    render(<Page2 />);
+    await waitFor(() =>
+      expect(screen.getByText(/all categories/)).toBeInTheDocument(),
+    );
+  });
+
   it("renders area select dropdown", async () => {
     render(<Page2 />);
     await waitFor(() => {

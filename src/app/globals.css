@@ -164,7 +164,6 @@ aside {
 .btn-cta,
 a,
 button {
-  background-color: var(--color-bg-card);
   color: var(--color-text-main);
   font-weight: bold;
   border-radius: 0.5em;

@@ -9,6 +9,7 @@ Separa le responsabilità: ogni pagina ha un obiettivo unico (scegliere categori
 ### 2. Il wrapper `persistStorage` con try-catch — cosa gestisce?
 
 Gestisce 3 scenari:
+
 1. **SSR** — `localStorage` non esiste nel server
 2. **Modalità privacy/incognito** — alcuni browser lanciano eccezioni su `localStorage`
 3. **Test** — ambiente dove `localStorage` potrebbe non essere implementato
@@ -24,6 +25,7 @@ La flag `cancelled` previene **setState su componente smontato** — se l'effett
 ### 4. Composizione con `.then()` nella service layer
 
 Ogni step della pipeline `getRandomMealByFilter` è una **funzione pura**:
+
 - `extractMeals`, `byArea`, `pickRandom` sono testabili isolatamente senza mockare API
 - La pipeline è **dichiarativa**: leggi la catena e capisci subito il flusso
 - **Cortocircuito naturale**: se `pickRandom` riceve array vuoto, torna `null` e la catena si ferma (ternario `meal ? fetchFullMeal(meal) : null`)
@@ -51,6 +53,7 @@ Sì, è un **bug UX**. Se `getRandomMealByFilter` torna `null` (nessuna ricetta 
 ### 8. Race condition su click multipli "New idea"
 
 Ogni click avvia una fetch. Senza AbortController o flag, le risposte possono arrivare in ordine diverso — l'ultima risposta ricevuta sovrascrive lo stato, che potrebbe essere quella di una richiesta **più vecchia**. Soluzioni:
+
 1. `AbortController` per cancellare la fetch precedente
 2. Flag ref (`fetchingRef`) che impedisce chiamate concorrenti
 3. Counter incrementale con controllo sul numero corrente
@@ -62,6 +65,7 @@ Nel codice è stata implementata la soluzione 2: un `useRef(false)` controllato 
 ### 9. Caching nelle API calls
 
 La funzione `request()` non ha alcuna cache. Ogni navigazione tra `/page1` e `/page2` causa un refetch di categorie/aree. Migliorie possibili:
+
 - **Server-side**: usare il `fetch` cache di Next.js con `next: { revalidate: 3600 }` nel proxy
 - **Client**: custom hook con `useRef` cache + TTL
 - **React Query / TanStack Query**: cache automatica con stale-while-revalidate
@@ -83,6 +87,7 @@ Permette di **escludere il modulo mock dal bundle di produzione**. Con `import()
 ### 13. Proxy server-side — perché non chiamare TheMealDB direttamente?
 
 Risolve 3 problemi:
+
 1. **CORS** — il browser blocca richieste cross-origin da localhost a TheMealDB
 2. **API key nascosta** — anche se la key è "1" (pubblica), è buona pratica mantenerla lato server
 3. **Centralizzazione** — se l'API cambia URL, formato, o aggiungi autenticazione, modifichi solo il proxy
@@ -114,6 +119,7 @@ Il test funziona finché il codice chiama solo `.ok` e `.json()`. Se chiama `.he
 ### 19. Come testeresti `getRandomMealByFilter`?
 
 Con i test unitari:
+
 1. **Mock `filterByCategory`** per restituire array di meal con diverse `strArea`
 2. Test che con area matching, torna un meal valido
 3. Test che con area non matching, torna `null`
@@ -143,12 +149,14 @@ La deduplica in `history-slice.ts:19` controlla solo `recipeId`. Se lo stesso ID
 ### 24. Sidebar: stato filtri perso su navigazione
 
 Lo stato dei filtri (liked/disliked/unrated, ordinamento) è probabilmente locale alla Sidebar (`useState`). Navigando tra pagine, la Sidebar si smonta e rimonta, perdendo i filtri. Se si vuole persistenza, i filtri dovrebbero:
+
 - Andare nello store globale (Zustand), oppure
 - Essere codificati in URL search params
 
 ### 25. `setPage1` vs `setPage2` — perché separati?
 
 Ogni step del wizard ha il suo setter perché lo stato viene validato e salvato progressivamente. `setPage1` salva `{ category }`, `setPage2` salva `{ area }`. Separarli permette di:
+
 - Validare ogni step indipendentemente
 - Mantenere traccia di quale step è stato completato
 - Reset parziale (es. se l'utente cambia categoria, l'area va resettata)

@@ -8,7 +8,7 @@
     var(--color-lilac),
     var(--color-accent-yellow)
   );
-  border-radius: var(--default-border-radius)
+  border-radius: var(--default-border-radius);
 }
 
 .image {
@@ -69,4 +69,3 @@
   max-height: 15em;
   overflow-y: scroll;
 }
-
