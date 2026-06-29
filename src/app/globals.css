@@ -19,6 +19,7 @@
   --color-text-muted: #6a6578;
 
   --color-bg-card: var(--color-white);
+  --color-check: #e8e4de;
   --spacing: 1em;
   --default-border-radius: 0.5em;
 }
@@ -31,6 +32,7 @@
     --color-white: var(--color-bg-card-dark);
     --color-lilac: var(--color-lilac-dark);
     --color-accent-yellow: var(--color-accent-gold);
+    --color-check: #22202b;
     --color-text-muted: #9b96ac;
   }
 
@@ -195,7 +197,7 @@ button:hover {
 .card {
   background: var(--color-white);
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
   padding: 2rem;
   max-width: 600px;
   margin: 2em auto;
