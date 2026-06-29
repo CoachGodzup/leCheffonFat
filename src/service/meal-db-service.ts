@@ -61,7 +61,14 @@ export const filterByArea = (area: string) => {
 const byArea = (area: string) => (meal: { strArea?: string | null }) =>
   meal.strArea === area;
 
-const extractMeals = (res: MealSearchResponse) => res.meals ?? [];
+const extractMeals = (res: MealSearchResponse) => res.meals ?? []; 
+
+const checkIfValidMeal = (res: Meal[] | 'Invalid ID')  => { 
+  if(typeof res === 'string')  {
+    throw `Invalid response: ${res}`
+  }
+  return res
+}
 
 const pickRandom = <T>(items: T[]): T | null =>
   items.length === 0 ? null : items[Math.floor(Math.random() * items.length)];
@@ -78,8 +85,14 @@ export const getRandomMealByFilter = (
 ) =>
   filterByCategory(category)
     .then(extractMeals)
+    .then(checkIfValidMeal)
     .then((meals) => meals.filter((m) => !oldId || m.idMeal !== oldId))
     .then((meals) => meals.filter(byArea(area)))
+    .then((meals) => { if(meals.length === 1) {
+        console.warn('Only one element found, show same element'); 
+      }
+      return meals
+    })
     .then(pickRandom)
     .then((meal) => (meal ? fetchFullMeal(meal) : null));
 
