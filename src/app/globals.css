@@ -197,7 +197,10 @@ button:hover {
 .card {
   background: var(--color-white);
   border-radius: 12px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 12px 48px rgba(0, 0, 0, 0.12);
   padding: 2rem;
   max-width: 600px;
   margin: 2em auto;
