@@ -45,7 +45,7 @@ describe("useMealById", () => {
     await waitFor(() => expect(result.current.isLoading).toBe(false));
 
     expect(result.current.data).toBeNull();
-    expect(result.current.error).toMatch(/New error found/);
+    expect(result.current.error).toMatch(/Invalid meal ID/);
   });
 
   it("refetch fetches again with same id", async () => {
