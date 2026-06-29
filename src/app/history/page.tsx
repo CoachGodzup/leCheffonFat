@@ -9,6 +9,8 @@ import RecipeCard from "@/components/molecules/RecipeCard/RecipeCard";
 import { FILTER_OPTIONS } from "@/constants/filter-options";
 import { useStore } from "@/store";
 
+import styles from "./history.module.css";
+
 const History = () => {
   useEffect(() => {
     document.title = "History | Le Cheffon Fat";
