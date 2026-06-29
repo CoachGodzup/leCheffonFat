@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 
 import AnimatedIcons from "@/components/atoms/AnimatedIcons/AnimatedIcons";
@@ -14,13 +15,21 @@ export default function Home() {
     <>
       <AnimatedIcons />
       <div className={styles.pattern} aria-hidden="true" />
-      <div className="card">
+      <div className={"card " + styles.card}>
         <section>
           <div className={styles.hero}>
             <h1>Welcome to LeCheffonFat</h1>
             <p>Your personal helper when you don&apos;t know what to cook</p>
           </div>
         </section>
+        <Image
+          src="/splash.png"
+          alt=""
+          width={400}
+          height={267}
+          className={styles.splash}
+          aria-hidden="true"
+        />
         <nav className="cta-container" aria-label="Main navigation">
           <Link href="/page1">Inspire me!</Link>
           <Link href="/search">Search</Link>

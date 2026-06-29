@@ -134,6 +134,41 @@ a.secondary {
   }
 }
 
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 0.25em;
+}
+
+.hero h1 {
+  font-size: 1.75rem;
+  line-height: 1.2;
+}
+
+.hero p {
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+}
+
+.card {
+  padding: 1.5rem;
+  gap: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.splash {
+  display: block;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
 @media (prefers-color-scheme: dark) {
   .logo {
     filter: invert();
