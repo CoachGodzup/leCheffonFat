@@ -30,6 +30,10 @@ const RecommendationView = ({
     (s) => s.calls.find((c) => c.recipeId === meal?.idMeal)?.like ?? null,
   );
 
+  const isMeal = (meal?: unknown): boolean => {
+    return !!(meal && typeof meal === 'object' && 'idMeal' in meal);
+  }
+
   useEffect(() => {
     if (meal) {
       logRequest({
@@ -41,7 +45,7 @@ const RecommendationView = ({
     }
   }, [meal, logRequest]);
 
-  if (error || !meal) {
+  if (error || !meal || !isMeal(meal)) {
     return (
       <section className="card full-page">
         <h1>Recommendation</h1>
