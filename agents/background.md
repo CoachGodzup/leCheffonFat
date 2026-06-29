@@ -2,11 +2,11 @@
 
 ## Layers (dal basso verso l'alto)
 
-| Layer | Z-index | File | Cosa fa |
-|---|---|---|---|
-| Checkered pattern | `-2` | `src/app/page.module.css` — `.pattern` | `repeating-conic-gradient` con `background-size: 128px` alterna colore/trasparente ogni 25%, creando quadrati 64×64. I colori vengono dalle variabili CSS `--color-check` in `globals.css`. |
-| Animated icons | `-1` | `src/components/atoms/AnimatedIcons/` | 10 icone Lucide (tema cibo) posizionate su una griglia fissa di celle 64×64 che copre l'intera viewport. Ogni ~2.8s un tick sposta alcune icone in una cella adiacente (su/giù/sinistra/destra), con overshoot controllato da `cubic-bezier(0.34, 1.56, 0.64, 1)`. |
-| Card | `auto` | `globals.css` — `.card` | Contenuto della homepage, flusso normale del DOM. Sta davanti a tutto grazie a `z-index: auto`. |
+| Layer             | Z-index | File                                   | Cosa fa                                                                                                                                                                                                                                                            |
+| ----------------- | ------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Checkered pattern | `-2`    | `src/app/page.module.css` — `.pattern` | `repeating-conic-gradient` con `background-size: 128px` alterna colore/trasparente ogni 25%, creando quadrati 64×64. I colori vengono dalle variabili CSS `--color-check` in `globals.css`.                                                                        |
+| Animated icons    | `-1`    | `src/components/atoms/AnimatedIcons/`  | 10 icone Lucide (tema cibo) posizionate su una griglia fissa di celle 64×64 che copre l'intera viewport. Ogni ~2.8s un tick sposta alcune icone in una cella adiacente (su/giù/sinistra/destra), con overshoot controllato da `cubic-bezier(0.34, 1.56, 0.64, 1)`. |
+| Card              | `auto`  | `globals.css` — `.card`                | Contenuto della homepage, flusso normale del DOM. Sta davanti a tutto grazie a `z-index: auto`.                                                                                                                                                                    |
 
 ## AnimatedIcons — come funziona
 
@@ -19,6 +19,7 @@
 ### Spawn
 
 Quando le dimensioni della griglia cambiano, un `useEffect` genera 10 sprites:
+
 - Ogni sprite ha un'icona casuale, una cella iniziale (col, row), un colore
 - Le celle vengono assegnate senza sovrapposizioni
 
@@ -40,6 +41,7 @@ Quando le dimensioni della griglia cambiano, un `useEffect` genera 10 sprites:
 ### Colori
 
 Tre colori ciclati tra le icone, presi dalle variabili CSS del tema:
+
 - `var(--color-lilac)`
 - `var(--color-accent-yellow)`
 - `var(--color-text-muted)`
