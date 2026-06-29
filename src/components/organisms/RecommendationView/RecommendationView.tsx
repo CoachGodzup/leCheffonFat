@@ -9,6 +9,7 @@ import RecipeCtas from "@/components/molecules/RecipeCtas/RecipeCtas";
 import RecipePrint from "@/components/molecules/RecipePrint/RecipePrint";
 import { useStore } from "@/store";
 import type { Meal } from "@/types/meal-db";
+import styles from './recommendationView.module.css'
 
 type Props = {
   data: Meal | null;
@@ -59,9 +60,9 @@ const RecommendationView = ({
 
   return (
     <section className="card full-page">
-      <div className="recipeContainer">
+      <div className={styles.recipeContainer}>
         <Suspense fallback={<p role="status">loading...</p>}>
-          <div className="recipe">
+          <div className={styles.recipe}>
             <RecipeImage
               src={meal.strMealThumb}
               alt={meal.strMeal}
