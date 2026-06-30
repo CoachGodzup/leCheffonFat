@@ -17,7 +17,9 @@ describe("Home", () => {
   it("renders the tagline", () => {
     render(<Home />);
     expect(
-      screen.getByText(/your personal helper when you don't know what to cook/i),
+      screen.getByText(
+        /your personal helper when you don't know what to cook/i,
+      ),
     ).toBeInTheDocument();
   });
 
@@ -59,12 +61,8 @@ describe("Home", () => {
     const sectionIndex = children.findIndex(
       (child) => child.tagName === "SECTION",
     );
-    const imgIndex = children.findIndex(
-      (child) => child.tagName === "IMG",
-    );
-    const navIndex = children.findIndex(
-      (child) => child.tagName === "NAV",
-    );
+    const imgIndex = children.findIndex((child) => child.tagName === "IMG");
+    const navIndex = children.findIndex((child) => child.tagName === "NAV");
 
     expect(sectionIndex).toBeGreaterThanOrEqual(0);
     expect(imgIndex).toBe(sectionIndex + 1);
