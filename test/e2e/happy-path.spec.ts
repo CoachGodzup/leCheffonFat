@@ -23,9 +23,11 @@ test.describe("Happy path", () => {
     await expect(page).toHaveURL("/recommendation");
 
     // 4. Recommendation — verify the meal card
-    await expect(page.locator("section.card article h1")).toHaveText(
-      "Pizza Margherita",
-    );
+    await expect(
+      page
+        .locator("#main-content")
+        .getByRole("heading", { name: "Pizza Margherita" }),
+    ).toBeVisible();
     await expect(page.getByText("Italian — Italian")).toBeVisible();
     await expect(
       page.locator('section.card img[alt="Pizza Margherita"]'),
@@ -57,9 +59,11 @@ test.describe("Happy path", () => {
     await expect(page.getByText("No meals found.")).toBeVisible();
 
     await page.goto("/recommendation/99999");
-    await expect(page.locator("section.card article h1")).toHaveText(
-      "Pizza Margherita",
-    );
+    await expect(
+      page
+        .locator("#main-content")
+        .getByRole("heading", { name: "Pizza Margherita" }),
+    ).toBeVisible();
 
     await page.goto("/history");
     await expect(page.locator("ul li").first()).toContainText(
