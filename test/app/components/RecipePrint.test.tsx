@@ -69,4 +69,43 @@ describe("RecipePrint", () => {
 
     expect(screen.queryByRole("listitem")).not.toBeInTheDocument();
   });
+
+  it("renders the recipe image with alt text", () => {
+    render(<RecipePrint meal={mockMeal} />);
+
+    const img = screen.getByRole("img", { name: /test meal/i });
+    expect(img).toBeInTheDocument();
+    expect(img).toHaveAttribute("src", expect.stringContaining("example.com"));
+  });
+
+  it("renders the print footer with credit text", () => {
+    render(<RecipePrint meal={mockMeal} />);
+
+    expect(screen.getByText(/printed by le cheffon fat/i)).toBeInTheDocument();
+    expect(screen.getByText(/themealdb\.com/i)).toBeInTheDocument();
+  });
+
+  it("renders inside an <article> element", () => {
+    const { container } = render(<RecipePrint meal={mockMeal} />);
+
+    expect(container.querySelector("article")).toBeInTheDocument();
+  });
+
+  it("renders all ingredients when many are provided", () => {
+    const fullMeal: Meal = {
+      ...mockMeal,
+      strIngredient4: "Butter",
+      strMeasure4: "50 g",
+      strIngredient5: "Milk",
+      strMeasure5: "1 cup",
+      strIngredient6: "Salt",
+      strMeasure6: "Pinch",
+    };
+
+    render(<RecipePrint meal={fullMeal} />);
+
+    expect(screen.getByText("Butter - 50 g")).toBeInTheDocument();
+    expect(screen.getByText("Milk - 1 cup")).toBeInTheDocument();
+    expect(screen.getByText("Salt - Pinch")).toBeInTheDocument();
+  });
 });

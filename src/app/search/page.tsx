@@ -40,7 +40,8 @@ const Search = () => {
         {isActive && !isLoading && !error && (!meals || meals.length === 0) && (
           <p>No meals found.</p>
         )}
-        {meals && meals.length > 0 && (
+        {meals && meals.length > 0}
+        {typeof meals === "object" && (
           <ul className={styles.resultsContainer}>
             {meals.map((meal) => (
               <RecipeCard
@@ -55,6 +56,7 @@ const Search = () => {
             ))}
           </ul>
         )}
+        {typeof meals === "string" && <p>A problem occurred: {meals}</p>}
       </div>
     </section>
   );

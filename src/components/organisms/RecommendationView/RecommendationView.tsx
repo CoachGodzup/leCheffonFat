@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import { Suspense, useEffect } from "react";
 
-import RecipeImage from "@/components/atoms/RecipeImage/RecipeImage";
 import LikeDislikeCtas from "@/components/molecules/RecipeCtas/LikeDislikeCtas";
 import RecipeCtas from "@/components/molecules/RecipeCtas/RecipeCtas";
 import RecipePrint from "@/components/molecules/RecipePrint/RecipePrint";
@@ -70,25 +69,15 @@ const RecommendationView = ({
 
   return (
     <section className="card full-page">
-      <h1>Recommendation</h1>
+      <h1>{meal.strMeal}</h1>
+      <p>
+        {meal.strCategory} — {meal.strArea}
+      </p>
+      <p>{meal.strTags}</p>
       <div className={styles.recipeContainer}>
         <Suspense fallback={<p role="status">loading...</p>}>
           <div className={styles.recipe}>
-            <RecipeImage
-              src={meal.strMealThumb}
-              alt={meal.strMeal}
-              loading="eager"
-              width={400}
-              height={200}
-            />
-            <article>
-              <h2>{meal.strMeal}</h2>
-              <p>
-                {meal.strCategory} — {meal.strArea}
-              </p>
-              <p>{meal.strTags}</p>
-              <RecipePrint meal={meal}></RecipePrint>
-            </article>
+            <RecipePrint meal={meal}></RecipePrint>
           </div>
           <LikeDislikeCtas
             likeFn={(like) => setLike(meal.idMeal, like)}
