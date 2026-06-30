@@ -21,7 +21,7 @@ const mockUseStore = jest.requireMock("@/store").useStore;
 describe("Sidebar", () => {
   beforeEach(() => {
     mockUsePathname.mockReturnValue("/page1");
-    mockUseStore.mockImplementation((selector) => {
+    mockUseStore.mockImplementation((selector: (state: unknown) => unknown) => {
       const state = {
         calls: [],
         remove: jest.fn(),
@@ -51,7 +51,7 @@ describe("Sidebar", () => {
   });
 
   it("renders entries from store", () => {
-    mockUseStore.mockImplementation((selector) => {
+    mockUseStore.mockImplementation((selector: (state: unknown) => unknown) => {
       const state = {
         calls: [
           {

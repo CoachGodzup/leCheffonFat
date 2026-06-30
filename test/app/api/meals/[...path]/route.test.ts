@@ -1,3 +1,5 @@
+import type { NextRequest } from "next/server";
+
 import { GET } from "@/app/api/meals/[...path]/route";
 
 jest.mock("next/server", () => ({}));
@@ -35,9 +37,9 @@ afterAll(() => {
   globalThis.Response = originalResponse;
 });
 
-function mockRequest(urlString: string): { nextUrl: URL } {
+function mockRequest(urlString: string): NextRequest {
   const url = new URL(urlString, "http://localhost:3000");
-  return { nextUrl: url };
+  return { nextUrl: url } as unknown as NextRequest;
 }
 
 describe("GET /api/meals/[...path]", () => {

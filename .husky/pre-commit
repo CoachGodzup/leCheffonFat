@@ -1,0 +1,1 @@
+npx prettier --write . && npm run typecheck && npm run lint && npm test

@@ -25,6 +25,7 @@ globalThis.fetch = mockFetch;
 const carbonara: Meal = {
   idMeal: "52802",
   strMeal: "Spaghetti Carbonara",
+  strMealAlternate: null,
   strCategory: "Italian",
   strArea: "Italian",
   strInstructions: "",

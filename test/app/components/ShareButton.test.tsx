@@ -5,7 +5,7 @@ import ShareButton from "@/components/atoms/ShareButton/ShareButton";
 
 beforeAll(() => {
   Object.defineProperty(globalThis.navigator, "clipboard", {
-    value: { writeText: jest.fn().mockResolvedValue() },
+    value: { writeText: jest.fn() },
     writable: true,
     configurable: true,
   });

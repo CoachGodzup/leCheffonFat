@@ -71,7 +71,10 @@ const pickRandom = <T>(items: T[]): T | null =>
   items.length === 0 ? null : items[Math.floor(Math.random() * items.length)];
 
 const fetchFullMeal = (meal: { idMeal: string }) =>
-  getMealById(meal.idMeal).then((r) => r.meals?.[0] ?? null);
+  getMealById(meal.idMeal).then((r) => {
+    if (typeof r.meals === "string") return null;
+    return r.meals?.[0] ?? null;
+  });
 
 // ---- Composed functions ----
 

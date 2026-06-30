@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 import { searchMealsByName } from "@/service/meal-db-service";
-import { MealSearchResponse } from "@/types/meal-db";
+import type { Meal, MealSearchResponse } from "@/types/meal-db";
 
 import { useApi } from "./use-api";
 import { useDebounce } from "./use-debounce";
@@ -22,7 +22,7 @@ export const useSearch = () => {
   return {
     searchText,
     setSearchText,
-    meals: isActive ? (data?.meals ?? []) : [],
+    meals: isActive && Array.isArray(data?.meals) ? data.meals : ([] as Meal[]),
     isLoading: isActive && isLoading,
     error: isActive ? error : null,
     isActive,
