@@ -7,7 +7,12 @@ export const useMealById = (id: string) => {
   return useApi<Meal>(async () => {
     const res = await getMealById(id);
     const meal = res.meals?.[0] ?? null;
-    if (!meal) throw new Error("No meal found");
+    if (typeof res.meals === "string") {
+      throw new TypeError(`Invalid meal ID: ${res.meals}`);
+    }
+    if (!meal) {
+      throw new TypeError("No meal found");
+    }
     return meal;
   }, [id]);
 };

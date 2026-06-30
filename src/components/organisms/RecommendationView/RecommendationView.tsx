@@ -10,16 +10,22 @@ import RecipePrint from "@/components/molecules/RecipePrint/RecipePrint";
 import { useStore } from "@/store";
 import type { Meal } from "@/types/meal-db";
 
+import styles from "./recommendationView.module.css";
+
 type Props = {
   data: Meal | null;
-  _isLoading: boolean;
+  isLoading: boolean;
   error: string | null;
   refetch: () => void;
 };
 
+const isMeal = (meal?: unknown): boolean => {
+  return !!(meal && typeof meal === "object" && "idMeal" in meal);
+};
+
 const RecommendationView = ({
   data: meal,
-  _isLoading,
+  isLoading,
   error,
   refetch,
 }: Props) => {
@@ -41,7 +47,16 @@ const RecommendationView = ({
     }
   }, [meal, logRequest]);
 
-  if (error || !meal) {
+  if (isLoading) {
+    return (
+      <section className="card full-page">
+        <h1>Recommendation</h1>
+        <p role="status">Loading recipe...</p>
+      </section>
+    );
+  }
+
+  if (error || !meal || !isMeal(meal)) {
     return (
       <section className="card full-page">
         <h1>Recommendation</h1>
@@ -55,9 +70,10 @@ const RecommendationView = ({
 
   return (
     <section className="card full-page">
-      <div className="recipeContainer">
+      <h1>Recommendation</h1>
+      <div className={styles.recipeContainer}>
         <Suspense fallback={<p role="status">loading...</p>}>
-          <div className="recipe">
+          <div className={styles.recipe}>
             <RecipeImage
               src={meal.strMealThumb}
               alt={meal.strMeal}
@@ -66,7 +82,7 @@ const RecommendationView = ({
               height={200}
             />
             <article>
-              <h1>{meal.strMeal}</h1>
+              <h2>{meal.strMeal}</h2>
               <p>
                 {meal.strCategory} — {meal.strArea}
               </p>

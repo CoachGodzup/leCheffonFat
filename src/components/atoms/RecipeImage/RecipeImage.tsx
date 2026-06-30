@@ -32,7 +32,7 @@ const RecipeImage = (props: Props) => {
         <div
           className={styles.placeholder}
           role="img"
-          aria-label={typeof alt === "string" ? alt : "Recipe image"}
+          aria-label={typeof alt === "string" ? alt : "Dish image"}
         />
       </div>
     );

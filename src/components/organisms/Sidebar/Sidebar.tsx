@@ -9,39 +9,10 @@ import { useShallow } from "zustand/shallow";
 import CheckboxFilter from "@/components/atoms/CheckboxFilter/CheckboxFilter";
 import SortBy from "@/components/atoms/SortBy/SortBy";
 import type { Sort } from "@/components/atoms/SortBy/SortBy";
+import { FILTER_OPTIONS } from "@/constants/filter-options";
 import { useStore } from "@/store";
 
 import styles from "./sidebar.module.css";
-
-const FILTER_OPTIONS = [
-  {
-    value: true,
-    label: (
-      <>
-        <ThumbsUp
-          size={16}
-          style={{ marginInlineEnd: "0.35em" }}
-          aria-hidden="true"
-        />{" "}
-        Liked
-      </>
-    ),
-  },
-  {
-    value: false,
-    label: (
-      <>
-        <ThumbsDown
-          size={16}
-          style={{ marginInlineEnd: "0.35em" }}
-          aria-hidden="true"
-        />{" "}
-        Disliked
-      </>
-    ),
-  },
-  { value: null, label: "Unrated" },
-];
 
 const HIDE_PATHS = new Set(["/"]);
 
@@ -79,7 +50,7 @@ const Sidebar = () => {
         />
         <SortBy value={sort} onChange={setSort} />
       </nav>
-      <ul className={styles.entryList}>
+      <ul className={styles.entryList} role="status">
         {list.length === 0 && <p>No results found.</p>}
         {list
           .sort((a, b) =>

@@ -39,7 +39,7 @@ describe("RecommendationView", () => {
       />,
     );
 
-    expect(screen.getByText("No meal found")).toBeInTheDocument();
+    expect(screen.getByText("Loading recipe...")).toBeInTheDocument();
   });
 
   it("renders error state", () => {
@@ -68,6 +68,32 @@ describe("RecommendationView", () => {
     expect(screen.getByText("No meal found")).toBeInTheDocument();
   });
 
+  it("rejects non-Meal object data via isMeal type guard", () => {
+    render(
+      <RecommendationView
+        data={{} as Meal}
+        isLoading={false}
+        error={null}
+        refetch={jest.fn()}
+      />,
+    );
+
+    expect(screen.getByText("No meal found")).toBeInTheDocument();
+  });
+
+  it("rejects 'Invalid ID' string as data", () => {
+    render(
+      <RecommendationView
+        data={"Invalid ID" as unknown as Meal}
+        isLoading={false}
+        error={null}
+        refetch={jest.fn()}
+      />,
+    );
+
+    expect(screen.getByText("No meal found")).toBeInTheDocument();
+  });
+
   it("renders meal data", () => {
     render(
       <RecommendationView
@@ -86,7 +112,7 @@ describe("RecommendationView", () => {
     render(
       <RecommendationView
         data={null}
-        isLoading={true}
+        isLoading={false}
         error={null}
         refetch={jest.fn()}
       />,

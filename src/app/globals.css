@@ -18,6 +18,8 @@
   --color-text-primary: #f0eef2;
   --color-text-muted: #6a6578;
 
+  --color-bg-card: var(--color-white);
+  --color-check: #e8e4de;
   --spacing: 1em;
   --default-border-radius: 0.5em;
 }
@@ -30,6 +32,7 @@
     --color-white: var(--color-bg-card-dark);
     --color-lilac: var(--color-lilac-dark);
     --color-accent-yellow: var(--color-accent-gold);
+    --color-check: #22202b;
     --color-text-muted: #9b96ac;
   }
 
@@ -163,7 +166,6 @@ aside {
 .btn-cta,
 a,
 button {
-  background-color: var(--color-bg-card);
   color: var(--color-text-main);
   font-weight: bold;
   border-radius: 0.5em;
@@ -192,17 +194,13 @@ button:hover {
   border: none;
 }
 
-.recipe-card {
-  background-color: var(--color-white);
-  border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  color: var(--color-text-main);
-}
-
 .card {
   background: var(--color-white);
   border-radius: 12px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow:
+    0 4px 12px rgba(0, 0, 0, 0.08),
+    0 12px 48px rgba(0, 0, 0, 0.12);
   padding: 2rem;
   max-width: 600px;
   margin: 2em auto;
@@ -223,54 +221,6 @@ section {
   display: flex;
   flex-direction: column;
   gap: 0.7em;
-}
-
-.recipeContainer {
-  display: grid;
-  gap: 1.5em;
-  margin-top: 1em;
-}
-
-.recipeContainer .recipe {
-  display: grid;
-  gap: 1.5em;
-  grid-template-columns: 1fr;
-}
-
-@media (min-width: 600px) {
-  .recipeContainer .recipe {
-    grid-template-columns: 300px 1fr;
-  }
-}
-
-.recipeContainer .recipe img {
-  border-radius: 12px;
-  object-fit: cover;
-  width: 100%;
-  height: auto;
-}
-
-.recipeContainer .recipe h3 {
-  margin-bottom: 0.5em;
-}
-
-.recipeContainer .recipe p {
-  font-size: 0.9375em;
-  margin-bottom: 0.25em;
-  color: var(--color-text-muted);
-}
-
-.recipeContainer .recipe p:has(strong) {
-  color: var(--color-text-main);
-}
-
-.recipeContainer .instructions {
-  line-height: 1.7;
-  font-size: 0.9375em;
-  max-width: 65ch;
-  color: var(--color-text-main);
-  max-height: 15em;
-  overflow-y: scroll;
 }
 
 .likeRow {
@@ -296,10 +246,30 @@ section {
    Print Styles
    ============================================= */
 
-/* Focus-visible ring for keyboard navigation */
+/* Focus ring for keyboard navigation — :focus fallback for older browsers */
+:focus {
+  outline: 2px solid var(--color-accent-yellow);
+  outline-offset: 2px;
+}
+
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
 :focus-visible {
   outline: 2px solid var(--color-accent-yellow);
   outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 /* Skip-to-content link — visually hidden until focused */

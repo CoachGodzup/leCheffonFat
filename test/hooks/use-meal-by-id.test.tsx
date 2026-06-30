@@ -37,6 +37,17 @@ describe("useMealById", () => {
     expect(result.current.error).toBe("No meal found");
   });
 
+  it("returns error when API returns InvalidMealId", async () => {
+    mockFetch.mockReturnValueOnce(mockOkResponse({ meals: "Invalid ID" }));
+
+    const { result } = renderHook(() => useMealById("00000"));
+
+    await waitFor(() => expect(result.current.isLoading).toBe(false));
+
+    expect(result.current.data).toBeNull();
+    expect(result.current.error).toMatch(/Invalid meal ID/);
+  });
+
   it("refetch fetches again with same id", async () => {
     mockFetch.mockReturnValueOnce(mockOkResponse({ meals: [fishPieFull] }));
 

@@ -1,6 +1,8 @@
 import { Utensils } from "lucide-react";
 import Link from "next/link";
 
+import pkg from "@/../package.json";
+
 import styles from "./footer.module.css";
 
 const Footer = () => (
@@ -14,6 +16,7 @@ const Footer = () => (
       />{" "}
       by <Link href="https://github.com/CoachGodzup">Matteo Garza</Link>
     </p>
+    <p className={styles.version}>v{pkg.version}</p>
   </footer>
 );
 

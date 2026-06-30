@@ -24,7 +24,7 @@ const ShareButton = () => {
       onClick={handleShare}
       aria-label="Share link"
     >
-      {copied ? "Copied!" : "Share"}
+      <span role="status">{copied ? "Copied!" : "Share"}</span>
     </button>
   );
 };

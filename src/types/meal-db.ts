@@ -54,8 +54,10 @@ export interface Ingredient {
   strType: string | null;
 }
 
+export const InvalidMealId = "Invalid ID";
+
 export interface MealSearchResponse {
-  meals: Meal[] | null;
+  meals: Meal[] | typeof InvalidMealId | null;
 }
 
 export interface CategoryResponse {

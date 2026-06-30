@@ -120,6 +120,27 @@ describe("RecommendationById with category and area params", () => {
       );
     });
   });
+
+  it("shows error message when New Idea fetch fails", async () => {
+    mockFetch
+      .mockReturnValueOnce(mockOkResponse({ meals: [pizzaMargherita] }))
+      .mockReturnValueOnce(mockOkResponse({ meals: null }));
+
+    render(<RecommendationById />);
+
+    await screen.findByText("Pizza Margherita");
+
+    const newIdeaBtn = screen.getByRole("button", {
+      name: /new recipe idea/i,
+    });
+    await userEvent.click(newIdeaBtn);
+
+    await waitFor(() => {
+      expect(
+        screen.getByText("No new recipe found for these criteria"),
+      ).toBeInTheDocument();
+    });
+  });
 });
 
 describe("RecommendationById from history with inputs", () => {

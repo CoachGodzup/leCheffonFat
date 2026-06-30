@@ -11,6 +11,7 @@ export const useRandomMeal = (
   return useApi<Meal>(async () => {
     const meal = await getRandomMealByFilter(category, area);
     if (!meal) throw new Error("No meal found");
+    if (typeof meal === "string") throw new Error("Error found: " + meal);
     return meal;
   }, [category, area]);
 };

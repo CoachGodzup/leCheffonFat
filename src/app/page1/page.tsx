@@ -1,26 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
-import { FieldValues, useForm } from "react-hook-form";
 import { useShallow } from "zustand/shallow";
 
-import FormSelect from "@/components/molecules/FormSelect/FormSelect";
+import FormStep from "@/components/molecules/FormStep/FormStep";
 import { useCategories } from "@/hooks/use-categories";
 import { useStore } from "@/store";
-import type { Page1Request } from "@/types/form";
 
 const Page1 = () => {
-  useEffect(() => {
-    document.title = "Choose a Category | Le Cheffon Fat";
-  }, []);
-
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-    reset,
-  } = useForm<Page1Request>();
   const router = useRouter();
 
   const {
@@ -36,46 +23,25 @@ const Page1 = () => {
     })),
   );
 
-  useEffect(() => {
-    reset({ category });
-  }, [category, reset]);
-
-  const onSubmit = (data: FieldValues) => {
-    console.log("submitted", data);
-    setPage1({ category: data.category });
-    router.push("/page2");
-  };
-
-  if (catLoading) return <p role="status">Loading...</p>;
-
   return (
-    <section className="card">
-      <h1>What&apos;s on your mind&apos;s menu?</h1>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <FormSelect
-          label="Category"
-          name="category"
-          options={(categories ?? []).map((c) => ({
-            value: c.strCategory,
-            label: c.strCategory,
-          }))}
-          error={
-            errors.category?.type === "required"
-              ? "Category is required"
-              : undefined
-          }
-          register={register}
-        />
-        <div className="cta-container submit-container">
-          <button type="submit">Next</button>
-        </div>
-        {catError && (
-          <div className="alert alert-error">
-            <p role="alert">Error: {catError}</p>
-          </div>
-        )}
-      </form>
-    </section>
+    <FormStep
+      title="Choose a Category | Le Cheffon Fat"
+      heading="What's on your mind's menu?"
+      fieldLabel="Category"
+      fieldName="category"
+      options={(categories ?? []).map((c) => ({
+        value: c.strCategory,
+        label: c.strCategory,
+      }))}
+      submitLabel="Next"
+      isLoading={catLoading}
+      fetchError={catError}
+      storeValue={category}
+      onSubmit={(value) => {
+        setPage1({ category: value });
+        router.push("/page2");
+      }}
+    />
   );
 };
 

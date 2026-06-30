@@ -44,17 +44,14 @@ export const getCategories = () => {
   return request<CategoryResponse>("categories.php");
 };
 
-export const filterByCategory = (category: string) => {
-  return request<MealSearchResponse>(
-    `filter.php?c=${encodeURIComponent(category)}`,
-  );
-};
+const filterBy = <T>(param: string, value: string) =>
+  request<T>(`filter.php?${param}=${encodeURIComponent(value)}`);
 
-export const filterByArea = (area: string) => {
-  return request<MealSearchResponse>(
-    `filter.php?a=${encodeURIComponent(area)}`,
-  );
-};
+export const filterByCategory = (category: string) =>
+  filterBy<MealSearchResponse>("c", category);
+
+export const filterByArea = (area: string) =>
+  filterBy<MealSearchResponse>("a", area);
 
 // ---- Pure predicates (composable) ----
 
@@ -62,6 +59,13 @@ const byArea = (area: string) => (meal: { strArea?: string | null }) =>
   meal.strArea === area;
 
 const extractMeals = (res: MealSearchResponse) => res.meals ?? [];
+
+const checkIfValidMeal = (res: Meal[] | "Invalid ID") => {
+  if (typeof res === "string") {
+    throw `Invalid response: ${res}`;
+  }
+  return res;
+};
 
 const pickRandom = <T>(items: T[]): T | null =>
   items.length === 0 ? null : items[Math.floor(Math.random() * items.length)];
@@ -78,16 +82,20 @@ export const getRandomMealByFilter = (
 ) =>
   filterByCategory(category)
     .then(extractMeals)
+    .then(checkIfValidMeal)
     .then((meals) => meals.filter((m) => !oldId || m.idMeal !== oldId))
     .then((meals) => meals.filter(byArea(area)))
+    .then((meals) => {
+      if (meals.length === 1) {
+        console.warn("Only one element found, show same element");
+      }
+      return meals;
+    })
     .then(pickRandom)
     .then((meal) => (meal ? fetchFullMeal(meal) : null));
 
-export const filterByIngredient = (ingredient: string) => {
-  return request<IngredientFilterResponse>(
-    `filter.php?i=${encodeURIComponent(ingredient)}`,
-  );
-};
+export const filterByIngredient = (ingredient: string) =>
+  filterBy<IngredientFilterResponse>("i", ingredient);
 
 export const getMealPageUrl = (meal: Meal): string => {
   if (meal.strSource) return meal.strSource;
