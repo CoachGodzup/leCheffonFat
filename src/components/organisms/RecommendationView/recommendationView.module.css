@@ -10,12 +10,6 @@
   grid-template-columns: 1fr;
 }
 
-@media (min-width: 600px) {
-  .recipeContainer .recipe {
-    grid-template-columns: 300px 1fr;
-  }
-}
-
 .recipeContainer .recipe img {
   border-radius: 12px;
   object-fit: cover;
@@ -35,13 +29,4 @@
 
 .recipeContainer .recipe p:has(strong) {
   color: var(--color-text-main);
-}
-
-.recipeContainer .instructions {
-  line-height: 1.7;
-  font-size: 0.9375em;
-  max-width: 65ch;
-  color: var(--color-text-main);
-  max-height: 15em;
-  overflow-y: scroll;
 }

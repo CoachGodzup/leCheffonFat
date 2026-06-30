@@ -206,6 +206,12 @@ button:hover {
   margin: 2em auto;
 }
 
+@media print {
+  .card {
+    box-shadow: none;
+  }
+}
+
 .card.full-page {
   margin: 0;
   max-width: none;
@@ -322,11 +328,5 @@ section {
   /* padding */
   main > section.card {
     margin: 0;
-  }
-
-  .recipeContainer .instructions {
-    height: auto;
-    max-height: none;
-    overflow: show;
   }
 }
