@@ -17,6 +17,10 @@
   --color-accent-gold: #c9ad81;
   --color-text-primary: #f0eef2;
   --color-text-muted: #6a6578;
+  --color-error: #c44b4b;
+  --color-error-bg: #fef2f2;
+  --color-warning: #b8860b;
+  --color-warning-bg: #fff8e6;
 
   --color-bg-card: var(--color-white);
   --color-check: #e8e4de;
@@ -34,6 +38,10 @@
     --color-accent-yellow: var(--color-accent-gold);
     --color-check: #22202b;
     --color-text-muted: #9b96ac;
+    --color-error: #fca5a5;
+    --color-error-bg: #451a1a;
+    --color-warning: #fcd34d;
+    --color-warning-bg: #3b2f00;
   }
 
   .btn-cta {

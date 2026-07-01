@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import ToastContainer from "@/components/molecules/ToastContainer/ToastContainer";
 import Footer from "@/components/organisms/Footer/Footer";
 import Header from "@/components/organisms/Header/Header";
 import Sidebar from "@/components/organisms/Sidebar/Sidebar";
@@ -26,6 +27,7 @@ export default function RootLayout({
         <main id="main-content">{children}</main>
         <Sidebar />
         <Footer />
+        <ToastContainer />
       </body>
     </html>
   );
