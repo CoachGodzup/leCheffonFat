@@ -1,0 +1,15 @@
+.container {
+  position: fixed;
+  top: 0.75em;
+  right: 0.75em;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  max-width: 24em;
+  pointer-events: none;
+}
+
+.container > * {
+  pointer-events: auto;
+}

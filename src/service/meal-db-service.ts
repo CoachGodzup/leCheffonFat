@@ -1,3 +1,4 @@
+import { useNotificationStore } from "@/store/notification-store";
 import type {
   CategoryResponse,
   IngredientFilterResponse,
@@ -19,9 +20,11 @@ async function request<T>(endpoint: string): Promise<T> {
 
   const res = await fetch(`${fullBase}/${endpoint}`);
   if (!res.ok) {
-    throw new Error(
-      `TheMealDB request failed: ${res.status} ${res.statusText}`,
-    );
+    const message = `TheMealDB request failed: ${res.status} ${res.statusText}`;
+    if (globalThis.window !== undefined) {
+      useNotificationStore.getState().addToast(message, "error");
+    }
+    throw new Error(message);
   }
   return res.json();
 }
@@ -89,8 +92,13 @@ export const getRandomMealByFilter = (
     .then((meals) => meals.filter((m) => !oldId || m.idMeal !== oldId))
     .then((meals) => meals.filter(byArea(area)))
     .then((meals) => {
-      if (meals.length === 1) {
-        console.warn("Only one element found, show same element");
+      if (meals.length === 1 && globalThis.window !== undefined) {
+        useNotificationStore
+          .getState()
+          .addToast(
+            "Only one result found, showing the same recipe",
+            "warning",
+          );
       }
       return meals;
     })
