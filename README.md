@@ -20,6 +20,9 @@ The goto stop when you don't know what to cook
 
 Two-step recipe recommender app, built with [Next.js](https://nextjs.org/) that uses [TheMealDB API](https://www.themealdb.com/).
 
+[You can see it in action](https://lecheffonfat.netlify.app/)
+
+
 ## Getting Started
 
 Pull the repository from Github.
@@ -51,3 +54,5 @@ All technical decisions are documented in [docs/technical_specs.md](./docs/techn
 There's also a file for [code specific decisions](./docs/code_guide.md), one for [graphics guide](./docs/graphics_guide.md) and a little accessibility report [here](./docs/wcag-report.md).
 
 Warning: this can cause fatness in [le chat](https://www.explainx.ai/blog/le-chaton-fat-mistral-ai-viral-hoax-meme-2026).
+
+![LeCheffonFat](./public/splash.png)
