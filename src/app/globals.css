@@ -1,6 +1,6 @@
-/* =============================================
+/* 
    CSS Custom Properties (Theme Variables)
-   ============================================= */
+    */
 
 :root {
   /* Light theme (default) */
@@ -60,9 +60,9 @@
   }
 }
 
-/* =============================================
+/* 
    Reset & Base
-   ============================================= */
+    */
 
 * {
   font-family: "Inter", sans-serif;
@@ -107,9 +107,9 @@ body:not(:has(aside)) {
   grid-template-columns: 1fr;
 }
 
-/* =============================================
+/* 
    Typography
-   ============================================= */
+    */
 
 h1,
 h2,
@@ -123,9 +123,9 @@ a {
   text-decoration: none;
 }
 
-/* =============================================
+/* 
    Layout — Header / Main / Footer / Sidebar
-   ============================================= */
+    */
 
 header {
   grid-area: header;
@@ -151,9 +151,9 @@ aside {
   border-right: 1px solid var(--color-lilac);
 }
 
-/* =============================================
+/* 
    Components
-   ============================================= */
+    */
 
 .cta-container {
   display: flex;
@@ -248,17 +248,17 @@ section {
   color: var(--color-accent-yellow);
 }
 
-/* =============================================
+/* 
    Layout Utilities
-   ============================================= */
+    */
 
 .print-only {
   display: none;
 }
 
-/* =============================================
+/* 
    Print Styles
-   ============================================= */
+    */
 
 /* Focus ring for keyboard navigation — :focus fallback for older browsers */
 :focus {
