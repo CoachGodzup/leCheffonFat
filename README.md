@@ -55,8 +55,6 @@ There's also a file for [code specific decisions](./docs/code_guide.md), one for
 
 Warning: this can cause fatness in [le chat](https://www.explainx.ai/blog/le-chaton-fat-mistral-ai-viral-hoax-meme-2026).
 
-![LeCheffonFat](./public/splash.png)
-
 ## Contributing
 
 Contributions are warmly welcome! Feel free to open an issue, submit a pull request, fork the project or improve documentation. Let me know if you need any modifications.
@@ -65,3 +63,5 @@ Contributions are warmly welcome! Feel free to open an issue, submit a pull requ
 
 [Author](https://github.com/CoachGodzup)
 [Github](https://github.com/CoachGodzup/leCheffonFat/)
+
+![LeCheffonFat](./public/splash.png)
